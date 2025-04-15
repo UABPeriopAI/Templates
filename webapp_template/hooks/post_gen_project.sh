@@ -43,7 +43,7 @@ git branch --remotes --delete  origin/master
 git push origin HEAD
 
 
-python3 -m mkdocs build -c
-python3 -m mkdocs serve
+# python3 -m mkdocs build -c
+# python3 -m mkdocs serve
 
 
