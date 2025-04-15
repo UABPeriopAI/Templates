@@ -50,7 +50,7 @@ git checkout release/label_maker
 cd ..
 git add .
 git commit -m 'updating llm_utils'
-git push -u origin/feature/initialize_template
+git push -u origin HEAD
 
 # python3 -m mkdocs build -c
 # python3 -m mkdocs serve
