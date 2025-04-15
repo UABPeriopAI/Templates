@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "/data"
+		}
+	],
+	"settings": {
+		"git.autofetch": "all",
+		"docwriter.style": "Google"
+	}
+}
