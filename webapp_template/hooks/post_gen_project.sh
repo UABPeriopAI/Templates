@@ -43,6 +43,15 @@ git branch --remotes --delete  origin/master
 git push origin HEAD
 
 
+git submodule add https://github.com/UABPeriopAI/llm_utils.git
+git submodule update --init --recursive
+cd llm_utils
+git checkout release/label_maker
+cd ..
+git add .
+git commit -m 'updating llm_utils'
+git push -u origin/feature/initialize_template
+
 # python3 -m mkdocs build -c
 # python3 -m mkdocs serve
 

@@ -11,3 +11,5 @@ echo 'export PYTHONPATH="/workspaces/LabeLMaker/llm_utils:${PYTHONPATH}"' >> ~/.
 pip install "black[jupyter]"
 pip install "mkdocstrings[python]"
 pip install "mkdocs-monorepo-plugin"
+
+
