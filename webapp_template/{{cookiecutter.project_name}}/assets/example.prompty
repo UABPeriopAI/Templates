@@ -1,5 +1,8 @@
+
+{% raw %}
+TODO Remove escaping (first, well and second, I guess, along with the last line)
 ---
-name: Examples: Few-Shot Generative Categorizer
+name: Example: Few-Shot Generative Categorizer
 description: "A few-shot categorization tool using provided examples for improved context."
 model:
   api: chat
@@ -52,3 +55,5 @@ prompt:
     Rationale: [Brief explanation of your reasoning]
 
     Category: [Category Name selected from the list of possible categories]
+
+{% endraw %}
