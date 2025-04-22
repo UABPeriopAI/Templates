@@ -1,71 +1,86 @@
-import warnings
-from pathlib import Path
-from typing import Dict
-import mlflow
-import typer
-
-from config import config
-from config.config import logger
-
-# Initialize Typer CLI app
-app = typer.Typer()
-warnings.filterwarnings("ignore")
-
-@app.command()
-def preprocess(
-    experiment_name: str = 'Preprocessing',
-    args_pre: str = "config/args_preprocess.json",
-    test_run: bool = True,
-):
-    #Preprocessing code goes here:
-
-    #Log preproccesing
-    logger.info("✅ sucessfully preprocessed data")
-    if not test_run:     
-        mlflow.set_experiment(experiment_name)
-        with mlflow.start_run() as run:
-            run_id = mlflow.active_run().info.run_id
-            mlflow.log_params(args_pre)
-            mlflow.log_param("run_id", run_id)
-            mlflow.log_param("output_filepath", config.EXAMPLE_OUTPUT)
-
-@app.command()
-def train(
-    args_tr: str = "config/args_train.json",
-    experiment_name: str = "training",
-    test_run: bool = False,
-) -> None:
-    if not test_run:
-        mlflow.set_experiment(experiment_name)
-        with mlflow.start_run():
-            run_id = mlflow.active_run().info.run_id
-            mlflow.log_params(args_tr)
-
-@app.command()
-def process(
-    args_pro: str = "config/args_process.json",
-    experiment_name: str = "process",
-    run_name: str = "process",
-    test_run: bool = False,
-) -> None:
-    #processing code goes here (e.g., model inference):
-
-    #Log
-    logger.info("✅ sucessfully processed data")
-    mlflow.set_experiment(experiment_name)
-    #Example MLFlow call
-    if not test_run:
-        with mlflow.start_run(run_name=run_name) as run:
-            run_id = mlflow.active_run().info.run_id
-            mlflow.log_params(args_pro)
-
-@app.command()
-def evaluate(
-    experiment_name: str = "evaluation",
-    test_run: bool = False,
-):
-    raise(NotImplementedError)
+import io
+import streamlit as st
+import pandas as pd
+from aiweb_common.streamlit.page_renderer import UIHelper
 
 
-if __name__ == "__main__":
-    app()  # pragma: no cover, live app
+# Imports used exclusively by EvaluateHandler.
+from {{cookiecutter.project_name}}.Evaluate.data_loader import DataLoader
+from {{cookiecutter.project_name}}.Evaluate.evaluator import Evaluator
+from {{cookiecutter.project_name}}.utils.file_manager import FileManager
+from {{cookiecutter.project_name}}_config.config import Config
+
+
+class BaseHandler:
+    """
+    A bare-bones helper that provides functionality for file upload and report generation.
+    """
+    def __init__(self, ui_helper=UIHelper):
+        # Expect ui_helper to be an object that provides Streamlit functionality (in this case, just st)
+        self.ui = ui_helper
+
+    def ensure_file(self, file, upload_message, file_types, key, info_message):
+        """
+        Checks if a file is provided; otherwise prompts the user to upload one.
+        """
+        if file is None:
+            file = self.ui.file_uploader(
+                label=upload_message,
+                type=file_types,
+                key=key
+            )
+            if file is None:
+                self.ui.info(info_message)
+        return file
+
+    def generate_dummy_report_download(self):
+        """
+        Generates a dummy text report as bytes.
+        """
+        report_text = "Hello!\n\nThis is your dummy report generated on demand."
+        temp_stream = io.BytesIO()
+        temp_stream.write(report_text.encode("utf-8"))
+        temp_stream.seek(0)
+        return temp_stream.read()
+
+def task_a():
+    """
+    Task A: Allows the user to upload a CSV file and then preview the first few rows.
+    """
+    handler = BaseHandler(st)
+    # Try to get a file; if none is provided, show an info message automatically
+    file = handler.ensure_file(
+        file=None,
+        upload_message="Please upload a CSV file",
+        file_types=["csv"],
+        key="csv_uploader",
+        info_message="You must upload a CSV file to proceed."
+    )
+    if file is not None:
+        try:
+            # Read and display the CSV contents
+            df = pd.read_csv(file)
+            st.subheader("CSV File Preview")
+            st.dataframe(df.head())
+            st.success("CSV file loaded successfully!")
+            st.balloons()
+        except Exception as e:
+            st.error(f"Error reading CSV file: {e}")
+
+def task_b():
+    """
+    Task B: Generates a dummy report that the user can download.
+    """
+    handler = BaseHandler(st)
+    st.subheader("Generate a Dummy Report")
+    if st.button("Generate Report"):
+        with st.spinner("Generating report..."):
+            report_bytes = handler.generate_dummy_report_download()
+        st.download_button(
+            label="Download Dummy Report",
+            data=report_bytes,
+            file_name="dummy_report.txt",
+            mime="text/plain"
+        )
+        st.success("Report generated!")
+        st.balloons()
