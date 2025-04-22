@@ -3,7 +3,6 @@ import logging
 import sys
 from pathlib import Path
 
-import mlflow
 from rich.logging import RichHandler
 
 # Development Directories
@@ -23,7 +22,6 @@ RESULTS_DIR = Path(DATA_DIR, "results")
 EXAMPLE_OUTPUT = Path(INTERMEDIATE_DIR, "Example_Output.csv")
 
 # MLFlow model registry
-mlflow.set_tracking_uri("http://localhost:5000")
 
 # Logger
 logging_config = {

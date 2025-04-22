@@ -43,7 +43,7 @@ class BaseHandler:
         temp_stream.seek(0)
         return temp_stream.read()
 
-def task_a():
+def upload_example():
     """
     Task A: Allows the user to upload a CSV file and then preview the first few rows.
     """
@@ -60,14 +60,17 @@ def task_a():
         try:
             # Read and display the CSV contents
             df = pd.read_csv(file)
+            # TODO Do something with the df...
+            # example_task_a.process()
             st.subheader("CSV File Preview")
             st.dataframe(df.head())
+            
             st.success("CSV file loaded successfully!")
             st.balloons()
         except Exception as e:
             st.error(f"Error reading CSV file: {e}")
 
-def task_b():
+def download_example():
     """
     Task B: Generates a dummy report that the user can download.
     """
