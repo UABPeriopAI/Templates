@@ -1,9 +1,6 @@
-CSV_EXPECTED_TYPE = "text/csv"
-XLSX_EXPECTED_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-
-FORM_API_META = {
-    "title": "Label Maker",
-    "description": "Categorize data using AI",
+API_META = {
+    "title": "Template",
+    "description": "Standard template for projects",
     "summary": "Brought to you by the Anesthesiology Research, Informatics, and Data Science teams in collaboration with Radiology Imaging Informatics, Clinicians, and Researchers.",
     "version": "0.0.1",
     "contact": {
@@ -15,22 +12,23 @@ FORM_API_META = {
 }
 
 EXAMPLE_META = {
-    "summary": "Takes in csv/xlsx file and categorizes the text data into the either of the user given categories.",
-    "description": "Processes a CSV or Excel file and returns a labeled result as a CSV or Excel file. Only accepts files of type CSV ("
-    + CSV_EXPECTED_TYPE
-    + ") or Excel ("
-    + XLSX_EXPECTED_TYPE
-    + ").",
-    "response_description": "Returns a CSV or Excel of labeled data",
+    "summary": "Example template",
+    "description": "Example meta that has to be rewritten based on the application.",
+    "response_description": "Returns the validated 'name'.",
     "responses": {
         200: {
+            "description": "Successful response with the 'name' in the response body.",
             "content": {
-                CSV_EXPECTED_TYPE: {"schema": {"type": "string", "format": "byte"}},
-                XLSX_EXPECTED_TYPE: {"schema": {"type": "string", "format": "byte"}},
-            },
-            "description": "Returns a CSV or Excel file encoded in base64. The client is responsible for decoding the base64 string to retrieve the file.",
+                "application/json": {
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            }
         },
-        415: {"description": "Unsupported file type. Only CSV and Excel files are accepted."},
+        400: {
+            "description": "Name parameter is missing."
+        },
     },
-    "operation_id": "LabelMaker",
+    "operation_id": "Example",
 }
