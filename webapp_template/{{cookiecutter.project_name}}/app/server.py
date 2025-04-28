@@ -8,6 +8,8 @@ from app.v01.template.example import router as v01_example_router
 
 app = FastAPI(**API_META)
 app.include_router(v01_example_router)
+app.include_router(utils_router)
+
 
 # TODO: standardize in something like aiweb commmon and include from there.
 @app.get("/health")
