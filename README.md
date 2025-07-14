@@ -5,16 +5,16 @@ This repository contains a [cookiecutter template](https://cookiecutter.readthed
 The application was built and tested in a Windwos Subsystem for Linux 2 (WSL2) environment.  The software should work in either a WSL2 or Linux environment. If you are using a Linux environment, skip the installation steps for WSL2.  While it is possible to get this tool to work without all these steps, we highly encourage users to install WSL2, Docker, and VSCode for the optimal experience using this software.
 
 ### Install WSL2 on Windwos
-  Follow the instructions for [installing WSL2](https://github.com/UABPeriopAI/MLOpsTemplate/wiki/Setting-up-WSL2).
+  Follow the instructions for [installing WSL2](https://github.com/UABPeriopAI/Templates/wiki/Setting-up-WSL2).
 
 ### Install Git inside WSL2
-Additionally, you may want to follow the [instructions for our recommended usage of git in WSL2](https://github.com/UABPeriopAI/MLOpsTemplate/wiki/Recommended-git-Usage-in-WSL2).
+Additionally, you may want to follow the [instructions for our recommended usage of git in WSL2](https://github.com/UABPeriopAI/Templates/wiki/Recommended-git-Usage-in-WSL2).
 
 ### Install Docker
-Follow the instructions for [installing Docker](https://github.com/UABPeriopAI/MLOpsTemplate/wiki/Setting-up-Docker) from the MLOps Template repository Wiki.
+Follow the instructions for [installing Docker](https://github.com/UABPeriopAI/Templates/wiki/Setting-up-Docker) from the MLOps Template repository Wiki.
 
 ### Install VSCode
-Follow the instructions for [installing VSCode](https://github.com/UABPeriopAI/MLOpsTemplate/wiki/Installing-VSCode) from the MLOps Template repository Wiki.
+Follow the instructions for [installing VSCode](https://github.com/UABPeriopAI/Templates/wiki/Installing-VSCode) from the MLOps Template repository Wiki.
 
 ## Cookiecutter Setup
 If you are working in a Windows environment, first [install Windows Subsystem](https://learn.microsoft.com/en-us/windows/wsl/install) for Linux 2 (WSL 2).  This streamlines installation and makes porting projects to cloud or other environments easier.  See the project Wiki for additional installation and setup guidance.
@@ -42,7 +42,9 @@ pip install cookiecutter
 
 2. With cookiecutter, you can call this repository directly from the command line.  This cookiecutter is designed to install the codebase and it automatically creates and relocates the data structure.   An example of how to create a new project from this template looks like:
 ~~~
-cookiecutter https://github.com/UABPeriopAI/MLOpsTemplate --checkout main --directory cc-codebase
+cookiecutter https://github.com/UABPeriopAI/Templates --checkout main --directory mlops_template
+
+cookiecutter https://github.com/UABPeriopAI/Templates --checkout main --directory webapp_template
 ~~~
 Executing this command will initiate prompts for you to enter project specific information.   Our template has the following inputs for a new project (with default values in parenthesis)
 #### cc-codebase
