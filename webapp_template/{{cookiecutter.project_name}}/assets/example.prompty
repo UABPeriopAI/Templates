@@ -1,0 +1,59 @@
+
+{% raw %}
+TODO Remove escaping (first, well and second, I guess, along with the last line)
+---
+name: Example: Few-Shot Generative Categorizer
+description: "A few-shot categorization tool using provided examples for improved context."
+model:
+  api: chat
+  configuration:
+    type: azure_openai
+    azure_endpoint: {{cookiecutter.llm_endpoint}}
+  parameters:
+    max_tokens: 2500
+    temperature: 0.0
+variables:
+  item:
+    description: "The text content to categorize"
+    type: string
+    required: true
+  categories_with_descriptions:
+    description: "List of categories with optional descriptions"
+    type: list
+    required: true
+  examples:
+    description: "List of examples containing labeled texts for each category"
+    type: list
+    required: false  # Set to false, making it optional
+
+attributes:
+  model: gpt-4o-mini
+  template: jinja2
+---
+prompt:
+  template: |
+    You are an AI assistant skilled in few-shot learning to match patterns and categorize passages of text. You will be provided with examples for each category to assist in determining the most appropriate classification. If unsure, make your best guess based on the examples provided.
+
+    **Examples for context:**
+    {% for example in examples %}
+    - Example: "{{ example.text_with_label }}"
+      - Category: "{{ example.label }}"
+    {% endfor %}
+
+    **Item to categorize:**
+    {{ item }}
+
+    **Possible categories:**
+    {% for category in categories_with_descriptions %}
+    - {{ category.category }}: {{ category.description }}
+    {% endfor %}
+
+    Please assign the item to the most appropriate category from the list above.  Be sure that the category label that you select is explicitly provided in the input categories. If you're not sure which category a certain passage of text belongs to and the user provides an 'uncategorized' category, put it there. Avoid using unprovided category labels like 'other', do your best to find the most appropriate category.
+
+    **Provide your answer in the following format:**
+    
+    Rationale: [Brief explanation of your reasoning]
+
+    Category: [Category Name selected from the list of possible categories]
+
+{% endraw %}

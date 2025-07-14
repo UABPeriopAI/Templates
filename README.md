@@ -47,7 +47,7 @@ cookiecutter https://github.com/UABPeriopAI/Templates --checkout main --director
 cookiecutter https://github.com/UABPeriopAI/Templates --checkout main --directory webapp_template
 ~~~
 Executing this command will initiate prompts for you to enter project specific information.   Our template has the following inputs for a new project (with default values in parenthesis)
-#### cc-codebase
+#### mlops_template
 - [ ] Project Name* (default_proj) - Name of the new project.  This paramter is used in a number of places and should be a title that the user can use to readily identify the project.
 - [ ] Author Name* () - Name of the person creating the project.  This will be used in the setup.py file and in git commit messages.
 - [ ] Description () - Brief description of what the software is intended to do
