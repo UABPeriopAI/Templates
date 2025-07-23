@@ -25,5 +25,5 @@ rapidfuzz
 uvicorn
 python-multipart
 fastapi
-pytest
 ./llm_utils
+pytest
