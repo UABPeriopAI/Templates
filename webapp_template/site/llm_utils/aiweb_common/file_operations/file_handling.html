@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://sites.uab.edu/periop-datascience/llm_utils/aiweb_common/file_operations/file_handling.html" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>File Handling - UVTest</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "File Handling";
+        var mkdocs_page_input_path = "llm_utils/aiweb_common/file_operations/file_handling.md";
+        var mkdocs_page_url = "/periop-datascience/llm_utils/aiweb_common/file_operations/file_handling.html";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../index.html" class="icon icon-home"> UVTest
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../user_interface/UVTest_app.html">User Interface</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">UVTest</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../UVTest/streamlit_interface.html">streamlit_interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Utils</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../UVTest/utils/utils_example.html">utils_example</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">UVTest_config</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../UVTest_config/config.html">Config</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">llm_utils</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Fast API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../fastapi/helper_apis.html">Helper APIS</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fastapi/schemas.html">Schemas</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fastapi/validators.html">Validators</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >File Operations</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="docx_creator.html">Docx Creator</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="file_config.html">File Config</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">File Handling</a>
+    <ul class="current">
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="text_format.html">Text Format</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="upload_manager.html">Upload Manager</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Resource</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../resource/default_resource_config.html">Default Resource Config</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../resource/NIHRePORTERInterface.html">NIH RePORTER Interface</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../resource/PubMedInterface.html">PubMed Interface</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../resource/PubMedQuery.html">PubMed Query</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Streamlit</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../streamlit/BYOKLogin.html">Bring Your Own Key (BYOK)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../streamlit/streamlit_common.html">Streamlit Common</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ObjectFactory.html">Object Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../WorkflowHandler.html">Workflow Handler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Generate</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/AugmentedResponse.html">AugmentedResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/AugmentedServicer.html">AugmentedServicer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/ChatResponse.html">ChatResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/ChatSchemas.html">ChatSchemas</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/ChatServicer.html">ChatServicer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/PromptAssembler.html">PromptAssembler</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/PromptyResponseHandler.html">PromptyResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/PromptyServicer.html">PromptyServicer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/QueryInterface.html">QueryInterface</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/Response.html">Response</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/SingleResponse.html">SingleResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/SingleResponseServicer.html">SingleResponseServicer</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">UVTest</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">llm_utils</li>
+          <li class="breadcrumb-item">File Operations</li>
+      <li class="breadcrumb-item active">File Handling</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/uabperiopai/edit/master/llm_utils/docs/aiweb_common/file_operations/file_handling.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div class="doc doc-object doc-module">
+
+
+
+<a id="aiweb_common.file_operations.file_handling"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="aiweb_common.file_operations.file_handling.create_base64_file_validator" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">create_base64_file_validator</span><span class="p">(</span><span class="o">*</span><span class="n">allowed_mime_types</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a function that validates the MIME type of a base64-encoded file.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>allowed_mime_types</code></b>
+                  (<code><span title="tuple">tuple</span></code>, default:
+                      <code>()</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>A tuple of strings representing the allowed MIME types.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              –
+              <div class="doc-md-description">
+                <p>Callable[[str, ValidationInfo], str]: A function to validate base64-encoded files.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/file_handling.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_base64_file_validator</span><span class="p">(</span><span class="o">*</span><span class="n">allowed_mime_types</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a function that validates the MIME type of a base64-encoded file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        allowed_mime_types (tuple): A tuple of strings representing the allowed MIME types.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Callable[[str, ValidationInfo], str]: A function to validate base64-encoded files.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_base64_encoded_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate the MIME type of a base64-encoded file.</span>
+<span class="sd">        Raises ValueError if the MIME type is not what is expected.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">file_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid base64 encoding&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Use python-magic to check MIME type</span>
+        <span class="n">mime</span> <span class="o">=</span> <span class="n">magic</span><span class="o">.</span><span class="n">Magic</span><span class="p">(</span><span class="n">mime</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">mime_type</span> <span class="o">=</span> <span class="n">mime</span><span class="o">.</span><span class="n">from_buffer</span><span class="p">(</span><span class="n">file_bytes</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mime_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_mime_types</span><span class="p">:</span>
+            <span class="n">allowed_types_formatted</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">allowed_mime_types</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Incorrect file type. Required types: </span><span class="si">{</span><span class="n">allowed_types_formatted</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">v</span>
+
+    <span class="k">return</span> <span class="n">validate_base64_encoded_file</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="aiweb_common.file_operations.file_handling.create_file_validator" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">create_file_validator</span><span class="p">(</span><span class="o">*</span><span class="n">allowed_mime_types</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Creates a dependency function that validates the MIME type of an uploaded file.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>allowed_mime_types</code></b>
+                  (<code><span title="tuple">tuple</span></code>, default:
+                      <code>()</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>A tuple of strings representing the allowed MIME types.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              –
+              <div class="doc-md-description">
+                <p>Callable[[UploadFile], UploadFile]: A function that checks if the uploaded file's MIME type</p>
+              </div>
+            </li>
+            <li>
+              –
+              <div class="doc-md-description">
+                <p>is in the allowed MIME types.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>        <p>Examples:
+validate_docx_file = create_file_validator("application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+validate_pdf_file = create_file_validator("application/pdf", "application/x-pdf")</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/file_handling.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_file_validator</span><span class="p">(</span><span class="o">*</span><span class="n">allowed_mime_types</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a dependency function that validates the MIME type of an uploaded file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        allowed_mime_types (tuple): A tuple of strings representing the allowed MIME types.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Callable[[UploadFile], UploadFile]: A function that checks if the uploaded file&#39;s MIME type</span>
+<span class="sd">        is in the allowed MIME types.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">    validate_docx_file = create_file_validator(&quot;application/vnd.openxmlformats-officedocument.wordprocessingml.document&quot;)</span>
+<span class="sd">    validate_pdf_file = create_file_validator(&quot;application/pdf&quot;, &quot;application/x-pdf&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_file</span><span class="p">(</span><span class="n">file</span><span class="p">:</span> <span class="n">UploadFile</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate the MIME type of the uploaded file.</span>
+<span class="sd">        Raises HTTPException if the MIME type is not what is expected.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">content_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">allowed_mime_types</span><span class="p">:</span>
+            <span class="n">allowed_types_formatted</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">allowed_mime_types</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+                <span class="n">status_code</span><span class="o">=</span><span class="mi">415</span><span class="p">,</span>
+                <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Incorrect file type. Required type: &quot;</span> <span class="o">+</span> <span class="n">allowed_types_formatted</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">file</span>
+
+    <span class="k">return</span> <span class="n">validate_file</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="aiweb_common.file_operations.file_handling.file_to_base64" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">file_to_base64</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Converts a file to a base64-encoded string.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/file_handling.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">file_to_base64</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts a file to a base64-encoded string.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="aiweb_common.file_operations.file_handling.ingest_docx" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ingest_docx</span><span class="p">(</span><span class="n">file</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-async"><code>async</code></small>
+  </span>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The function <code>ingest_docx</code> reads the content of a DOCX file as bytes, writes it to a temporary file,
+and then loads the document from the temporary file.</p>
+<p>:param file: The <code>file</code> parameter in the <code>ingest_docx</code> function seems to be a file-like object that
+supports asynchronous reading operations. When <code>await file.read()</code> is called, it reads the content
+of the file as bytes. This content is then written to a temporary file with a <code>.docx
+:return: The function</code>ingest_docx<code>returns a tuple containing two values:
+1. The name of the temporary file where the DOCX content was written.
+2. An instance of the</code>Document` class representing the loaded document from the temporary file.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/file_handling.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">ingest_docx</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The function `ingest_docx` reads the content of a DOCX file as bytes, writes it to a temporary file,</span>
+<span class="sd">    and then loads the document from the temporary file.</span>
+
+<span class="sd">    :param file: The `file` parameter in the `ingest_docx` function seems to be a file-like object that</span>
+<span class="sd">    supports asynchronous reading operations. When `await file.read()` is called, it reads the content</span>
+<span class="sd">    of the file as bytes. This content is then written to a temporary file with a `.docx</span>
+<span class="sd">    :return: The function `ingest_docx` returns a tuple containing two values:</span>
+<span class="sd">    1. The name of the temporary file where the DOCX content was written.</span>
+<span class="sd">    2. An instance of the `Document` class representing the loaded document from the temporary file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.docx&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">temp_doc</span><span class="p">:</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="k">await</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># Read file content as bytes</span>
+        <span class="c1"># have to do this because of async context, otherwise calling function moves on</span>
+        <span class="n">temp_doc</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">temp_doc</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>  <span class="c1"># Ensure all content is written to disk</span>
+
+        <span class="c1"># Load the document from the temporary file</span>
+        <span class="k">return</span> <span class="n">temp_doc</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Document</span><span class="p">(</span><span class="n">temp_doc</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># Load the document here</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="aiweb_common.file_operations.file_handling.ingest_docx_bytes" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ingest_docx_bytes</span><span class="p">(</span><span class="n">content</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The function <code>ingest_docx_bytes</code> reads the content of a DOCX file from bytes, saves it to a
+temporary file, and then loads the document using the <code>Document</code> class.</p>
+<p>:param content: The <code>ingest_docx_bytes</code> function you provided seems to be designed to ingest the
+content of a DOCX file as bytes and load it using the <code>python-docx</code> library. However, it looks like
+the content parameter is missing in your message. Could you please provide the content parameter so
+:return: The <code>ingest_docx_bytes</code> function returns a tuple containing two values:
+1. The name of the temporary file where the content was written (temp_doc.name)
+2. The Document object representing the content loaded from the temporary file</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/file_handling.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">ingest_docx_bytes</span><span class="p">(</span><span class="n">content</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The function `ingest_docx_bytes` reads the content of a DOCX file from bytes, saves it to a</span>
+<span class="sd">    temporary file, and then loads the document using the `Document` class.</span>
+
+<span class="sd">    :param content: The `ingest_docx_bytes` function you provided seems to be designed to ingest the</span>
+<span class="sd">    content of a DOCX file as bytes and load it using the `python-docx` library. However, it looks like</span>
+<span class="sd">    the content parameter is missing in your message. Could you please provide the content parameter so</span>
+<span class="sd">    :return: The `ingest_docx_bytes` function returns a tuple containing two values:</span>
+<span class="sd">    1. The name of the temporary file where the content was written (temp_doc.name)</span>
+<span class="sd">    2. The Document object representing the content loaded from the temporary file</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.docx&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">temp_doc</span><span class="p">:</span>
+
+        <span class="n">temp_doc</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">temp_doc</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>  <span class="c1"># Ensure all content is written to disk</span>
+
+        <span class="c1"># Load the document from the temporary file</span>
+        <span class="k">return</span> <span class="n">temp_doc</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">Document</span><span class="p">(</span><span class="n">temp_doc</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># Load the document here</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="aiweb_common.file_operations.file_handling.markdown_to_docx_temporary_file" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">markdown_to_docx_temporary_file</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">template_location</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The function <code>prepare_docx_response</code> converts Markdown content to a DOCX file and returns the
+temporary file path.</p>
+<p>:param content: The <code>content</code> parameter in the <code>prepare_docx_response</code> function is the text or data
+that you want to convert to a DOCX file. This content will be processed and converted into a DOCX
+file using the <code>convert_markdown_docx</code> function
+:param template_location: The <code>prepare_docx_response</code> function takes two parameters:
+:return: The function <code>prepare_docx_response</code> returns the file path of the temporary .docx file that
+is created after converting the provided content (in markdown format) to a .docx file using the
+specified template location.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/file_handling.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">markdown_to_docx_temporary_file</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">template_location</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The function `prepare_docx_response` converts Markdown content to a DOCX file and returns the</span>
+<span class="sd">    temporary file path.</span>
+
+<span class="sd">    :param content: The `content` parameter in the `prepare_docx_response` function is the text or data</span>
+<span class="sd">    that you want to convert to a DOCX file. This content will be processed and converted into a DOCX</span>
+<span class="sd">    file using the `convert_markdown_docx` function</span>
+<span class="sd">    :param template_location: The `prepare_docx_response` function takes two parameters:</span>
+<span class="sd">    :return: The function `prepare_docx_response` returns the file path of the temporary .docx file that</span>
+<span class="sd">    is created after converting the provided content (in markdown format) to a .docx file using the</span>
+<span class="sd">    specified template location.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">docx_data</span> <span class="o">=</span> <span class="n">convert_markdown_docx</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">template_location</span><span class="p">)</span>
+    <span class="c1"># Using tempfile to save the output file temporarily</span>
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.docx&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">temp_file</span><span class="p">:</span>
+        <span class="n">temp_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">docx_data</span><span class="p">)</span>
+        <span class="n">temp_file_path</span> <span class="o">=</span> <span class="n">temp_file</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">return</span> <span class="n">temp_file_path</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="aiweb_common.file_operations.file_handling.validate_date" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">validate_date</span><span class="p">(</span><span class="n">date_str</span><span class="o">=</span><span class="n">Query</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;The start date in YYYY-MM-DD format&#39;</span><span class="p">))</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Custom dependency that validates and parses a date string.</p>
+<p>Args:
+date_str (str): A date string in the YYYY-MM-DD format.</p>
+<p>Returns:
+datetime: The parsed datetime object.</p>
+<p>Raises:
+HTTPException: If the date string is not in the correct format.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/file_handling.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_date</span><span class="p">(</span>
+    <span class="n">date_str</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The start date in YYYY-MM-DD format&quot;</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datetime</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Custom dependency that validates and parses a date string.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    date_str (str): A date string in the YYYY-MM-DD format.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    datetime: The parsed datetime object.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">    HTTPException: If the date string is not in the correct format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">date_str</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;start_date must be in YYYY-MM-DD format&quot;</span>
+        <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="file_config.html" class="btn btn-neutral float-left" title="File Config"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="text_format.html" class="btn btn-neutral float-right" title="Text Format">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/uabperiopai" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="file_config.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="text_format.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

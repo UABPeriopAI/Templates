@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "/data"
+		}
+	],
+	"settings": {
+		"git.autofetch": "all",
+		"docwriter.style": "Auto-detect",
+        "editor.tabSize": 4,
+        "docwriter.progress.trackClasses": false,
+		"editor.defaultFoldingRangeProvider": "ms-python.autopep8",
+		"docwriter.progress.trackMethods": false,
+		"docwriter.progress.trackFunctions": false,
+		"pylint.args": [
+			"\"pylint.args\": [\"--max-line-length=100\"]"
+		]
+	}
+}

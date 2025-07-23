@@ -1,0 +1,29 @@
+# mkdocs.yml
+site_name: {{cookiecutter.project_name}}
+site_url: https://sites.uab.edu/periop-datascience/
+repo_url: https://github.com/uabperiopai
+nav:
+  - Home: index.md
+  - '{{cookiecutter.project_name}}':
+    - Example Task A: '{{cookiecutter.project_name}}/example_task_a.md'
+    - Example Task B: '{{cookiecutter.project_name}}/example_task_b.md'
+  - '{{cookiecutter.project_name}}_config':
+    - Config: '{{cookiecutter.project_name}}_Config/config.md'
+
+  - llm_utils: '!include ./llm_utils/mkdocs.yml'
+
+theme:
+  name: readthedocs
+plugins:
+  - search
+  - monorepo:
+      submodules:
+        - path: llm_utils
+          repo_url: ''
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ['{{cookiecutter.project_name}}', '{{cookiecutter.project_name}}_config', user_interface, llm_utils]  # search packages in these folders
+watch:
+  - .  # reload docs for any file changes
+use_directory_urls: false

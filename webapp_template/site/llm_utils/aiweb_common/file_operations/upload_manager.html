@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://sites.uab.edu/periop-datascience/llm_utils/aiweb_common/file_operations/upload_manager.html" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>Upload Manager - UVTest</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Upload Manager";
+        var mkdocs_page_input_path = "llm_utils/aiweb_common/file_operations/upload_manager.md";
+        var mkdocs_page_url = "/periop-datascience/llm_utils/aiweb_common/file_operations/upload_manager.html";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../index.html" class="icon icon-home"> UVTest
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../user_interface/UVTest_app.html">User Interface</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">UVTest</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../UVTest/streamlit_interface.html">streamlit_interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Utils</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../UVTest/utils/utils_example.html">utils_example</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">UVTest_config</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../UVTest_config/config.html">Config</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">llm_utils</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Fast API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../fastapi/helper_apis.html">Helper APIS</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fastapi/schemas.html">Schemas</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fastapi/validators.html">Validators</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >File Operations</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="docx_creator.html">Docx Creator</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="file_config.html">File Config</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="file_handling.html">File Handling</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="text_format.html">Text Format</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">Upload Manager</a>
+    <ul class="current">
+    </ul>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Resource</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../resource/default_resource_config.html">Default Resource Config</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../resource/NIHRePORTERInterface.html">NIH RePORTER Interface</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../resource/PubMedInterface.html">PubMed Interface</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../resource/PubMedQuery.html">PubMed Query</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Streamlit</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../streamlit/BYOKLogin.html">Bring Your Own Key (BYOK)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../streamlit/streamlit_common.html">Streamlit Common</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ObjectFactory.html">Object Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../WorkflowHandler.html">Workflow Handler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Generate</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/AugmentedResponse.html">AugmentedResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/AugmentedServicer.html">AugmentedServicer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/ChatResponse.html">ChatResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/ChatSchemas.html">ChatSchemas</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/ChatServicer.html">ChatServicer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/PromptAssembler.html">PromptAssembler</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/PromptyResponseHandler.html">PromptyResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/PromptyServicer.html">PromptyServicer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/QueryInterface.html">QueryInterface</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/Response.html">Response</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/SingleResponse.html">SingleResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/SingleResponseServicer.html">SingleResponseServicer</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">UVTest</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">llm_utils</li>
+          <li class="breadcrumb-item">File Operations</li>
+      <li class="breadcrumb-item active">Upload Manager</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/uabperiopai/edit/master/llm_utils/docs/aiweb_common/file_operations/upload_manager.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div class="doc doc-object doc-module">
+
+
+
+<a id="aiweb_common.file_operations.upload_manager"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="aiweb_common.file_operations.upload_manager.BytesToDocx" class="doc doc-heading">
+            <code>BytesToDocx</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="FastAPIUploadManager (aiweb_common.file_operations.upload_manager.FastAPIUploadManager)" href="#aiweb_common.file_operations.upload_manager.FastAPIUploadManager">FastAPIUploadManager</a></code></p>
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>llm_utils/aiweb_common/file_operations/upload_manager.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BytesToDocx</span><span class="p">(</span><span class="n">FastAPIUploadManager</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">background_tasks</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">background_tasks</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_file_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s2">&quot;.docx&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Document</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function `process_file_bytes` processes a file in bytes format, specifically for a .docx</span>
+<span class="sd">        extension, and returns a Document object while also handling background tasks.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          file (bytes): The `file` parameter in the `process_file_bytes` method is expected to be a bytes</span>
+<span class="sd">        object representing the content of a file. This method processes the file bytes, specifically for a</span>
+<span class="sd">        `.docx` file. If the provided extension is not `.docx`, a `TypeError` is raised.</span>
+<span class="sd">          extension: The `extension` parameter in the `process_file_bytes` method is used to specify the</span>
+<span class="sd">        file extension that the method expects the input file to have. In this case, the default extension</span>
+<span class="sd">        is set to &quot;.docx&quot;. If the provided extension does not match &quot;.docx&quot;, a TypeError is raised. Defaults</span>
+<span class="sd">        to .docx</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">          The function `process_file_bytes` returns the content of a document (cv_in_docx) after processing</span>
+<span class="sd">        a file given as bytes input.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extension</span> <span class="o">!=</span> <span class="s2">&quot;.docx&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span>
+        <span class="n">cv_in_docx_filepath</span><span class="p">,</span> <span class="n">cv_in_docx</span> <span class="o">=</span> <span class="n">ingest_docx_bytes</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">background_tasks</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">,</span> <span class="n">cv_in_docx_filepath</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cv_in_docx</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aiweb_common.file_operations.upload_manager.BytesToDocx.process_file_bytes" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">process_file_bytes</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s1">&#39;.docx&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The function <code>process_file_bytes</code> processes a file in bytes format, specifically for a .docx
+extension, and returns a Document object while also handling background tasks.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>file</code></b>
+                  (<code><span title="bytes">bytes</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The <code>file</code> parameter in the <code>process_file_bytes</code> method is expected to be a bytes</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>        <p>object representing the content of a file. This method processes the file bytes, specifically for a
+<code>.docx</code> file. If the provided extension is not <code>.docx</code>, a <code>TypeError</code> is raised.
+  extension: The <code>extension</code> parameter in the <code>process_file_bytes</code> method is used to specify the
+file extension that the method expects the input file to have. In this case, the default extension
+is set to ".docx". If the provided extension does not match ".docx", a TypeError is raised. Defaults
+to .docx</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="docx.Document">Document</span></code>
+              –
+              <div class="doc-md-description">
+                <p>The function <code>process_file_bytes</code> returns the content of a document (cv_in_docx) after processing</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>        <p>a file given as bytes input.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/upload_manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_file_bytes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s2">&quot;.docx&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Document</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The function `process_file_bytes` processes a file in bytes format, specifically for a .docx</span>
+<span class="sd">    extension, and returns a Document object while also handling background tasks.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      file (bytes): The `file` parameter in the `process_file_bytes` method is expected to be a bytes</span>
+<span class="sd">    object representing the content of a file. This method processes the file bytes, specifically for a</span>
+<span class="sd">    `.docx` file. If the provided extension is not `.docx`, a `TypeError` is raised.</span>
+<span class="sd">      extension: The `extension` parameter in the `process_file_bytes` method is used to specify the</span>
+<span class="sd">    file extension that the method expects the input file to have. In this case, the default extension</span>
+<span class="sd">    is set to &quot;.docx&quot;. If the provided extension does not match &quot;.docx&quot;, a TypeError is raised. Defaults</span>
+<span class="sd">    to .docx</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      The function `process_file_bytes` returns the content of a document (cv_in_docx) after processing</span>
+<span class="sd">    a file given as bytes input.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">extension</span> <span class="o">!=</span> <span class="s2">&quot;.docx&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span>
+    <span class="n">cv_in_docx_filepath</span><span class="p">,</span> <span class="n">cv_in_docx</span> <span class="o">=</span> <span class="n">ingest_docx_bytes</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">background_tasks</span><span class="o">.</span><span class="n">add_task</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">unlink</span><span class="p">,</span> <span class="n">cv_in_docx_filepath</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cv_in_docx</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="aiweb_common.file_operations.upload_manager.FastAPIUploadManager" class="doc doc-heading">
+            <code>FastAPIUploadManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="aiweb_common.file_operations.upload_manager.UploadManager">UploadManager</span></code></p>
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>llm_utils/aiweb_common/file_operations/upload_manager.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FastAPIUploadManager</span><span class="p">(</span><span class="n">UploadManager</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">background_tasks</span><span class="p">:</span> <span class="n">BackgroundTasks</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">background_tasks</span> <span class="o">=</span> <span class="n">background_tasks</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_file_bytes</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">extension</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Reads the file from byte string based on the file extension and returns</span>
+<span class="sd">        either a DataFrame or a markdown string.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            file_bytes (bytes): The byte-encoded content of the file.</span>
+<span class="sd">            extension (str): The file extension indicating the file type.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Union[pd.DataFrame, str]: Depending on the file extension, either returns a DataFrame for Excel files</span>
+<span class="sd">            or a markdown string for DOCX and TXT files.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing file with extension - &quot;</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.xlsx&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opening Excel file&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.csv&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.txt&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading text file&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">file</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.docx&quot;</span><span class="p">:</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="n">paragraph</span><span class="o">.</span><span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">return</span> <span class="n">text</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.pdf&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">document_analysis_client</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Converting file to Markdown&quot;</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="n">extension</span><span class="p">)</span> <span class="k">as</span> <span class="n">tmpfile</span><span class="p">:</span>
+                <span class="n">tmpfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+                <span class="n">tmpfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">pypandoc</span><span class="o">.</span><span class="n">convert_file</span><span class="p">(</span><span class="n">tmpfile</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;markdown&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_and_validate_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoded_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extension</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function reads and validates a base64 encoded file, then processes it based on the specified</span>
+<span class="sd">        file extension.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          encoded_file (str): The `encoded_file` parameter is a string that represents the file content</span>
+<span class="sd">        encoded in base64 format. This function reads and validates the file content by decoding it from</span>
+<span class="sd">        base64 and then passing it to the `read_file` method for further processing based on the specified</span>
+<span class="sd">        file extension. If any errors occur during</span>
+<span class="sd">          extension (str): Extension refers to the file format or type of the file being processed. It is</span>
+<span class="sd">        typically represented by a file extension such as &quot;.txt&quot;, &quot;.pdf&quot;, &quot;.jpg&quot;, etc. In the context of the</span>
+<span class="sd">        provided code snippet, the extension parameter is used to specify the file format of the decoded</span>
+<span class="sd">        file before further</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">          The `read_and_validate_file` method returns the output of the `read_file` method if it is not</span>
+<span class="sd">        None. If the `read_file` method returns None, a HTTPException with status code 422 and detail</span>
+<span class="sd">        &quot;Failed to process the file&quot; is raised. If any other exception occurs during the process, a</span>
+<span class="sd">        HTTPException with status code 500 and the exception message is raised.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">file_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">encoded_file</span><span class="p">)</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_file_bytes</span><span class="p">(</span><span class="n">file_bytes</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+                    <span class="n">status_code</span><span class="o">=</span><span class="mi">422</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Failed to process the file&quot;</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">output</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aiweb_common.file_operations.upload_manager.FastAPIUploadManager.process_file_bytes" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">process_file_bytes</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Reads the file from byte string based on the file extension and returns
+either a DataFrame or a markdown string.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>file_bytes</code></b>
+                  (<code><span title="bytes">bytes</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The byte-encoded content of the file.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>extension</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The file extension indicating the file type.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.Union">Union</span>[<span title="pandas.DataFrame">DataFrame</span>, <span title="str">str</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>Union[pd.DataFrame, str]: Depending on the file extension, either returns a DataFrame for Excel files</p>
+              </div>
+            </li>
+            <li>
+                  <code><span title="typing.Union">Union</span>[<span title="pandas.DataFrame">DataFrame</span>, <span title="str">str</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>or a markdown string for DOCX and TXT files.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/upload_manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_file_bytes</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">extension</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reads the file from byte string based on the file extension and returns</span>
+<span class="sd">    either a DataFrame or a markdown string.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_bytes (bytes): The byte-encoded content of the file.</span>
+<span class="sd">        extension (str): The file extension indicating the file type.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Union[pd.DataFrame, str]: Depending on the file extension, either returns a DataFrame for Excel files</span>
+<span class="sd">        or a markdown string for DOCX and TXT files.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Processing file with extension - &quot;</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.xlsx&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Opening Excel file&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.csv&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.txt&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading text file&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">file</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.docx&quot;</span><span class="p">:</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="n">paragraph</span><span class="o">.</span><span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="n">text</span>
+    <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.pdf&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">document_analysis_client</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Converting file to Markdown&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">delete</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="n">extension</span><span class="p">)</span> <span class="k">as</span> <span class="n">tmpfile</span><span class="p">:</span>
+            <span class="n">tmpfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="n">tmpfile</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">pypandoc</span><span class="o">.</span><span class="n">convert_file</span><span class="p">(</span><span class="n">tmpfile</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;markdown&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aiweb_common.file_operations.upload_manager.FastAPIUploadManager.read_and_validate_file" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">read_and_validate_file</span><span class="p">(</span><span class="n">encoded_file</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The function reads and validates a base64 encoded file, then processes it based on the specified
+file extension.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>encoded_file</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The <code>encoded_file</code> parameter is a string that represents the file content</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>        <p>encoded in base64 format. This function reads and validates the file content by decoding it from
+base64 and then passing it to the <code>read_file</code> method for further processing based on the specified
+file extension. If any errors occur during
+  extension (str): Extension refers to the file format or type of the file being processed. It is
+typically represented by a file extension such as ".txt", ".pdf", ".jpg", etc. In the context of the
+provided code snippet, the extension parameter is used to specify the file format of the decoded
+file before further</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.Any">Any</span></code>
+              –
+              <div class="doc-md-description">
+                <p>The <code>read_and_validate_file</code> method returns the output of the <code>read_file</code> method if it is not</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>        <p>None. If the <code>read_file</code> method returns None, a HTTPException with status code 422 and detail
+"Failed to process the file" is raised. If any other exception occurs during the process, a
+HTTPException with status code 500 and the exception message is raised.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/upload_manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_and_validate_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encoded_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extension</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The function reads and validates a base64 encoded file, then processes it based on the specified</span>
+<span class="sd">    file extension.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      encoded_file (str): The `encoded_file` parameter is a string that represents the file content</span>
+<span class="sd">    encoded in base64 format. This function reads and validates the file content by decoding it from</span>
+<span class="sd">    base64 and then passing it to the `read_file` method for further processing based on the specified</span>
+<span class="sd">    file extension. If any errors occur during</span>
+<span class="sd">      extension (str): Extension refers to the file format or type of the file being processed. It is</span>
+<span class="sd">    typically represented by a file extension such as &quot;.txt&quot;, &quot;.pdf&quot;, &quot;.jpg&quot;, etc. In the context of the</span>
+<span class="sd">    provided code snippet, the extension parameter is used to specify the file format of the decoded</span>
+<span class="sd">    file before further</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      The `read_and_validate_file` method returns the output of the `read_file` method if it is not</span>
+<span class="sd">    None. If the `read_file` method returns None, a HTTPException with status code 422 and detail</span>
+<span class="sd">    &quot;Failed to process the file&quot; is raised. If any other exception occurs during the process, a</span>
+<span class="sd">    HTTPException with status code 500 and the exception message is raised.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">file_bytes</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">encoded_file</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_file_bytes</span><span class="p">(</span><span class="n">file_bytes</span><span class="p">,</span> <span class="n">extension</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
+                <span class="n">status_code</span><span class="o">=</span><span class="mi">422</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Failed to process the file&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="aiweb_common.file_operations.upload_manager.StreamlitUploadManager" class="doc doc-heading">
+            <code>StreamlitUploadManager</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="aiweb_common.file_operations.upload_manager.UploadManager">UploadManager</span></code></p>
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>llm_utils/aiweb_common/file_operations/upload_manager.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">StreamlitUploadManager</span><span class="p">(</span><span class="n">UploadManager</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Please upload a file&quot;</span><span class="p">,</span>
+        <span class="n">file_types</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">accept_multiple_files</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">document_analysis_client</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Allows either an already-uploaded file (passed via `file`) or performs an interactive upload.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            file: (Optional) an already-uploaded file object.</span>
+<span class="sd">            message: The label for the uploader widget.</span>
+<span class="sd">            file_types: List of allowed file extensions (default list if None).</span>
+<span class="sd">            accept_multiple_files: Whether to allow multiple file uploads.</span>
+<span class="sd">            document_analysis_client: (Optional) any additional client if needed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_types</span> <span class="o">=</span> <span class="n">file_types</span> <span class="k">if</span> <span class="n">file_types</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">,</span> <span class="s2">&quot;docx&quot;</span><span class="p">,</span> <span class="s2">&quot;pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;txt&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">accept_multiple_files</span> <span class="o">=</span> <span class="n">accept_multiple_files</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">document_analysis_client</span> <span class="o">=</span> <span class="n">document_analysis_client</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If no file has been provided during initialization, show the file uploader.</span>
+<span class="sd">        Then, process the file based on its extension.</span>
+<span class="sd">        Returns a tuple (processed_file, extension) or (None, None) if no file is provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># If no file was provided externally then invoke the uploader.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span>
+                <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> 
+                <span class="nb">type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">file_types</span><span class="p">,</span> 
+                <span class="n">accept_multiple_files</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">accept_multiple_files</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Please upload a file to continue...&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="c1"># Call read_file on the provided file.</span>
+        <span class="n">extension</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="n">extension</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">upload_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Wraps process_upload for backward compatibility. You can choose your naming.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_upload</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">extension</span><span class="p">):</span>
+        <span class="c1"># print(&quot;Extension - &quot;, extension)</span>
+        <span class="k">if</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.xlsx&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="n">extension</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.docx&quot;</span><span class="p">:</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">paragraphs</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="n">paragraph</span><span class="o">.</span><span class="n">text</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">return</span> <span class="n">text</span><span class="p">,</span> <span class="n">extension</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.csv&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="n">extension</span>
+        <span class="k">elif</span> <span class="n">extension</span> <span class="o">==</span> <span class="s2">&quot;.pdf&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_pdf</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">document_analysis_client</span><span class="p">),</span> <span class="n">extension</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aiweb_common.file_operations.upload_manager.StreamlitUploadManager.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Please upload a file&#39;</span><span class="p">,</span> <span class="n">file_types</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">accept_multiple_files</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">document_analysis_client</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Allows either an already-uploaded file (passed via <code>file</code>) or performs an interactive upload.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>file</code></b>
+              –
+              <div class="doc-md-description">
+                <p>(Optional) an already-uploaded file object.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>message</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;Please upload a file&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The label for the uploader widget.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>file_types</code></b>
+                  (<code><span title="list">list</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>List of allowed file extensions (default list if None).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>accept_multiple_files</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to allow multiple file uploads.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>document_analysis_client</code></b>
+              –
+              <div class="doc-md-description">
+                <p>(Optional) any additional client if needed.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/upload_manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Please upload a file&quot;</span><span class="p">,</span>
+    <span class="n">file_types</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">accept_multiple_files</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">document_analysis_client</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Allows either an already-uploaded file (passed via `file`) or performs an interactive upload.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file: (Optional) an already-uploaded file object.</span>
+<span class="sd">        message: The label for the uploader widget.</span>
+<span class="sd">        file_types: List of allowed file extensions (default list if None).</span>
+<span class="sd">        accept_multiple_files: Whether to allow multiple file uploads.</span>
+<span class="sd">        document_analysis_client: (Optional) any additional client if needed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">file_types</span> <span class="o">=</span> <span class="n">file_types</span> <span class="k">if</span> <span class="n">file_types</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">[</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="s2">&quot;xlsx&quot;</span><span class="p">,</span> <span class="s2">&quot;docx&quot;</span><span class="p">,</span> <span class="s2">&quot;pdf&quot;</span><span class="p">,</span> <span class="s2">&quot;txt&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">accept_multiple_files</span> <span class="o">=</span> <span class="n">accept_multiple_files</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">document_analysis_client</span> <span class="o">=</span> <span class="n">document_analysis_client</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aiweb_common.file_operations.upload_manager.StreamlitUploadManager.process_upload" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">process_upload</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>If no file has been provided during initialization, show the file uploader.
+Then, process the file based on its extension.
+Returns a tuple (processed_file, extension) or (None, None) if no file is provided.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/upload_manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">process_upload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    If no file has been provided during initialization, show the file uploader.</span>
+<span class="sd">    Then, process the file based on its extension.</span>
+<span class="sd">    Returns a tuple (processed_file, extension) or (None, None) if no file is provided.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># If no file was provided externally then invoke the uploader.</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">file_uploader</span><span class="p">(</span>
+            <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> 
+            <span class="nb">type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">file_types</span><span class="p">,</span> 
+            <span class="n">accept_multiple_files</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">accept_multiple_files</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;Please upload a file to continue...&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="c1"># Call read_file on the provided file.</span>
+    <span class="n">extension</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="n">extension</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aiweb_common.file_operations.upload_manager.StreamlitUploadManager.upload_file" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">upload_file</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Wraps process_upload for backward compatibility. You can choose your naming.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/file_operations/upload_manager.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">upload_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wraps process_upload for backward compatibility. You can choose your naming.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_upload</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="text_format.html" class="btn btn-neutral float-left" title="Text Format"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../resource/default_resource_config.html" class="btn btn-neutral float-right" title="Default Resource Config">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/uabperiopai" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="text_format.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../resource/default_resource_config.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

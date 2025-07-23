@@ -1,0 +1,1 @@
+::: aiweb_common.resource.default_resource_config

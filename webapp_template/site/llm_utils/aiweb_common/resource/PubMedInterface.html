@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://sites.uab.edu/periop-datascience/llm_utils/aiweb_common/resource/PubMedInterface.html" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>PubMed Interface - UVTest</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PubMed Interface";
+        var mkdocs_page_input_path = "llm_utils/aiweb_common/resource/PubMedInterface.md";
+        var mkdocs_page_url = "/periop-datascience/llm_utils/aiweb_common/resource/PubMedInterface.html";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../../../index.html" class="icon icon-home"> UVTest
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../../user_interface/UVTest_app.html">User Interface</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">UVTest</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../UVTest/streamlit_interface.html">streamlit_interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Utils</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../../../UVTest/utils/utils_example.html">utils_example</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">UVTest_config</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../UVTest_config/config.html">Config</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">llm_utils</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Fast API</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../fastapi/helper_apis.html">Helper APIS</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fastapi/schemas.html">Schemas</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../fastapi/validators.html">Validators</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >File Operations</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../file_operations/docx_creator.html">Docx Creator</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../file_operations/file_config.html">File Config</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../file_operations/file_handling.html">File Handling</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../file_operations/text_format.html">Text Format</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../file_operations/upload_manager.html">Upload Manager</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" >Resource</a>
+    <ul class="current">
+                <li class="toctree-l2"><a class="reference internal" href="default_resource_config.html">Default Resource Config</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="NIHRePORTERInterface.html">NIH RePORTER Interface</a>
+                </li>
+                <li class="toctree-l2 current"><a class="reference internal current" href="#">PubMed Interface</a>
+    <ul class="current">
+    </ul>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="PubMedQuery.html">PubMed Query</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Streamlit</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../streamlit/BYOKLogin.html">Bring Your Own Key (BYOK)</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../streamlit/streamlit_common.html">Streamlit Common</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ObjectFactory.html">Object Factory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../WorkflowHandler.html">Workflow Handler</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >Generate</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/AugmentedResponse.html">AugmentedResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/AugmentedServicer.html">AugmentedServicer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/ChatResponse.html">ChatResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/ChatSchemas.html">ChatSchemas</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/ChatServicer.html">ChatServicer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/PromptAssembler.html">PromptAssembler</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/PromptyResponseHandler.html">PromptyResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/PromptyServicer.html">PromptyServicer</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/QueryInterface.html">QueryInterface</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/Response.html">Response</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/SingleResponse.html">SingleResponse</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../generate/SingleResponseServicer.html">SingleResponseServicer</a>
+                </li>
+    </ul>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">UVTest</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html" class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">llm_utils</li>
+          <li class="breadcrumb-item">Resource</li>
+      <li class="breadcrumb-item active">PubMed Interface</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/uabperiopai/edit/master/llm_utils/docs/aiweb_common/resource/PubMedInterface.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div class="doc doc-object doc-module">
+
+
+
+<a id="aiweb_common.resource.PubMedInterface"></a>
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="aiweb_common.resource.PubMedInterface.PubMedInterface" class="doc doc-heading">
+            <code>PubMedInterface</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+
+
+
+
+
+
+
+              <details class="quote">
+                <summary>Source code in <code>llm_utils/aiweb_common/resource/PubMedInterface.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PubMedInterface</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">email</span><span class="o">=</span><span class="s2">&quot;rmelvin@uabmc.edu&quot;</span><span class="p">,</span>
+        <span class="n">max_results</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">streamlit_context</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+        <span class="n">delay_seconds</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_results</span> <span class="o">=</span> <span class="n">max_results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">streamlit_context</span> <span class="o">=</span> <span class="n">streamlit_context</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">=</span> <span class="n">max_retries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span> <span class="o">=</span> <span class="n">delay_seconds</span>
+        <span class="n">Entrez</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_format_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function `format_authors` takes a list of strings representing authors and returns a</span>
+<span class="sd">        formatted string of their last names followed by initials, following APA rules.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        author_list: A list of strings, where each string represents an author in the format &quot;Last Name Initials&quot;.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        a formatted string of authors&#39; names in the format &quot;Last Name, Initials,&quot; following APA rules.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">formatted_authors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">num_authors</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_authors</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">num_authors</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="c1"># Normal case, just list all authors</span>
+            <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authors</span><span class="p">:</span>
+                <span class="o">*</span><span class="n">last_name</span><span class="p">,</span> <span class="n">initials</span> <span class="o">=</span> <span class="n">author</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">last_name</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">last_name</span><span class="p">)</span>
+                <span class="n">formatted_authors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_authors</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># APA rule for &gt; 20 authors: first 19, ellipsis, last author</span>
+            <span class="k">for</span> <span class="n">author</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authors</span><span class="p">[:</span><span class="mi">19</span><span class="p">]:</span>
+                <span class="o">*</span><span class="n">last_name</span><span class="p">,</span> <span class="n">initials</span> <span class="o">=</span> <span class="n">author</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">last_name</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">last_name</span><span class="p">)</span>
+                <span class="n">formatted_authors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+            <span class="n">last_author</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authors</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">last_author_name</span><span class="p">,</span> <span class="n">last_author_initials</span> <span class="o">=</span> <span class="n">last_author</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">formatted_authors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;…&quot;</span><span class="p">)</span>
+            <span class="n">formatted_authors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">last_author_name</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">last_author_initials</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formatted_authors</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_format_apa_citation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function `format_apa_citation` takes in an article and its ID and returns a formatted APA</span>
+<span class="sd">        citation string.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        article: The `article` parameter is a dictionary that contains information about a specific</span>
+<span class="sd">        article. It should have the following structure:</span>
+<span class="sd">        article_id: The article_id parameter is the unique identifier for the article. It is used to</span>
+<span class="sd">        include the PMID (PubMed ID) in the APA citation format.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        a formatted APA citation for an article, including the authors, publication year, title, journal,</span>
+<span class="sd">        volume, pages, and PMID (PubMed ID).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">authors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_authors</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">authors</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">authors</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_pub_month</span><span class="si">}</span><span class="s2">). </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_journal</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_volume</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_pages</span><span class="si">}</span><span class="s2">. PMID: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_pmid</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_extract_record_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="c1"># Extract the desired information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_title</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;TI&quot;</span><span class="p">,</span> <span class="s2">&quot;No title available&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_keywords</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;OT&quot;</span><span class="p">,</span> <span class="p">[])</span>  <span class="c1"># OT might not be present in all records</span>
+        <span class="c1"># try to use mesh headers if keywords not present</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keywords</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_keywords</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;MH&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_abstract</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AB&quot;</span><span class="p">,</span> <span class="s2">&quot;No abstract available&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pmid</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PMID&quot;</span><span class="p">,</span> <span class="s2">&quot;No PMID available&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pub_month</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;DP&quot;</span><span class="p">,</span> <span class="s2">&quot;No date available&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_authors</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;AU&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_journal</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;JT&quot;</span><span class="p">,</span> <span class="s2">&quot;No jounral name available&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_volume</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;VI&quot;</span><span class="p">,</span> <span class="s2">&quot;No volume available&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pages</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;PG&quot;</span><span class="p">,</span> <span class="s2">&quot;No pages available&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">search_pubmed_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function `search_pubmed_articles` takes a PubMed search string, an email address, and an</span>
+<span class="sd">        optional maximum number of results, and returns a list of PubMed article IDs that match the search</span>
+<span class="sd">        criteria.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        query: The search query string for PubMed.</span>
+<span class="sd">        email: The email address associated with your NCBI account.</span>
+<span class="sd">        max_results: Optional; maximum number of results to retrieve (default 10).</span>
+<span class="sd">        streamlit_context: Optional; a boolean flag indicating whether the code is running within a Streamlit app (default False).</span>
+<span class="sd">        max_retries: Optional; the maximum number of retry attempts if an HTTP error occurs (default 3).</span>
+<span class="sd">        delay_seconds: Optional; the number of seconds to wait between retry attempts (default 5).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        A list of PubMed article IDs that match the search criteria.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">esearch</span><span class="p">(</span>
+                    <span class="n">db</span><span class="o">=</span><span class="s2">&quot;pubmed&quot;</span><span class="p">,</span> <span class="n">term</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s2">&quot;relevance&quot;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_results</span>
+                <span class="p">)</span>
+                <span class="n">record</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+                <span class="n">handle</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;IdList&quot;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;PubMed didn&#39;t respond (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
+                    <span class="n">wait_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Waiting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="si">}</span><span class="s2"> seconds before trying PubMed again...&quot;</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">streamlit_context</span><span class="p">:</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">final_message</span> <span class="o">=</span> <span class="s2">&quot;Giving up on PubMed. It was an issue on their end. You may want to try again later.&quot;</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">streamlit_context</span><span class="p">:</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fetch_article_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pubmed_ids</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function fetches article details from PubMed using the provided PubMed IDs.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        pubmed_ids: A list of strings where each string represents the PubMed ID (PMID)</span>
+<span class="sd">                    of the article you want to fetch details for.</span>
+<span class="sd">        max_retries: The maximum number of retry attempts if an HTTP error occurs. Default is 3.</span>
+<span class="sd">        delay_seconds: The number of seconds to wait between retry attempts. Default is 5.</span>
+<span class="sd">        streamlit_context: A boolean flag indicating whether the code is running within a Streamlit app. Default is False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        A list of dictionaries, where each dictionary contains the details of an article with the given PubMed ID.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pubmed_ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">pubmed_ids</span><span class="p">]</span>
+        <span class="n">ids_string</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pubmed_ids</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">efetch</span><span class="p">(</span>
+                    <span class="n">db</span><span class="o">=</span><span class="s2">&quot;pubmed&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">ids_string</span><span class="p">,</span> <span class="n">rettype</span><span class="o">=</span><span class="s2">&quot;medline&quot;</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+                <span class="p">)</span>
+                <span class="n">records</span> <span class="o">=</span> <span class="n">Medline</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+                <span class="n">records</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+                <span class="n">parsed_data</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_extract_record_data</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+                    <span class="n">citation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_apa_citation</span><span class="p">()</span>
+                    <span class="n">parsed_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;date_published&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pub_month</span><span class="p">,</span>
+                            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">,</span>
+                            <span class="s2">&quot;keywords&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keywords</span><span class="p">,</span>
+                            <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_abstract</span><span class="p">,</span>
+                            <span class="s2">&quot;pmid&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pmid</span><span class="p">,</span>
+                            <span class="s2">&quot;authors&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authors</span><span class="p">,</span>
+                            <span class="s2">&quot;journal&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_journal</span><span class="p">,</span>
+                            <span class="s2">&quot;citation&quot;</span><span class="p">:</span> <span class="n">citation</span><span class="p">,</span>
+                        <span class="p">}</span>
+                    <span class="p">)</span>
+
+                <span class="n">parsed_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">parsed_data</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">parsed_df</span>
+            <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;PubMed didn&#39;t respond (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
+                    <span class="n">wait_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Waiting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="si">}</span><span class="s2"> seconds before trying PubMed again...&quot;</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">final_message</span> <span class="o">=</span> <span class="s2">&quot;Giving up on PubMed. It was an issue on their end. You may want to try again later.&quot;</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">fetch_article_details_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pubmed_ids</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The function fetches article details from PubMed using the provided PubMed IDs.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">        pubmed_ids: A list of strings where each string represents the PubMed ID (PMID)</span>
+<span class="sd">                    of the article you want to fetch details for.</span>
+<span class="sd">        max_retries: The maximum number of retry attempts if an HTTP error occurs. Default is 3.</span>
+<span class="sd">        delay_seconds: The number of seconds to wait between retry attempts. Default is 5.</span>
+<span class="sd">        streamlit_context: A boolean flag indicating whether the code is running within a Streamlit app. Default is False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        A list of dictionaries, where each dictionary contains the details of an article with the given PubMed ID.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ids_string</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pubmed_ids</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">efetch</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s2">&quot;pubmed&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">ids_string</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="s2">&quot;xml&quot;</span><span class="p">)</span>
+                <span class="n">articles</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">)[</span><span class="s2">&quot;PubmedArticle&quot;</span><span class="p">]</span>
+                <span class="n">handle</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">articles</span>
+            <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;PubMed didn&#39;t respond (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
+                    <span class="n">wait_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Waiting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="si">}</span><span class="s2"> seconds before trying PubMed again...&quot;</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">streamlit_context</span><span class="p">:</span>
+                        <span class="c1"># TODO Ask about these imports...</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+                    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">final_message</span> <span class="o">=</span> <span class="s2">&quot;Giving up on PubMed. It was an issue on their end. You may want to try again later.&quot;</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">streamlit_context</span><span class="p">:</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                        <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aiweb_common.resource.PubMedInterface.PubMedInterface.fetch_article_details" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">fetch_article_details</span><span class="p">(</span><span class="n">pubmed_ids</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The function fetches article details from PubMed using the provided PubMed IDs.</p>
+        <p>pubmed_ids: A list of strings where each string represents the PubMed ID (PMID)
+            of the article you want to fetch details for.
+max_retries: The maximum number of retry attempts if an HTTP error occurs. Default is 3.
+delay_seconds: The number of seconds to wait between retry attempts. Default is 5.
+streamlit_context: A boolean flag indicating whether the code is running within a Streamlit app. Default is False.</p>
+<p>Returns:
+A list of dictionaries, where each dictionary contains the details of an article with the given PubMed ID.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/resource/PubMedInterface.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_article_details</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pubmed_ids</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The function fetches article details from PubMed using the provided PubMed IDs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    pubmed_ids: A list of strings where each string represents the PubMed ID (PMID)</span>
+<span class="sd">                of the article you want to fetch details for.</span>
+<span class="sd">    max_retries: The maximum number of retry attempts if an HTTP error occurs. Default is 3.</span>
+<span class="sd">    delay_seconds: The number of seconds to wait between retry attempts. Default is 5.</span>
+<span class="sd">    streamlit_context: A boolean flag indicating whether the code is running within a Streamlit app. Default is False.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    A list of dictionaries, where each dictionary contains the details of an article with the given PubMed ID.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pubmed_ids</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">pubmed_ids</span><span class="p">]</span>
+    <span class="n">ids_string</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pubmed_ids</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">efetch</span><span class="p">(</span>
+                <span class="n">db</span><span class="o">=</span><span class="s2">&quot;pubmed&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">ids_string</span><span class="p">,</span> <span class="n">rettype</span><span class="o">=</span><span class="s2">&quot;medline&quot;</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+            <span class="p">)</span>
+            <span class="n">records</span> <span class="o">=</span> <span class="n">Medline</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+            <span class="n">records</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+            <span class="n">parsed_data</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_extract_record_data</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+                <span class="n">citation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_apa_citation</span><span class="p">()</span>
+                <span class="n">parsed_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;date_published&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pub_month</span><span class="p">,</span>
+                        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_title</span><span class="p">,</span>
+                        <span class="s2">&quot;keywords&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_keywords</span><span class="p">,</span>
+                        <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_abstract</span><span class="p">,</span>
+                        <span class="s2">&quot;pmid&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pmid</span><span class="p">,</span>
+                        <span class="s2">&quot;authors&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authors</span><span class="p">,</span>
+                        <span class="s2">&quot;journal&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_journal</span><span class="p">,</span>
+                        <span class="s2">&quot;citation&quot;</span><span class="p">:</span> <span class="n">citation</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+
+            <span class="n">parsed_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">parsed_data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">parsed_df</span>
+        <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;PubMed didn&#39;t respond (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
+                <span class="n">wait_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Waiting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="si">}</span><span class="s2"> seconds before trying PubMed again...&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">final_message</span> <span class="o">=</span> <span class="s2">&quot;Giving up on PubMed. It was an issue on their end. You may want to try again later.&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aiweb_common.resource.PubMedInterface.PubMedInterface.fetch_article_details_xml" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">fetch_article_details_xml</span><span class="p">(</span><span class="n">pubmed_ids</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The function fetches article details from PubMed using the provided PubMed IDs.</p>
+        <p>pubmed_ids: A list of strings where each string represents the PubMed ID (PMID)
+            of the article you want to fetch details for.
+max_retries: The maximum number of retry attempts if an HTTP error occurs. Default is 3.
+delay_seconds: The number of seconds to wait between retry attempts. Default is 5.
+streamlit_context: A boolean flag indicating whether the code is running within a Streamlit app. Default is False.</p>
+<p>Returns:
+A list of dictionaries, where each dictionary contains the details of an article with the given PubMed ID.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/resource/PubMedInterface.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fetch_article_details_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pubmed_ids</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The function fetches article details from PubMed using the provided PubMed IDs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    pubmed_ids: A list of strings where each string represents the PubMed ID (PMID)</span>
+<span class="sd">                of the article you want to fetch details for.</span>
+<span class="sd">    max_retries: The maximum number of retry attempts if an HTTP error occurs. Default is 3.</span>
+<span class="sd">    delay_seconds: The number of seconds to wait between retry attempts. Default is 5.</span>
+<span class="sd">    streamlit_context: A boolean flag indicating whether the code is running within a Streamlit app. Default is False.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    A list of dictionaries, where each dictionary contains the details of an article with the given PubMed ID.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ids_string</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pubmed_ids</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">efetch</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s2">&quot;pubmed&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">ids_string</span><span class="p">,</span> <span class="n">retmode</span><span class="o">=</span><span class="s2">&quot;xml&quot;</span><span class="p">)</span>
+            <span class="n">articles</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">)[</span><span class="s2">&quot;PubmedArticle&quot;</span><span class="p">]</span>
+            <span class="n">handle</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">articles</span>
+        <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;PubMed didn&#39;t respond (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
+                <span class="n">wait_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Waiting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="si">}</span><span class="s2"> seconds before trying PubMed again...&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">streamlit_context</span><span class="p">:</span>
+                    <span class="c1"># TODO Ask about these imports...</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">final_message</span> <span class="o">=</span> <span class="s2">&quot;Giving up on PubMed. It was an issue on their end. You may want to try again later.&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">streamlit_context</span><span class="p">:</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="aiweb_common.resource.PubMedInterface.PubMedInterface.search_pubmed_articles" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">search_pubmed_articles</span><span class="p">(</span><span class="n">query</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The function <code>search_pubmed_articles</code> takes a PubMed search string, an email address, and an
+optional maximum number of results, and returns a list of PubMed article IDs that match the search
+criteria.</p>
+<p>Args:
+query: The search query string for PubMed.
+email: The email address associated with your NCBI account.
+max_results: Optional; maximum number of results to retrieve (default 10).
+streamlit_context: Optional; a boolean flag indicating whether the code is running within a Streamlit app (default False).
+max_retries: Optional; the maximum number of retry attempts if an HTTP error occurs (default 3).
+delay_seconds: Optional; the number of seconds to wait between retry attempts (default 5).</p>
+<p>Returns:
+A list of PubMed article IDs that match the search criteria.</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>llm_utils/aiweb_common/resource/PubMedInterface.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">search_pubmed_articles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The function `search_pubmed_articles` takes a PubMed search string, an email address, and an</span>
+<span class="sd">    optional maximum number of results, and returns a list of PubMed article IDs that match the search</span>
+<span class="sd">    criteria.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    query: The search query string for PubMed.</span>
+<span class="sd">    email: The email address associated with your NCBI account.</span>
+<span class="sd">    max_results: Optional; maximum number of results to retrieve (default 10).</span>
+<span class="sd">    streamlit_context: Optional; a boolean flag indicating whether the code is running within a Streamlit app (default False).</span>
+<span class="sd">    max_retries: Optional; the maximum number of retry attempts if an HTTP error occurs (default 3).</span>
+<span class="sd">    delay_seconds: Optional; the number of seconds to wait between retry attempts (default 5).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">    A list of PubMed article IDs that match the search criteria.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">esearch</span><span class="p">(</span>
+                <span class="n">db</span><span class="o">=</span><span class="s2">&quot;pubmed&quot;</span><span class="p">,</span> <span class="n">term</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s2">&quot;relevance&quot;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_results</span>
+            <span class="p">)</span>
+            <span class="n">record</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+            <span class="n">handle</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">record</span><span class="p">[</span><span class="s2">&quot;IdList&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;PubMed didn&#39;t respond (attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
+                <span class="n">wait_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Waiting </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="si">}</span><span class="s2"> seconds before trying PubMed again...&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">streamlit_context</span><span class="p">:</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">wait_message</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">delay_seconds</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">final_message</span> <span class="o">=</span> <span class="s2">&quot;Giving up on PubMed. It was an issue on their end. You may want to try again later.&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">streamlit_context</span><span class="p">:</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+                    <span class="n">st</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">final_message</span><span class="p">)</span>
+                <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="NIHRePORTERInterface.html" class="btn btn-neutral float-left" title="NIH RePORTER Interface"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="PubMedQuery.html" class="btn btn-neutral float-right" title="PubMed Query">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/uabperiopai" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="NIHRePORTERInterface.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="PubMedQuery.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../../..";</script>
+    <script src="../../../js/theme_extra.js"></script>
+    <script src="../../../js/theme.js"></script>
+      <script src="../../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
