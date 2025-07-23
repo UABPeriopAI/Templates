@@ -13,7 +13,8 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends sqlite3 \
     && apt-get -y install --no-install-recommends cmake \
-    && apt-get -y install --no-install-recommends pandoc 
+    && apt-get -y install --no-install-recommends pandoc \
+    && apt-get -y install --no-install-recommends graphviz
 
 RUN pipx install uv
     
