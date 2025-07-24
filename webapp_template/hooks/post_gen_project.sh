@@ -46,7 +46,7 @@ git push origin HEAD
 git submodule add https://github.com/UABPeriopAI/llm_utils.git
 git submodule update --init --recursive
 cd llm_utils
-git checkout release/label_maker
+git checkout main
 cd ..
 git add .
 git commit -m 'updating llm_utils'
