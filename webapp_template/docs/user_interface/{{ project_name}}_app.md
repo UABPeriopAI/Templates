@@ -1,1 +1,1 @@
-::: user_interface.{{cookiecutter.project_name}}_app
+::: user_interface.{{project_name}}_app

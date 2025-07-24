@@ -33,7 +33,7 @@ dev_packages = [
 
 # Define our package
 setup(
-    name="{{cookiecutter.project_name}}",
+    name="{{project_name}}",
     version=0.1,
     description="Testing UV package manager",
     author="RG",

@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # Define your variables here
-project_name="{{cookiecutter.project_name}}"
-author="{{cookiecutter.author}}"
-author_email="{{cookiecutter.author_email}}"
-repository_url="{{cookiecutter.repository_url}}"
-data_dir="{{cookiecutter.data_dir}}"
-data_directory_name="{{cookiecutter.data_directory_name}}"
+project_name="{{project_name}}"
+author="{{author_name}}"
+author_email="{{author_email}}"
+repository_url="{{repository_url}}"
+data_dir="{{data_dir}}"
+data_directory_name="{{data_directory_name}}"
 
 # Function to check if a variable is empty
 check_empty() {
@@ -28,13 +28,13 @@ done
 
 git init
 
-git config user.name "{{cookiecutter.author}}"
-git config user.email "{{cookiecutter.author_email}}"
+git config user.name "{{author_name}}"
+git config user.email "{{author_email}}"
 
-git remote add origin {{cookiecutter.repository_url}}
+git remote add origin {{repository_url}}
 git fetch
 git pull origin master
-mv {{cookiecutter.data_directory_name}} {{cookiecutter.data_dir}}
+mv {{data_directory_name}} {{data_dir}}
 git add .
 git commit -m 'initializing from cookiecutter'
 git push -u origin master

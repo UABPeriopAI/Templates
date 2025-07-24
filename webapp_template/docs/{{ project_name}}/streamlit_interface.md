@@ -1,1 +1,1 @@
-::: {{cookiecutter.project_name}}.streamlit_interface
+::: {{project_name}}.streamlit_interface

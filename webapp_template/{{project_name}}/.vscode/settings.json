@@ -1,0 +1,7 @@
+{
+    "docwriter.style": "Google",
+    "[makefile]": {
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": false
+    }
+}

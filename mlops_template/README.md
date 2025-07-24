@@ -8,7 +8,7 @@ The repository is organized into two main directories:
 
 1. `hooks`: This directory contains scripts that are executed before (`pre_gen_project.py` - *unused*) and after (`post_gen_project.py`) the template deployment.
 
-2. `{{cookiecutter.project_name}}`: This is the main project directory that gets created upon deployment of the template.
+2. `{{project_name}}`: This is the main project directory that gets created upon deployment of the template.
 
 Additionally, the repository contains a `cookiecutter.json` file that defines the variables used by the Cookiecutter and sets their default values.
 

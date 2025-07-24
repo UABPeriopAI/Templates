@@ -8,7 +8,7 @@ model:
   api: chat
   configuration:
     type: azure_openai
-    azure_endpoint: {{cookiecutter.llm_endpoint}}
+    azure_endpoint: {{llm_endpoint}}
   parameters:
     max_tokens: 2500
     temperature: 0.0

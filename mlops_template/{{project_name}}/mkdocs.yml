@@ -1,0 +1,20 @@
+
+# mkdocs.yml
+site_name: {{project_name}}
+site_url: FILL OUT
+repo_url: {{repository_url}}
+nav:
+  - Home: index.md
+  - workflows:
+    - main: {{project_name}}/main.md
+  - {{project_name}}:
+    - plotter: {{project_name}}/plotter.md
+    - data: {{project_name}}/data.md
+    - evaluate: {{project_name}}/evaluate.md
+    - predict: {{project_name}}/predict.md
+    - train: {{project_name}}/utils.md
+theme: readthedocs
+plugins:
+  - mkdocstrings
+watch:
+  - .  # reload docs for any file changes

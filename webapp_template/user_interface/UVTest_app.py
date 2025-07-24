@@ -6,17 +6,17 @@ Each tab calls a function from streamlit_handler to display its content.
 import streamlit as st
 from aiweb_common.streamlit.page_renderer import UIHelper
 
-from {{cookiecutter.project_name}}.utils.utils_example import task_a, task_b
-from {{cookiecutter.project_name}}.streamlit_interface import BaseHandler
-from {{cookiecutter.project_name}}_config.config import Config
+from {{project_name}}.utils.utils_example import task_a, task_b
+from {{project_name}}.streamlit_interface import BaseHandler
+from {{project_name}}_config.config import Config
 
 
 def main():
     """
     Main sets up the web app title, header and tabs.
     """
-    st.set_page_config(page_title="{{cookiecutter.project_name}}", page_icon="🏷️")
-    st.title("🏷️ {{cookiecutter.project_name}}  🤖")
+    st.set_page_config(page_title="{{project_name}}", page_icon="🏷️")
+    st.title("🏷️ {{project_name}}  🤖")
     st.markdown(Config.HEADER_MARKDOWN)
 
     # Create a UI helper instance. (This can be used to wrap Streamlit calls if needed.)

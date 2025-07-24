@@ -2,7 +2,7 @@ CSV_EXPECTED_TYPE = "text/csv"
 XLSX_EXPECTED_TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
 FORM_API_META = {
-    "title": "{{cookiecutter.project_name}}",
+    "title": "{{project_name}}",
     "description": "Categorize data using AI",
     "summary": "Brought to you by the Anesthesiology Research, Informatics, and Data Science teams in collaboration with Radiology Imaging Informatics, Clinicians, and Researchers.",
     "version": "0.0.1",
@@ -16,7 +16,7 @@ FORM_API_META = {
 
 EXAMPLE_META = {
     "summary": "This example simply uploads or downloads a file",
-    "description": "{{cookiecutter.description}}"
+    "description": "{{description}}"
     + CSV_EXPECTED_TYPE
     + ") or Excel ("
     + XLSX_EXPECTED_TYPE
@@ -32,5 +32,5 @@ EXAMPLE_META = {
         },
         415: {"description": "Unsupported file type. Only CSV and Excel files are accepted."},
     },
-    "operation_id": "{{cookiecutter.project_name}}",
+    "operation_id": "{{project_name}}",
 }

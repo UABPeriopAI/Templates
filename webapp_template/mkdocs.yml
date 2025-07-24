@@ -1,16 +1,16 @@
 # mkdocs.yml
-site_name: {{cookiecutter.project_name}}
+site_name: {{project_name}}
 site_url: https://sites.uab.edu/periop-datascience/
 repo_url: https://github.com/uabperiopai
 nav:
   - Home: index.md
-  - 'User Interface': 'user_interface/{{cookiecutter.project_name}}_app.md'
-  - '{{cookiecutter.project_name}}':
-    - streamlit_interface: '{{cookiecutter.project_name}}/streamlit_interface.md'
+  - 'User Interface': 'user_interface/{{project_name}}_app.md'
+  - '{{project_name}}':
+    - streamlit_interface: '{{project_name}}/streamlit_interface.md'
     - 'Utils':
-      - 'utils_example': '{{cookiecutter.project_name}}/utils/utils_example.md'
-  - '{{cookiecutter.project_name}}_config':
-    - Config: '{{cookiecutter.project_name}}_config/config.md'
+      - 'utils_example': '{{project_name}}/utils/utils_example.md'
+  - '{{project_name}}_config':
+    - Config: '{{project_name}}_config/config.md'
 
   - llm_utils: '!include ./llm_utils/mkdocs.yml'
 
@@ -25,7 +25,7 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: ['{{cookiecutter.project_name}}', '{{cookiecutter.project_name}}_config', user_interface, llm_utils]  # search packages in these folders
+          paths: ['{{project_name}}', '{{project_name}}_config', user_interface, llm_utils]  # search packages in these folders
 watch:
   - .  # reload docs for any file changes
 use_directory_urls: false

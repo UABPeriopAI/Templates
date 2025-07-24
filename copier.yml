@@ -1,0 +1,39 @@
+_min_copier_version: "9.0"
+_templates_suffix: ".jinja"        # mimic Cookiecutter behaviour
+_answers_file: ".copier-answers.yml"
+_tasks: []                         # we’ll convert hooks later
+_envops:
+  keep_trailing_newline: true
+
+project_name:
+  type: str
+  default: "periop-ai-app"
+
+author_name:
+  type: str
+  default: ""
+
+description:
+  type: str
+  default: ""
+
+author_email:
+  type: str
+  default: ""
+
+repository_url:
+  type: str
+  default: ""
+
+llm_endpoint:
+  type: str
+  default: ""
+
+data_dir:
+  type: str
+  default: "data"
+
+data_directory_name:
+  type: str
+  default: "DATASCI"
+
