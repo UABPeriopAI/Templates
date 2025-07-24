@@ -1,0 +1,41 @@
+site_name: llm_utils
+site_url: https://sites.uab.edu/periop-datascience/
+repo_url: https://github.com/uabperiopai
+nav:
+  - Home: index.md
+  - Fast API:
+      - Helper APIS: aiweb_common/fastapi/helper_apis.md
+      - Schemas: aiweb_common/fastapi/schemas.md
+      - Validators: aiweb_common/fastapi/validators.md
+  - File Operations:
+      - Docx Creator: aiweb_common/file_operations/docx_creator.md 
+      - File Config: aiweb_common/file_operations/file_config.md
+      - File Handling: aiweb_common/file_operations/file_handling.md
+      - Text Format: aiweb_common/file_operations/text_format.md
+      - Upload Manager: aiweb_common/file_operations/upload_manager.md 
+  - Resource:
+      - Default Resource Config: aiweb_common/resource/default_resource_config.md
+      - NIH RePORTER Interface: aiweb_common/resource/NIHRePORTERInterface.md
+      - PubMed Interface: aiweb_common/resource/PubMedInterface.md
+      - PubMed Query: aiweb_common/resource/PubMedQuery.md
+  - Streamlit:
+      - Bring Your Own Key (BYOK): aiweb_common/streamlit/BYOKLogin.md
+      - Streamlit Common: aiweb_common/streamlit/streamlit_common.md
+  - Object Factory: aiweb_common/ObjectFactory.md
+  - Workflow Handler: aiweb_common/WorkflowHandler.md
+  - Generate:
+      - AugmentedResponse: aiweb_common/generate/AugmentedResponse.md
+      - AugmentedServicer: aiweb_common/generate/AugmentedServicer.md
+      - ChatResponse: aiweb_common/generate/ChatResponse.md
+      - ChatSchemas: aiweb_common/generate/ChatSchemas.md
+      - ChatServicer: aiweb_common/generate/ChatServicer.md
+      - PromptAssembler: aiweb_common/generate/PromptAssembler.md
+      - PromptyResponse: aiweb_common/generate/PromptyResponseHandler.md
+      - PromptyServicer: aiweb_common/generate/PromptyServicer.md
+      - QueryInterface: aiweb_common/generate/QueryInterface.md
+      - Response: aiweb_common/generate/Response.md
+      - SingleResponse: aiweb_common/generate/SingleResponse.md
+      - SingleResponseServicer: aiweb_common/generate/SingleResponseServicer.md
+
+theme:
+  name: readthedocs 

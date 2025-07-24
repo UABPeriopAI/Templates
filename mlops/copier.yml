@@ -1,0 +1,53 @@
+_min_copier_version: "9.0"
+_templates_suffix: ".jinja"        # mimic Cookiecutter behaviour
+_answers_file: ".copier-answers.yml"
+_tasks: 
+  - ["{{ _copier_python }}", "scripts/post_gen_project.sh"]                 
+  - command:        
+_envops:
+  keep_trailing_newline: true
+
+#Options
+flavor:
+    type: str
+    help: Which type of project are you making?
+    choices:
+        - machine_learning
+        - deep_learning
+        - webapp
+    default: webapp
+
+#Common variables for input
+project_name:
+  type: str
+  default: "{{flavor}}-app"
+
+author_name:
+  type: str
+  default: ""
+
+description:
+  type: str
+  default: ""
+
+author_email:
+  type: str
+  default: ""
+
+repository_url:
+  type: str
+  default: ""
+
+data_dir:
+  type: str
+  default: "data"
+
+data_directory_name:
+  type: str
+  default: "DATASCI"
+
+# Webapp specific
+llm_endpoint:
+  type: str
+  default: ""
+
