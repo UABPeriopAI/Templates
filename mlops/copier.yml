@@ -1,53 +1,35 @@
-_min_copier_version: "9.0"
-_templates_suffix: ".jinja"        # mimic Cookiecutter behaviour
-_answers_file: ".copier-answers.yml"
-_tasks: 
-  - ["{{ _copier_python }}", "scripts/post_gen_project.sh"]                 
-  - command:        
-_envops:
-  keep_trailing_newline: true
+_min_copier_version: "9.0.0"
+_subdirectory: "template"
 
-#Options
-flavor:
-    type: str
-    help: Which type of project are you making?
-    choices:
-        - machine_learning
-        - deep_learning
-        - webapp
-    default: webapp
+_includes:
+  -!include ../common/copier.yml
 
-#Common variables for input
 project_name:
-  type: str
-  default: "{{flavor}}-app"
-
+  help: "Your ML project name"
+  default: "ML_Porject"
+  
 author_name:
-  type: str
   default: ""
 
 description:
   type: str
-  default: ""
+  default: "This ML/AI is designed to "
 
 author_email:
-  type: str
   default: ""
 
 repository_url:
-  type: str
   default: ""
 
 data_dir:
-  type: str
   default: "data"
 
 data_directory_name:
-  type: str
   default: "DATASCI"
 
-# Webapp specific
-llm_endpoint:
-  type: str
-  default: ""
+tasks:
+  - sh: hooks/copy_common.sh
+  - sh: hooks/post_gen_project.sh
 
+skip_if_exists:
+  - README.md

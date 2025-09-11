@@ -1,1 +1,0 @@
-::: user_interface.{{project_name}}_app

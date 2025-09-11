@@ -1,1 +1,0 @@
-::: {{project_name}}.utils.utils_example

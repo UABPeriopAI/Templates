@@ -1,0 +1,38 @@
+_min_copier_version: "9.0.0"
+_subdirectory: template
+
+project_name:
+  type: str
+  help: Your project name
+  default: "{{ project_name | default('MyProject') }}"
+  when: false          # never ask
+
+author_name:
+  type: str
+  default: "{{ author_name | default('') }}"
+  when: false
+
+description:
+  type: str
+  default: "{{ description | default('') }}"
+  when: false
+
+author_email:
+  type: str
+  default: "{{ author_email | default('') }}"
+  when: false
+
+repository_url:
+  type: str
+  default: "{{ repository_url | default('') }}"
+  when: false
+
+data_dir:
+  type: str
+  default: "{{ data_dir | default('data') }}"
+  when: false
+
+data_directory_name:
+  type: str
+  default: "{{ data_directory_name | default('DATASCI') }}"
+  when: false
