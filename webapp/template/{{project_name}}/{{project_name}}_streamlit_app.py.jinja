@@ -3,8 +3,8 @@ The main app file sets up a Streamlit UI with tabs for two example tasks.
 Each tab calls a function from streamlit_handler to display its content.
 """
 import streamlit as st
-from {{project_name}}.utils.page_renderer import UIHelper
-from {{project_name}}_config.config import Config
+from aiweb_common.streamlit.page_renderer import StreamlitUIHelper
+from {{project_name}}_config.config import {{project_name}}Config
 from {{project_name}}.streamlit_handler import task_a, task_b
 
 def main():
