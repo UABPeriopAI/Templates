@@ -30,11 +30,11 @@ venv:
 	uv pip install "mkdocs-monorepo-plugin"
 	source .venv/bin/activate
 # Docs
-.PHONY: docs docs-serve
+.PHONY: docs
 docs:
 	mkdocs build
-docs-serve:
 	mkdocs serve
+	
 # Cleaning
 .PHONY: clean
 clean: style

@@ -5,7 +5,7 @@ Each tab calls a function from streamlit_handler to display its content.
 import streamlit as st
 from aiweb_common.streamlit.page_renderer import StreamlitUIHelper
 from {{project_name}}_config.config import {{project_name}}Config
-from {{project_name}}.streamlit_handler import task_a, task_b
+from {{project_name}}.streamlit_interface import BaseHandler
 
 def main():
     """
@@ -13,21 +13,22 @@ def main():
     """
     st.set_page_config(page_title="{{project_name}}", page_icon="🏷️")
     st.title("🏷️ {{project_name}} 🤖")
-    st.markdown(Config.HEADER_MARKDOWN)
+    st.markdown({{project_name}}Config.HEADER_MARKDOWN)
     
     # Create a UI helper instance. (This can be used to wrap Streamlit calls if needed.)
-    ui = UIHelper()
-    
+    ui = StreamlitUIHelper()
+    bh = BaseHandler(ui)
+
     # Create two tabs in the app for the example tasks.
     tab1, tab2 = st.tabs(["Example Task A", "Example Task B"])
     
     with tab1:
         # Call task A — CSV file upload and preview.
-        task_a()
+        bh.upload_csv_preview()
         
     with tab2:
         # Call task B — Dummy report generation and download.
-        task_b()
+        bh.download_dummy_report()
 
 if __name__ == "__main__":
     main()
