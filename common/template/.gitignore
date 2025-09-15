@@ -146,6 +146,14 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+/.env
+
+# Ignore secrets directories or files if any
+/secrets
+
+# Optional: ignore temporary or build files
+*.log
+*.tmp
 
 # Spyder project settings
 .spyderproject

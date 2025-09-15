@@ -1,21 +1,27 @@
 import pandas as pd
 
 # Add any project-specific utility functions here.
+def upload_example(ui):
+    """
+    Task A: Allows the user to upload a CSV file and then preview the first few rows.
+    """
+    uploaded_file, extension = ui.file_uploader_with_info(label = 'Default Label', file_types = ['pdf'], help_text = "halp")
+    return uploaded_file, extension
 
 
-def task_a():
+def download_example(ui):
     """
-    This is the documentation for example task a
+    Task B: Generates a dummy report that the user can download.
     """
-    text_out = "Demonstrating Streamlit behavior: You ran task a"
-    print(text_out)
-    return text_out
-
-
-def task_b():
-    """
-    This is the documentation for example task b
-    """
-    text_out = "Demonstrating Streamlit behavior: You ran task b"
-    print(text_out)
-    return text_out
+    ui.subheader("Generate a Dummy Report")
+    if ui.button("Generate Report"):
+        with ui.spinner("Generating report..."):
+            report_bytes = handler.generate_dummy_report_download()
+        ui.download_button(
+            label="Download Dummy Report",
+            data=report_bytes,
+            file_name="dummy_report.txt",
+            mime="text/plain"
+        )
+        ui.success("Report generated!")
+        ui.balloons()

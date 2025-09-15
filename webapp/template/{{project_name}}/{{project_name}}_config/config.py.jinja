@@ -43,7 +43,7 @@ class {{project_name}}Config:
             },
             "info": {
                 "class": "logging.handlers.RotatingFileHandler",
-                "filename": Path(LOGS_DIR, "info.log"),
+                "filename": Path({{project_name}}Config.LOGS_DIR, "info.log"),
                 "maxBytes": 10485760,  # 1 MB
                 "backupCount": 10,
                 "formatter": "detailed",
@@ -52,7 +52,7 @@ class {{project_name}}Config:
             },
             "error": {
                 "class": "logging.handlers.RotatingFileHandler",
-                "filename": Path(LOGS_DIR, "error.log"),
+                "filename": Path({{project_name}}Config.LOGS_DIR, "error.log"),
                 "maxBytes": 10485760,  # 1 MB
                 "backupCount": 10,
                 "formatter": "detailed",

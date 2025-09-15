@@ -40,7 +40,7 @@
 		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
 		"kilocode.activeProvider": "openai",   // Or your custom provider
 		"kilocode.apiKey": "${env:KILO_API_KEY}",     // Use the env var above
-		"kilocode.endpoint": "",  // Your backend endpoint
+		"kilocode.endpoint": "${env:KILO_ENDPOINT}",  // Your backend endpoint
 		"kilocode.model": ""   // Optional, depends on your backend/provider
 	},
 
