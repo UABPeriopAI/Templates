@@ -16,25 +16,25 @@ router = APIRouter(tags=[""])
 def get_task_response(
     request: RequestCategorization, file_encoded: str, background_tasks: BackgroundTasks
 ) -> MSExcelResponse:
-    #TODO Update code here to do call the specific task
-    # handler = FastAPICategorizeHandler(azure_key=Config.AZURE_DOCAI_KEY)
-    # zs_prompty = Path(Config.ZS_PROMPTY)
-    # fs_prompty = Path(Config.FS_PROMPTY)
 
-    # try:
-    #     upload_manager = FastAPIUploadManager(background_tasks=background_tasks)
-    #     data = upload_manager.read_and_validate_file(file_encoded, request.extension)
-    #     if not isinstance(data, pd.DataFrame):
-    #         raise ValueError("Uploaded file did not result in a valid DataFrame.")
-    # except Exception as e:
-    #     raise HTTPException(status_code=400, detail=f"Error processing file: {e}")
+    handler = FastAPIHandler(azure_key=Config.AZURE_DOCAI_KEY)
+    zs_prompty = Path(Config.ZS_PROMPTY)
+    fs_prompty = Path(Config.FS_PROMPTY)
 
-    # try:
-    #     categorized_df = handler.fastapi_categorize(data, request, zs_prompty, fs_prompty)
-    # except Exception as e:
-    #     raise HTTPException(status_code=500, detail=f"Error categorizing data: {e}")
+    try:
+        upload_manager = FastAPIUploadManager(background_tasks=background_tasks)
+        data = upload_manager.read_and_validate_file(file_encoded, request.extension)
+        if not isinstance(data, pd.DataFrame):
+            raise ValueError("Uploaded file did not result in a valid DataFrame.")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Error processing file: {e}")
 
-    # csv_data = categorized_df.to_csv(index=False).encode("utf-8")
+    try:
+        categorized_df = handler.fastapi_categorize(data, request, zs_prompty, fs_prompty)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error categorizing data: {e}")
+
+    csv_data = categorized_df.to_csv(index=False).encode("utf-8")
     csv_data = pd.DataFrame()
     return MSExcelResponse(
         encoded_xlsx=csv_data,

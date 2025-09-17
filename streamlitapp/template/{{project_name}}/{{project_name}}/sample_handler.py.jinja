@@ -1,0 +1,323 @@
+import pandas as pd
+from aiweb_common.streamlit.page_renderer import StreamlitUIHelper
+from app.v01.schemas import ExampleRequest
+from {{project_name}}_config.config import Config
+
+# --------------------------------------------------------------------
+# BaseHandler – minimal, re-using common page-renderer functionality
+# --------------------------------------------------------------------
+class BaseHandler:
+    """
+    Light-weight helper for:
+        1. Uploading a CSV and showing a preview.
+        2. Generating & downloading a dummy report.
+
+    All generic Streamlit plumbing (file_uploader wrapper, ensure_file,
+    report-text generator, etc.) is delegated to the shared UI helper
+    in aiweb_common.streamlit.page_renderer so we don’t re-implement it
+    here.
+
+    Similarly, the FastAPI plumbing is here as well and this highlights 
+    how the children classes carry out their specific data wrangling efforts,
+    but once the data is wrangled, call the same backend code through this
+    parent class 
+    """
+    def __init__(self):
+        # Anything that FastAPI and Streamlit need to init goes here
+        pass
+
+    # This is an example function that calls the back end code - both children
+    # inherit this function upon instantiation.
+    # def categorize(
+    #    self,
+    #    df: pd.DataFrame,
+    #    mode: str,
+    #    index_column: Optional[str],
+    #    text_column: str,
+    #    ground_truth_column: str,
+    #    examples_column: str,
+    #    categories_dict: Dict[str, Any],
+    #    zs_prompty: Path,
+    #     fs_prompty: Path,
+    #     evaluation_techniques: Optional[List[str]] = None,
+    #     few_shot_count: int = Config.FEW_SHOT_COUNT,
+    #     many_shot_train_ratio: float = Config.MANY_SHOT_TRAIN_RATIO,
+    # ) -> pd.DataFrame:
+    #     """
+    #     The heart of the abstract categorization logic.
+        
+    #     If mode is "evaluation", it prepares ground truth examples and then applies
+    #     the chosen evaluation techniques.
+        
+    #     Otherwise (production mode), it selects among zero, few, or many shot modes depending
+    #     on whether a ground truth column is provided and on the number of examples available.
+    #     """
+    #     # If no dedicated index is passed in, add one.
+    #     if not index_column:
+    #         df["index"] = df.index.astype(str)
+    #         index_column = "index"
+
+    #     # Prepare a list of texts and corresponding unique ids.
+    #     text_to_label = df[text_column].astype(str).tolist()
+    #     unique_ids = df[index_column].astype(str).tolist()
+
+    #     if mode.lower() == "evaluation" and evaluation_techniques:
+    #         # Evaluation mode: run all requested techniques (e.g., Zero Shot, Few Shot, Many Shot)
+    #         categorization_request = CategoryManager.create_request(
+    #             unique_ids, text_to_label, categories_dict
+    #         )
+    #         predictions = {}
+
+    #         (
+    #             few_shot_examples,
+    #             few_shot_ids,
+    #             many_shot_examples,
+    #             many_shot_test_ids,
+    #         ) = self._prepare_ground_truth_examples(
+    #             df,
+    #             index_column,
+    #             text_column,
+    #             ground_truth_column,
+    #             few_shot_count,
+    #             many_shot_train_ratio,
+    #         )
+
+    #         for tech in evaluation_techniques:
+    #             if tech == "Zero Shot":
+    #                 zs_categorizer = ZeroShotCategorizer(
+    #                     prompty_path=zs_prompty, category_request=categorization_request
+    #                 )
+    #                 results = zs_categorizer.process()
+    #                 predictions["Zero Shot"] = results
+    #             elif tech == "Few Shot":
+    #                 fs_request = CategoryManager.create_request(
+    #                     unique_ids, text_to_label, categories_dict, few_shot_examples
+    #                 )
+    #                 fs_categorizer = FewShotCategorizer(
+    #                     prompty_path=fs_prompty, category_request=fs_request
+    #                 )
+    #                 results = fs_categorizer.process()
+    #                 # Remove any examples already in the few-shot gold set.
+    #                 predictions["Few Shot"] = [r for r in results if str(r[0]) not in few_shot_ids]
+    #             elif tech == "Many Shot":
+    #                 ms_request = CategoryManager.create_request(
+    #                     unique_ids, text_to_label, categories_dict, many_shot_examples
+    #                 )
+    #                 ms_categorizer = ManyshotClassifier(
+    #                     categorization_request=ms_request,
+    #                     min_class_count=self.config.MIN_SAMPLES_MANY_SHOT,
+    #                 )
+    #                 results = ms_categorizer.process()
+    #                 predictions["Many Shot"] = [r for r in results if str(r[0]) in many_shot_test_ids]
+    #             else:
+    #                 raise ValueError(f"Unsupported technique '{tech}' in evaluation mode.")
+
+    #         # Merge the results into the dataframe: one additional set of columns per technique.
+    #         merged_df = df.copy()
+    #         for technique, results in predictions.items():
+    #             tech_pred_df = pd.DataFrame(
+    #                 [(row[0], row[2], row[3]) for row in results],
+    #                 columns=[index_column,
+    #                          f"Predicted Category ({technique})",
+    #                          f"Rationale ({technique})"],
+    #             )
+    #             merged_df[index_column] = merged_df[index_column].astype(str)
+    #             tech_pred_df[index_column] = tech_pred_df[index_column].astype(str)
+    #             merged_df = pd.merge(merged_df, tech_pred_df, on=index_column, how="left")
+    #         return merged_df
+
+    #     else:
+    #         print("gt col - ", examples_column)
+    #         print("df cols - ", df.columns)
+    #         # Production mode: choose the most appropriate technique based on the provided examples.
+    #         if examples_column and examples_column in df.columns:
+    #             (
+    #                 few_shot_examples,
+    #                 few_shot_ids,
+    #                 many_shot_examples,
+    #                 many_shot_test_ids,
+    #             ) = self._prepare_ground_truth_examples(
+    #                 df,
+    #                 index_column,
+    #                 text_column,
+    #                 examples_column,
+    #                 few_shot_count,
+    #                 many_shot_train_ratio,
+    #             )
+    #             print("FS Examples - ", few_shot_examples)
+    #             print("MS Examples - ", few_shot_examples)
+    #             # Prefer Many Shot if we have enough training examples.
+    #             if len(many_shot_examples) >= self.config.MIN_SAMPLES_MANY_SHOT:
+    #                 ms_request = CategoryManager.create_request(
+    #                     unique_ids, text_to_label, categories_dict, many_shot_examples
+    #                 )
+    #                 ms_categorizer = ManyshotClassifier(
+    #                     categorization_request=ms_request,
+    #                     min_class_count=self.config.MIN_SAMPLES_MANY_SHOT,
+    #                 )
+    #                 predictions = ms_categorizer.process()
+    #                 # In production, we assume predictions are for test examples only.
+    #                 results = [r for r in predictions if str(r[0]) in many_shot_test_ids]
+    #             # Else, try Few Shot if any examples exist.
+    #             elif len(few_shot_examples) > 0:
+    #                 fs_request = CategoryManager.create_request(
+    #                     unique_ids, text_to_label, categories_dict, few_shot_examples
+    #                 )
+    #                 fs_categorizer = FewShotCategorizer(
+    #                     prompty_path=fs_prompty, category_request=fs_request
+    #                 )
+    #                 predictions = fs_categorizer.process()
+    #                 results = predictions
+    #             else:
+    #                 # Fallback to Zero Shot if no ground truth examples are available.
+    #                 zs_request = CategoryManager.create_request(
+    #                     unique_ids, text_to_label, categories_dict
+    #                 )
+    #                 zs_categorizer = ZeroShotCategorizer(
+    #                     prompty_path=zs_prompty, category_request=zs_request
+    #                 )
+    #                 results = zs_categorizer.process()
+    #         else:
+    #             # No ground truth column provided: use Zero Shot as default.
+    #             zs_request = CategoryManager.create_request(
+    #                 unique_ids, text_to_label, categories_dict
+    #             )
+    #             zs_categorizer = ZeroShotCategorizer(
+    #                 prompty_path=zs_prompty, category_request=zs_request
+    #             )
+    #             results = zs_categorizer.process()
+
+    #         # In production we assume a single set of predicted results.
+    #         results_df = pd.DataFrame(
+    #             [(row[0], row[2], row[3]) for row in results],
+    #             columns=[index_column, "Category", "Rationale"],
+    #         )
+    #         # Ensure columns are strings for a proper merge.
+    #         df[index_column] = df[index_column].astype(str)
+    #         results_df[index_column] = results_df[index_column].astype(str)
+    #         merged_df = pd.merge(df, results_df, on=index_column, how="left")
+
+    #         final_columns = list(df.columns) + ["Category", "Rationale"]
+    #         return merged_df[final_columns]
+
+
+class FastAPIBaseHandler(BaseHandler):
+    def __init__(self):
+        super().__init__()
+
+    # An example of how fastapi can do it's own data wrangling and then call the common backend functionality.
+    # def fastapi_categorize(
+    #    self, data: pd.DataFrame, request: Any, zs_prompty: Path, fs_prompty: Path
+    #) -> pd.DataFrame:
+    #    """
+    #    Extract values from the FastAPI request and pass them to BaseCategorizeHandler.
+    #    (Here we assume the request object carries attributes like index_column, text_column, etc.)
+    #    """
+    #    index_column = request.index_column
+    #    text_column = request.text_column
+    #    # ex_label_column may be empty or None.
+    #    gt_column = request.ex_label_column if getattr(request, "ex_label_column", None) else ""
+    #    examples_column=gt_column
+    #    categories_dict = {cat.name: cat.description for cat in request.categories}
+    #    return self.categorize(
+    #        df=data,
+    #        mode=request.mode,
+    #        index_column=index_column,
+    #        text_column=text_column,
+    #        ground_truth_column=gt_column,
+    #        examples_column=examples_column,
+    #        categories_dict=categories_dict,
+    #        zs_prompty=zs_prompty,
+    #        fs_prompty=fs_prompty,
+    #        evaluation_techniques=getattr(request, "model", None),  # Could be a list of techniques.
+    #        few_shot_count=int(request.few_shot_count),
+    #        many_shot_train_ratio=float(request.many_shot_train_ratio),
+    #    )
+
+class StreamlitBaseHandler(BaseHandler):
+    def __init__(self, ui_helper=StreamlitUIHelper):
+        """
+        Accepts either UIHelper (backend-agnostic) or StreamlitUIHelper
+        (concrete Streamlit implementation).  Anything that follows the
+        same method contract will work.
+        """
+        self.ui = ui_helper
+        super().__init__()
+
+    # ------------------------------
+    # 1. CSV upload & quick preview
+    # ------------------------------
+    def upload_csv_preview(self):
+        # NOTE: ui.ensure_file is defined in page_renderer; if that ever
+        #       changes we only touch the central helper, not this code.
+        file = self.ui.ensure_file(
+            file=None,
+            upload_message="Please upload a CSV file",
+            file_types=("csv",),
+            key="csv_uploader",
+            info_message="You must upload a CSV file to proceed.",
+        )
+        if file is not None:
+            try:
+                df = pd.read_csv(file)
+
+                self.ui.subheader("CSV File Preview")
+                self.ui.dataframe(df.head())
+                self.ui.success("CSV file loaded successfully!")
+                self.ui.balloons()
+            except Exception as exc:
+                self.ui.error(f"Error reading CSV file: {exc}")
+
+    # -----------------------------------
+    # 2. “Generate & Download” dummy txt
+    # -----------------------------------
+    def download_dummy_report(self):
+        """
+        Uses ui.generate_dummy_report_download from the shared helper.
+        Only the UI orchestration (button / spinner / download link) is
+        kept here.
+        """
+        self.ui.subheader("Generate a Dummy Report")
+
+        if self.ui.button("Generate Report"):
+            with self.ui.spinner("Generating report…"):
+                # Delegates to common helper
+                report_bytes = self.ui.generate_dummy_report_download()
+
+            self.ui.download_button(
+                label="Download Dummy Report",
+                data=report_bytes,
+                file_name="dummy_report.txt",
+                mime="text/plain",
+            )
+            self.ui.success("Report generated!")
+            self.ui.balloons()
+
+    #Example implementation of streamlit categorize function that calls it's own parent 
+    # after data wrangling
+    # def streamlit_categorize(
+    #    self,
+    #    df: pd.DataFrame,
+    #    ui_params: Dict[str, Any],
+    #    zs_prompty: Path,
+    #    fs_prompty: Path,
+    #) -> pd.DataFrame:
+    #    """
+    #    Extract values from the Streamlit UI dictionary and pass them to BaseCategorizeHandler.
+    #    """
+    #    return self.categorize(
+    #        df=df,
+    #        mode=ui_params.get("mode", "production"),
+    #        index_column=ui_params.get("index_column"),
+    #        text_column=ui_params.get("categorizing_column"),
+    #        ground_truth_column=ui_params.get("ground_truth_column", ""),
+    #        examples_column=ui_params.get("examples_column",""),
+    #        categories_dict=ui_params.get("categories_dict", {}),
+    #        zs_prompty=zs_prompty,
+    #        fs_prompty=fs_prompty,
+    #        evaluation_techniques=ui_params.get("evaluation_techniques"),
+    #        few_shot_count=ui_params.get("few_shot_count", Config.FEW_SHOT_COUNT),
+    #        many_shot_train_ratio=ui_params.get(
+    #            "many_shot_train_ratio", Config.MANY_SHOT_TRAIN_RATIO
+    #        ),
+    #    )

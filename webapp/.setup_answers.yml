@@ -1,8 +1,0 @@
-project_name: "Webapp"
-author_name: "Ryan Godwin"
-description: "A thing doing stuff"
-author_email: "ryangodwin@uabmc.edu"
-repository_url: "https://github.com/UABPeriopAI/Design_Drafter"
-data_dir: "data"
-data_directory_name: "DATASCI"
-llm_endpoint: "https://proxy-ai-anes-uabmc-awefchfueccrddhf.eastus2-01.azurewebsites.net/v1"
