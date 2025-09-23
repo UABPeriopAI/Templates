@@ -24,3 +24,6 @@ echo 'source /workspaces/{{project_name}}/.venv/bin/activate' >> /home/vscode/.z
 
 echo 'export PYTHONPATH="/workspaces/{{project_name}}/llm_utils:${PYTHONPATH}"' >> ~/.profile
 
+# Prepare MLFlow
+export MLFLOW_TRACKING_URI="https://.com"
+#export MLFLOW_ARTIFACT_URI = "s3://your-s3-bucket/path"

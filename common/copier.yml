@@ -36,3 +36,8 @@ data_directory_name:
   type: str
   default: "{{ data_directory_name | default('DATASCI') }}"
   when: false
+
+mlflow_tracking_uri:
+  type: str
+  default: "https://"
+  help: "MLflow Tracking URI"
