@@ -38,7 +38,7 @@ _tasks:
       -d llm_endpoint="{{ llm_endpoint }}"
 
   - label: run-hook
-    command: bash "{{ project_name }}/hooks/post_gen_init_llm_utils.sh"
+    command: bash "{{ project_name }}/hooks/post_gen_init.sh"
     shell: true
 
 # ── Misc ────────────────────────────────────────────────────

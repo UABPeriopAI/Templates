@@ -20,6 +20,9 @@
 	"mounts": [
 	  ],
 
+	//mlflow port
+	"forwardingPorts":[5000]
+	
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
 		"python.defaultInterpreterPath": "/usr/local/bin/python",
@@ -52,13 +55,15 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
+	"env": {
+    "MLFLOW_TRACKING_URI": "http://138.26.48.232:5000",
+    "MLFLOW_EXPERIMENT_NAME": "{{ project_name }}"
+  	}	
+
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// where mlflow starts up
 	"postCreateCommand": [
-		// 	//"cd /data/DATASCI/lab_notebook",
-		// 	"/bin/bash conda init",
-		// 	"/bin/bash conda activate"
-				"Docker/startup.sh"
+		"pip install mlflow"
 	],
 				
 

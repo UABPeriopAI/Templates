@@ -26,10 +26,32 @@ data_dir:
 
 data_directory_name:
   default: "DATASCI"
+  
+mlflow_tracking_uri:
+  type: str
+  default: "https://"
+  help: "MLflow Tracking URI"
 
-tasks:
-  - sh: hooks/copy_common.sh
-  - sh: hooks/post_gen_project.sh
+# ── Tasks ─────────────────────────────────────────────────────
+_tasks:
+  - label: pull-in-common
+    shell: true
+    #likey want to point this to the repository instead
+    command: >
+      copier copy "{{ _copier_conf.src_path }}/../common" {{ project_name }}
+      --overwrite
+      --defaults
+      -d project_name="{{ project_name }}"
+      -d author_name="{{ author_name }}"
+      -d description="{{ description }}"
+      -d author_email="{{ author_email }}"
+      -d repository_url="{{ repository_url }}"
+      -d data_dir="{{ data_dir }}"
+      -d data_directory_name="{{ data_directory_name }}"
+
+  - label: run-hook
+    command: bash "{{ project_name }}/hooks/post_gen_init.sh"
+    shell: true
 
 skip_if_exists:
   - README.md
