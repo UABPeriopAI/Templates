@@ -8,7 +8,7 @@ nav:
     - Streamlit Interface: '{{project_name}}/sample_handler.md'
     - User Interface: '{{project_name}}_streamlit_app.md'
     - Example: '{{project_name}}/utils/utils_example.md'
-  - '{{project_name}}_config':
+  - '{{project_name}}/config':
     - Config: '{{project_name}}_config/config.md'
 
   - llm_utils: '!include ./llm_utils/mkdocs.yml'
@@ -24,7 +24,7 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: ['{{project_name}}', '{{project_name}}_config', user_interface, llm_utils]  # search packages in these folders
+          paths: ['{{project_name}}', '{{project_name}}/config', user_interface, llm_utils]  # search packages in these folders
 watch:
   - .  # reload docs for any file changes
 use_directory_urls: false

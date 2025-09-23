@@ -4,7 +4,7 @@ from typing import Dict
 import mlflow
 import typer
 
-from config import config
+from {{project_name}}.config import {{project_name}}Config
 from config.config import logger
 
 # Initialize Typer CLI app
@@ -14,7 +14,7 @@ warnings.filterwarnings("ignore")
 @app.command()
 def preprocess(
     experiment_name: str = 'Preprocessing',
-    args_pre: str = "config/args_preprocess.json",
+    args_pre: str = "{{project_name}}/config/args_preprocess.json",
     test_run: bool = True,
 ):
     #Preprocessing code goes here:
@@ -31,7 +31,7 @@ def preprocess(
 
 @app.command()
 def train(
-    args_tr: str = "config/args_train.json",
+    args_tr: str = "{{project_name}}/config/args_train.json",
     experiment_name: str = "training",
     test_run: bool = False,
 ) -> None:
@@ -43,7 +43,7 @@ def train(
 
 @app.command()
 def process(
-    args_pro: str = "config/args_process.json",
+    args_pro: str = "{{project_name}}/config/args_process.json",
     experiment_name: str = "process",
     run_name: str = "process",
     test_run: bool = False,
