@@ -56,14 +56,14 @@
 	// "forwardPorts": [],
 
 	"env": {
-    "MLFLOW_TRACKING_URI": "http://138.26.48.232:5000",
+    "MLFLOW_TRACKING_URI": "{{mlflow_tracking_uri}}",
     "MLFLOW_EXPERIMENT_NAME": "{{ project_name }}"
   	}	
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// where mlflow starts up
 	"postCreateCommand": [
-		"pip install mlflow"
+		"./Docker/startup.sh"
 	],
 				
 

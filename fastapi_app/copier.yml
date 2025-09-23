@@ -3,7 +3,7 @@ _subdirectory: template
 
 # ── Questions ────────────────────────────────────────────────
 project_name:
-  default: Webapp
+  default: FastAPIapp
 author_name:
   default: ""
 description:
@@ -18,6 +18,10 @@ data_directory_name:
   default: "DATASCI"
 llm_endpoint:
   default: ""
+mlflow_tracking_uri:
+  type: str
+  default: "https://"
+  help: "MLflow Tracking URI"
 
 # ── Tasks ─────────────────────────────────────────────────────
 _tasks:
