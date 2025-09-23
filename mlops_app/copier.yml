@@ -6,7 +6,7 @@ _includes:
 
 project_name:
   help: "Your ML project name"
-  default: "ML_Porject"
+  default: "ML_Project"
   
 author_name:
   default: ""
