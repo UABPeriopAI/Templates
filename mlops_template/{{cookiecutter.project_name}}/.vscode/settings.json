@@ -1,0 +1,22 @@
+{
+    "plantuml.exportFormat": "png",
+    "plantuml.render": "Local",
+    "docwriter.progress.trackMethods": false,
+    "docwriter.progress.trackFunctions": false,
+    "docwriter.progress.trackClasses": true,
+    "docwriter.progress.trackTypes": true,
+    "docwriter.style": "Auto-detect", // or "Google" if you prefer
+    "editor.defaultFoldingRangeProvider": "ms-python.autopep8",
+    "autopep8.path": [
+        "[\"autopep8\"]"
+    ],
+    "python.testing.pytestArgs": [
+        "Tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "[makefile]": {
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": false
+    }
+}
