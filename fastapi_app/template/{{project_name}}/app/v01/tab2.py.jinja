@@ -3,23 +3,25 @@ from aiweb_common.fastapi.schemas import MSWordResponse
 from fastapi import APIRouter, BackgroundTasks, HTTPException
 from {{project_name}}.sample_handler import FastAPIBaseHandler
 
-from app.fastapi_config import SECOND_META
+from app.fastapi_config import TAB2_META
 
 #TODO add tags
 router = APIRouter(tags=["Tab2"])
 
 
-def get_task_response(
-    request: RequestCategorization, background_tasks: BackgroundTasks
-) -> MSWordResponse:
+def get_task_response(background_tasks: BackgroundTasks) -> MSWordResponse:
 
     try:
         handler = FastAPIBaseHandler()
-        response = handler.generate_dummy_report()
+        response = handler.generate_dummy_report(background_tasks)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
-    return MSWordResponse
+    print("applying schema")
+    response = MSWordResponse(encoded_docx=encoded_file)
+    
+    return response
+
 
 
 @router.post("/app/v01/tab2", **TAB2_META)

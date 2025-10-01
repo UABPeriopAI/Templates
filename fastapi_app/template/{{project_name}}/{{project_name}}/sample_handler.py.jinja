@@ -207,17 +207,14 @@ class FastAPIBaseHandler(BaseHandler):
     def __init__(self):
         super().__init__()
 
-    def generate_dummy_report():
+    def generate_dummy_report(self, background_tasks):
 
         report_content = "Hello!\n\nThis is your dummy report generated on demand."
         print("creating docx file")
         docx_converter = FastAPIDocxCreator(background_tasks)
         encoded_file = docx_converter.convert_markdown_to_docx_bytes(report_content)
 
-        print("applying schema")
-        response = MSWordResponse(encoded_docx=encoded_file)
-
-        return response
+        return encoded_file
 
 
 

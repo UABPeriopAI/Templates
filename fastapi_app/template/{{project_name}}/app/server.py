@@ -8,9 +8,9 @@ from app.v01.tab2 import router as v01_tab2_router
 
 
 app = FastAPI(**FORM_API_META)
-app.include(utils_router)
+app.include_router(utils_router)
 app.include_router(v01_tab1_router)
-app.include_rotuer(v01_tab2_router)
+app.include_router(v01_tab2_router)
 
 # TODO: standardize in something like aiweb commmon and include from there.
 @app.get("/health")

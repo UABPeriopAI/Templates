@@ -14,12 +14,12 @@ def test_report_download():
     # Create a test client using the FastAPI application
     client = TestClient(app)
     # URL for the POST request
-    url = "/irb/v01/tab2"
+    url = "/app/v01/tab2"
 
     # Headers
     headers = {"accept": "application/json", "Content-Type": "application/json"}
     # Make the POST request using the json= keyword
-    response = client.post(url, headers=headers, json=payload)
+    response = client.post(url, headers=headers)
     print("response - ", response)
     # Assertions to verify the response status and content
     assert response.status_code == 200, "Should return a 200 OK status code"

@@ -1,6 +1,6 @@
 
-from pydantic import BaseModel
-import app.fastapi_config as form_api_config
+from pydantic import BaseModel, Field, field_validator
+from app.v01.validators import validate_input_bytes
 
 # --- File Upload Info ---
 class FileInRequest(BaseModel):
