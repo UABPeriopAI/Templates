@@ -1,5 +1,5 @@
-# MLOps: A Template Framework for Traceable Machine Learning and Artificial Intelligence
-This repository contains a [cookiecutter template](https://cookiecutter.readthedocs.io/en/stable/) for deploying a MLOps infrastructure, brought to you by the [Perioperative Data Science Team at the University of Alabama, Birmingham](https://sites.uab.edu/periop-datascience/).
+# MLOps and  Web app: Template Framework for Traceable Machine Learning, Artificial Intelligence and Web application
+This repository contains a [copier templates](https://copier.readthedocs.io/en/stable/) for deploying a MLOps infrastructure and web applications. Brought to you by the [Perioperative Data Science Team at the University of Alabama, Birmingham](https://sites.uab.edu/periop-datascience/).
 
 ## Setting up the Environment
 The application was built and tested in a Windwos Subsystem for Linux 2 (WSL2) environment.  The software should work in either a WSL2 or Linux environment. If you are using a Linux environment, skip the installation steps for WSL2.  While it is possible to get this tool to work without all these steps, we highly encourage users to install WSL2, Docker, and VSCode for the optimal experience using this software.
@@ -16,35 +16,39 @@ Follow the instructions for [installing Docker](https://github.com/UABPeriopAI/T
 ### Install VSCode
 Follow the instructions for [installing VSCode](https://github.com/UABPeriopAI/Templates/wiki/Installing-VSCode) from the MLOps Template repository Wiki.
 
-## Cookiecutter Setup
+## Copier Setup
 If you are working in a Windows environment, first [install Windows Subsystem](https://learn.microsoft.com/en-us/windows/wsl/install) for Linux 2 (WSL 2).  This streamlines installation and makes porting projects to cloud or other environments easier.  See the project Wiki for additional installation and setup guidance.
 
 In order to use this template, the cookiecutter package must first be installed. You can test this by typing the following in the WSL 2 command line: 
 ~~~
-cookiecutter --version
+copier --version
 ~~~ 
 
 
 
 The output should look something like the following:
 ```
-'Cookiecutter 1.7.3 from /home/rgodwin/anaconda3/lib/python3.6/site-packages (Python 3.6)'
+copier 9.10.2
 ```
 
-If it's not already installed, you can do so with Pip:
+If it's not already installed, you can do so with pipx or uv:
 ~~~
-pip install cookiecutter
+pipx install copier
+~~~
+or
+~~~
+uv tool install copier
 ~~~
 
 ## Usage
-1. Before using the cookiecutter, create a new, empty repository for your project - you'll need the URL shortly.
+1. Before using the copier, create a new, empty repository for your project - you'll need the URL shortly.
 
 
-2. With cookiecutter, you can call this repository directly from the command line.  This cookiecutter is designed to install the codebase and it automatically creates and relocates the data structure.   An example of how to create a new project from this template looks like:
+2. With copier, you can call this repository directly from the command line.  This copier is designed to install the codebase and it automatically creates and relocates the data structure. The command to create a new project is: copier copy path/to/project/template path/to/destination
+
+An example of how to create a new project from this template looks like:
 ~~~
-cookiecutter https://github.com/UABPeriopAI/Templates --checkout main --directory mlops_template
-
-cookiecutter https://github.com/UABPeriopAI/Templates --checkout main --directory webapp_template
+copier copy --trust https://github.com/UABPeriopAI/Templates/mlops_template repos/project_name
 ~~~
 Executing this command will initiate prompts for you to enter project specific information.   Our template has the following inputs for a new project (with default values in parenthesis)
 #### mlops_template
@@ -58,8 +62,8 @@ Executing this command will initiate prompts for you to enter project specific i
 
 A * next to the parameter indicates a field that is required for the template to deploy as intended. Many default values are left blank, because we make no presumptions about the specific information for a project. We encourage users to provide input for all fields, although *Description* is not requried for the template to deploy correctly. 
 
-##### After running the cookiecutter
-+ The contents of the template are pushed to a new repository branch "feature/initialize_template" which is ready to merge to main. Additionally, there will be a remenant master branch that can be deleted (cookiecutter creates a master branch, but out group prefers the name 'main'.)
+##### After running the copier
++ The contents of the template are pushed to a new repository branch "feature/initialize_template" which is ready to merge to main. Additionally, there will be a remenant master branch that can be deleted (copier creates a master branch, but out group prefers the name 'main'.)
 
 + The data directory will be automatically created and moved to Data_Directory/Data_Directory_name/
 
@@ -71,3 +75,4 @@ Depending on the repository for the new project, users may have to setup program
 to setup a personal access token on GitHub and integrate it into their operating system (via Windows Credential Manager, for example.)
 
 Disclosure: This template may not work out of the box in every environment, but the contents of the template can be modified, the Docker parameters in particular, to get it working. 
+
