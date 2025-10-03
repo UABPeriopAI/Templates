@@ -38,8 +38,7 @@ docs:
 # Cleaning
 .PHONY: clean
 clean: style
-	find . -type f -name "*.DS_Store" -ls -delete
-	find . | grep -E "(__pycache__|\.pyc|\.pyo)" | xargs rm -rf
-	find . | grep -E ".pytest_cache" | xargs rm -rf
-	find . | grep -E ".ipynb_checkpoints" | xargs rm -rf
+	find . -path ./venv -prune -o -type f -name "*.DS_Store" -ls -delete
+	find . -path ./venv -prune -o -type d \( -name "__pycache__" -o -name "*.pytest_cache" -o -name ".ipynb_checkpoints" \) -exec rm -rf {} +
+	find . -path ./venv -prune -o -type f \( -name "*.pyc" -o -name "*.pyo" \) -exec rm -f {} +
 	rm -f .coverage

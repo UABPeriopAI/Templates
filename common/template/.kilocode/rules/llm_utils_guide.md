@@ -6,16 +6,16 @@ Minimize duplication by sharing helpers, utilities, and abstractions.
 Import components from aiweb_common across multiple projects.
 
 ## Folder Structure
-aiweb_common/ — Core reusable code, organized by feature.
-ObjectFactory.py — Generic factory pattern by key; enables extensible object creation.
-WorkflowHandler.py — Abstract base for workflows: DB, logging, prompt loading.
-configurables/ — App configuration helpers.
-fastapi/ — FastAPI schemas and validators.
-file_operations/ — File/document/text handling and uploads.
-generate/ — LLM prompt/response generation, API interfaces.
-report_builder/ — Structured report creation.
-resource/ — External data sources (NIH RePORTER, PubMed).
-streamlit/ — Streamlit utilities (auth, UI).
+- `aiweb_common/`: The core subpackage containing reusable classes, functions, and modules organized by functionality.
+- `aiweb_common/ObjectFactory.py`: Implements a generic factory pattern for creating objects by key, facilitating flexible object creation.
+- `aiweb_common/WorkflowHandler.py`: Defines an abstract base class for managing workflows, including database connection, logging, and prompt loading utilities.
+- `aiweb_common/configurables/`: Configuration helpers and utilities.
+- `aiweb_common/fastapi/`: Helpers, schemas, and validators for FastAPI applications.
+- `aiweb_common/file_operations/`: Utilities for file handling, document creation, text formatting, and upload management.
+- `aiweb_common/generate/`: Components related to generating responses, prompts, and interfacing with LLMs.
+- `aiweb_common/report_builder/`: Tools for building reports.
+- `aiweb_common/resource/`: Interfaces for external resources such as NIH RePORTER and PubMed.
+- `aiweb_common/streamlit/`: Helpers for Streamlit applications, including authentication and UI rendering.
 
 ## Key Components
 
@@ -34,8 +34,8 @@ Secure secret retrieval across environments.
 
 
 ## Usage Guidelines
-Search llm_utils before writing any new utility.
-Import/reuse from aiweb_common for consistency.
-Follow code and documentation conventions in .kilocode/rules.
-Suggest additions via repository process; do not modify core code directly.
-Keep this guide updated as features evolve.
+- Always search `llm_utils` for existing functionality before writing new code.
+- Import and reuse classes and functions from `aiweb_common` to maintain consistency.
+- Follow the coding standards and documentation style outlined in `.kilocode/rules`.
+- Propose additions to `llm_utils` if you identify reusable functionality that benefits multiple projects.
+- Avoid modifying existing code in `llm_utils` directly; instead, extend or propose changes via proper channels.
