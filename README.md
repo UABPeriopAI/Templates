@@ -48,7 +48,7 @@ uv tool install copier
 
 An example of how to create a new project from this template looks like:
 ~~~
-copier copy --trust https://github.com/UABPeriopAI/Templates/mlops_template repos/project_name
+copier copy --trust https://github.com/UABPeriopAI/Templates repos/project_name
 ~~~
 Executing this command will initiate prompts for you to enter project specific information.   Our template has the following inputs for a new project (with default values in parenthesis)
 #### mlops_template
@@ -75,4 +75,5 @@ Depending on the repository for the new project, users may have to setup program
 to setup a personal access token on GitHub and integrate it into their operating system (via Windows Credential Manager, for example.)
 
 Disclosure: This template may not work out of the box in every environment, but the contents of the template can be modified, the Docker parameters in particular, to get it working. 
+
 
