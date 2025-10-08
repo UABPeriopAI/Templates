@@ -1,7 +1,9 @@
 import pandas as pd
+from docx import Document
 from aiweb_common.streamlit.page_renderer import StreamlitUIHelper
-from app.v01.schemas import ExampleRequest
 from {{project_name}}.config.config import {{project_name}}Config
+from aiweb_common.report_builder.report_builder import ReportBuilder
+from aiweb_common.file_operations.docx_creator import FastAPIDocxCreator
 
 # --------------------------------------------------------------------
 # BaseHandler – minimal, re-using common page-renderer functionality
@@ -204,6 +206,17 @@ class BaseHandler:
 class FastAPIBaseHandler(BaseHandler):
     def __init__(self):
         super().__init__()
+
+    def generate_dummy_report(self, background_tasks):
+
+        report_content = "Hello!\n\nThis is your dummy report generated on demand."
+        print("creating docx file")
+        docx_converter = FastAPIDocxCreator(background_tasks)
+        encoded_file = docx_converter.convert_markdown_to_docx_bytes(report_content)
+
+        return encoded_file
+
+
 
     # An example of how fastapi can do it's own data wrangling and then call the common backend functionality.
     # def fastapi_categorize(
