@@ -63,6 +63,21 @@ def evaluate(
     df = pd.read_csv(data_path)
     y_true = df["y"]
     y_pred = df["pred"]
+from {{project_name}} import report
+
+@app.command()
+def build_report(
+    pred_path: str = DATA_PATH.replace(".csv", "_clean_pred.csv"),
+    fig_path: str = "eval_plot.png",
+    out_path: str = "report.zip"
+):
+    """
+    Build a report zip containing predictions and regression plot.
+    """
+    zip_bytes = report.build_report(pred_path, fig_path)
+    with open(out_path, "wb") as f:
+        f.write(zip_bytes.read())
+    logger.info(f"Report saved to {out_path}")
     mse = ((y_true - y_pred) ** 2).mean()
     logger.info(f"Evaluation MSE: {mse:.3f}")
     try:

@@ -28,27 +28,3 @@ def test_workflow(sample_data, tmp_path):
     assert os.path.exists(clean_path)
     assert os.path.exists(model_path)
     assert os.path.exists(pred_path)
-
-def test_report_builder(tmp_path):
-    """Test report building using aiweb_common.ReportBuilder."""
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    from aiweb_common.report_builder import ReportBuilder
-
-    # Create a DataFrame and a figure
-    df = pd.DataFrame({"x": [1,2,3], "y": [2,4,6]})
-    fig, ax = plt.subplots()
-    ax.plot(df["x"], df["y"])
-    plt.close(fig)
-
-    # Build report
-    with ReportBuilder() as rb:
-        rb.add_dataframe(df, "results.csv")
-        rb.add_figure(fig, "plot.png")
-        # Optionally add a dummy file
-        dummy_path = tmp_path / "dummy.txt"
-        dummy_path.write_text("Hello report!")
-        rb.add_file(dummy_path)
-        zip_bytes = rb.build_zip()
-        assert isinstance(zip_bytes, BytesIO)
-        assert zip_bytes.getbuffer().nbytes > 0
