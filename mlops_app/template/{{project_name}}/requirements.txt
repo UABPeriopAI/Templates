@@ -18,3 +18,4 @@ typer
 streamlit
 tensorflow-addons
 jupyter
+aiweb-common @ git+https://github.com/UABPeriopAI/llm_utils.git@develop

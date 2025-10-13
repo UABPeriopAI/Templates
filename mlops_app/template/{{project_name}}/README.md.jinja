@@ -1,32 +1,79 @@
 # STREAM: Systematic Template for Reliable and Efficient Artificial intelligence and Machine learning
 
-STREAM is a powerful MLOps template designed to facilitate collaborative code development, automate processes, and ensure data traceability in machine learning workflows.
+STREAM is a powerful, modular MLOps template designed to facilitate collaborative code development, automate processes, and ensure data traceability in machine learning workflows. Each workflow step is handled by a dedicated module, making the codebase easy to extend and maintain for future projects.
+
+## Quickstart Demo: Using MLflow with STREAM
+
+### 1. Prerequisites
+
+- Python 3.11+
+- MLflow server running (default: http://localhost:5000)
+- All dependencies from `requirements.txt` installed
+
+### 2. Project Setup
+
+```sh
+pip install -r requirements.txt
+```
+
+### 3. Configuration
+
+Edit `{{project_name}}/config/config.py.jinja` to set your MLflow tracking URI and experiment name:
+
+```python
+MLFLOW_TRACKING_URI = "http://localhost:5000"
+EXPERIMENT_NAME = "demo_experiment"  # Use your existing experiment name
+```
+
+### 4. Run the Demo
+
+Each CLI command in `main.py` delegates to a dedicated module for modularity and extensibility.
+
+#### Preprocess
+
+```sh
+python {{project_name}}/main.py preprocess --test-run False
+```
+
+#### Train
+
+```sh
+python {{project_name}}/main.py train-cmd --test-run False
+```
+
+#### Process
+
+```sh
+python {{project_name}}/main.py process --test-run False
+```
+
+#### Evaluate (loads last run metric and plots)
+
+```sh
+python {{project_name}}/main.py evaluate --test-run False
+```
+
+### 5. Visualize Results
+
+- The `evaluate` command uses `plotter.py` to plot regression results and save them as `eval_plot.png`.
+
+### 6. MLflow UI
+
+- Open MLflow UI to view experiments and runs:
+```sh
+mlflow ui --backend-store-uri sqlite:///mlflow.db
+```
+- Visit [http://localhost:5000](http://localhost:5000) in your browser.
 
 ## Repository Structure
 
-The repository is organized into two main directories:
-
-1. `hooks`: This directory contains scripts that are executed before (`pre_gen_project.py` - *unused*) and after (`post_gen_project.py`) the template deployment.
-
-2. `{{project_name}}`: This is the main project directory that gets created upon deployment of the template.
-
-Additionally, the repository contains a `cookiecutter.json` file that defines the variables used by the Cookiecutter and sets their default values.
-
-## Usage
-
-To use STREAM, you need to have [Cookiecutter](https://github.com/cookiecutter/cookiecutter) installed. If you do not have it, you can install it using pip:
-
-```sh
-pip install cookiecutter
-```
-
-To create a new project using the STREAM template, navigate to the parent directory where you want your project to reside and run:
-
-```sh
-cookiecutter https://github.com/your_username/STREAM.git
-```
-
-You will then be prompted to enter values for the variables defined in `cookiecutter.json`, which will be used to customize your new project.
+- `{{project_name}}/main.py`: CLI entry point for all workflow steps.
+- `{{project_name}}/data.py`: Data preprocessing functions.
+- `{{project_name}}/train.py`: Model training functions.
+- `{{project_name}}/plotter.py`: Plotting functions for regression and metrics.
+- `{{project_name}}/predict.py`: Prediction utilities (for extensibility).
+- `{{project_name}}/config/`: Configuration files and MLflow settings.
+- `{{project_name}}/tests/`: Unit tests for workflow steps.
 
 ## Contributing
 
