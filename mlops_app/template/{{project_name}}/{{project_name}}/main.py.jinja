@@ -5,14 +5,13 @@ from pathlib import Path
 import pandas as pd
 import joblib
 
-from {{project_name}}.config.config import {{project_name}}Config
-from config.config import logger
+from {{project_name}}.config.config import {{project_name}}Config, logger
 from {{project_name}} import data, train, plotter, report
 
 app = typer.Typer()
 warnings.filterwarnings("ignore")
 
-DATA_PATH = "simple_data.csv"
+DATA_PATH = " {{project_name}}/simple_data.csv"
 # MODEL_PATH removed as it is not used directly
 
 
@@ -30,7 +29,6 @@ def run_pipeline(
         df_clean = pd.read_csv(clean_path)
         mlflow.log_param("rows_cleaned", df_clean.shape[0])
 
-    # Step 2: Train
     # Step 2: Train
     model_path = clean_path.replace("_clean.csv", "_model.pkl")
     score = train.train_model(clean_path, model_path)
