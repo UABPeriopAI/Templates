@@ -7,88 +7,70 @@ import joblib
 
 from {{project_name}}.config.config import {{project_name}}Config
 from config.config import logger
-from {{project_name}} import data, train, plotter
+from {{project_name}} import data, train, plotter, report
 
 app = typer.Typer()
 warnings.filterwarnings("ignore")
 
 DATA_PATH = "simple_data.csv"
-MODEL_PATH = "{{project_name}}/config/model.pkl"
+# MODEL_PATH removed as it is not used directly
+
 
 @app.command()
-def preprocess(
+def run_pipeline(
     data_path: str = DATA_PATH,
-    test_run: bool = True,
+    report_path: str = "report.zip",
+    fig_path: str = "eval_plot.png",
+    test_run: bool = False,
 ):
+    # Step 1: Preprocess
     clean_path = data.preprocess_data(data_path)
     if not test_run:
         mlflow.log_artifact(clean_path)
         df_clean = pd.read_csv(clean_path)
         mlflow.log_param("rows_cleaned", df_clean.shape[0])
 
-@app.command()
-def train_cmd(
-    data_path: str = DATA_PATH.replace(".csv", "_clean.csv"),
-    model_path: str = MODEL_PATH,
-    test_run: bool = False,
-):
-    score = train.train_model(data_path, model_path)
+    # Step 2: Train
+    # Step 2: Train
+    model_path = clean_path.replace("_clean.csv", "_model.pkl")
+    score = train.train_model(clean_path, model_path)
     if not test_run:
         mlflow.log_artifact(model_path)
         mlflow.log_metric("r2_score", score)
 
-@app.command()
-def process(
-    data_path: str = DATA_PATH.replace(".csv", "_clean.csv"),
-    model_path: str = MODEL_PATH,
-    test_run: bool = False,
-):
+    # Step 3: Predict
     model = joblib.load(model_path)
-    df = pd.read_csv(data_path)
+    df = pd.read_csv(clean_path)
     X = df[["x"]]
     preds = model.predict(X)
     df["pred"] = preds
-    pred_path = data_path.replace("_clean.csv", "_pred.csv")
+    pred_path = clean_path.replace("_clean.csv", "_pred.csv")
     df.to_csv(pred_path, index=False)
     logger.info(f"Saved predictions to {pred_path}")
     if not test_run:
         mlflow.log_artifact(pred_path)
         mlflow.log_metric("mean_pred", preds.mean())
 
-@app.command()
-def evaluate(
-    data_path: str = DATA_PATH.replace(".csv", "_pred.csv"),
-    test_run: bool = False,
-):
-    df = pd.read_csv(data_path)
+    # Step 4: Evaluate
     y_true = df["y"]
     y_pred = df["pred"]
-from {{project_name}} import report
-
-@app.command()
-def build_report(
-    pred_path: str = DATA_PATH.replace(".csv", "_clean_pred.csv"),
-    fig_path: str = "eval_plot.png",
-    out_path: str = "report.zip"
-):
-    """
-    Build a report zip containing predictions and regression plot.
-    """
-    zip_bytes = report.build_report(pred_path, fig_path)
-    with open(out_path, "wb") as f:
-        f.write(zip_bytes.read())
-    logger.info(f"Report saved to {out_path}")
     mse = ((y_true - y_pred) ** 2).mean()
     logger.info(f"Evaluation MSE: {mse:.3f}")
     try:
-        plotter.plot_regression(y_true, y_pred, out_path="eval_plot.png")
-        logger.info("Saved plot eval_plot.png")
+        plotter.plot_regression(y_true, y_pred, out_path=fig_path)
+        logger.info(f"Saved plot {fig_path}")
         if not test_run:
-            mlflow.log_artifact("eval_plot.png")
+            mlflow.log_artifact(fig_path)
     except Exception as e:
         logger.info(f"Plotting failed: {e}")
     if not test_run:
         mlflow.log_metric("mse", mse)
+
+    # Step 5: Build report
+    zip_bytes = report.build_report(pred_path, fig_path)
+    with open(report_path, "wb") as f:
+        f.write(zip_bytes.read())
+    logger.info(f"Report saved to {report_path}")
 
 if __name__ == "__main__":
     app()
