@@ -48,7 +48,7 @@ _tasks:
       -d repository_url="{{ repository_url }}"
       -d data_dir="{{ data_dir }}"
       -d data_directory_name="{{ data_directory_name }}"
-
+      
   - label: run-hook
     command: bash "{{ project_name }}/hooks/post_gen_init.sh"
     shell: true

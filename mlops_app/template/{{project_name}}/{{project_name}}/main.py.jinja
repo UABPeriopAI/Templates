@@ -1,71 +1,74 @@
 import warnings
-from pathlib import Path
-from typing import Dict
-import mlflow
 import typer
+import mlflow
+from pathlib import Path
+import pandas as pd
+import joblib
 
-from {{project_name}}.config.config import {{project_name}}Config
-from config.config import logger
+from {{project_name}}.config.config import {{project_name}}Config, logger
+from {{project_name}} import data, train, plotter, report
 
-# Initialize Typer CLI app
 app = typer.Typer()
 warnings.filterwarnings("ignore")
 
-@app.command()
-def preprocess(
-    experiment_name: str = 'Preprocessing',
-    args_pre: str = "{{project_name}}/config/args_preprocess.json",
-    test_run: bool = True,
-):
-    #Preprocessing code goes here:
+DATA_PATH = "{{project_name}}/simple_data.csv"
+# MODEL_PATH removed as it is not used directly
 
-    #Log preproccesing
-    logger.info("✅ sucessfully preprocessed data")
-    if not test_run:     
-        mlflow.set_experiment(experiment_name)
-        with mlflow.start_run() as run:
-            run_id = mlflow.active_run().info.run_id
-            mlflow.log_params(args_pre)
-            mlflow.log_param("run_id", run_id)
-            mlflow.log_param("output_filepath", config.EXAMPLE_OUTPUT)
 
 @app.command()
-def train(
-    args_tr: str = "{{project_name}}/config/args_train.json",
-    experiment_name: str = "training",
-    test_run: bool = False,
-) -> None:
-    if not test_run:
-        mlflow.set_experiment(experiment_name)
-        with mlflow.start_run():
-            run_id = mlflow.active_run().info.run_id
-            mlflow.log_params(args_tr)
-
-@app.command()
-def process(
-    args_pro: str = "{{project_name}}/config/args_process.json",
-    experiment_name: str = "process",
-    run_name: str = "process",
-    test_run: bool = False,
-) -> None:
-    #processing code goes here (e.g., model inference):
-
-    #Log
-    logger.info("✅ sucessfully processed data")
-    mlflow.set_experiment(experiment_name)
-    #Example MLFlow call
-    if not test_run:
-        with mlflow.start_run(run_name=run_name) as run:
-            run_id = mlflow.active_run().info.run_id
-            mlflow.log_params(args_pro)
-
-@app.command()
-def evaluate(
-    experiment_name: str = "evaluation",
+def run_pipeline(
+    data_path: str = DATA_PATH,
+    report_path: str = "report.zip",
+    fig_path: str = "eval_plot.png",
     test_run: bool = False,
 ):
-    raise(NotImplementedError)
+    # Step 1: Preprocess
+    clean_path = data.preprocess_data(data_path)
+    if not test_run:
+        mlflow.log_artifact(clean_path)
+        df_clean = pd.read_csv(clean_path)
+        mlflow.log_param("rows_cleaned", df_clean.shape[0])
 
+    # Step 2: Train
+    model_path = clean_path.replace("_clean.csv", "_model.pkl")
+    score = train.train_model(clean_path, model_path)
+    if not test_run:
+        mlflow.log_artifact(model_path)
+        mlflow.log_metric("r2_score", score)
+
+    # Step 3: Predict
+    model = joblib.load(model_path)
+    df = pd.read_csv(clean_path)
+    X = df[["x"]]
+    preds = model.predict(X)
+    df["pred"] = preds
+    pred_path = clean_path.replace("_clean.csv", "_pred.csv")
+    df.to_csv(pred_path, index=False)
+    logger.info(f"Saved predictions to {pred_path}")
+    if not test_run:
+        mlflow.log_artifact(pred_path)
+        mlflow.log_metric("mean_pred", preds.mean())
+
+    # Step 4: Evaluate
+    y_true = df["y"]
+    y_pred = df["pred"]
+    mse = ((y_true - y_pred) ** 2).mean()
+    logger.info(f"Evaluation MSE: {mse:.3f}")
+    try:
+        plotter.plot_regression(y_true, y_pred, out_path=fig_path)
+        logger.info(f"Saved plot {fig_path}")
+        if not test_run:
+            mlflow.log_artifact(fig_path)
+    except Exception as e:
+        logger.info(f"Plotting failed: {e}")
+    if not test_run:
+        mlflow.log_metric("mse", mse)
+
+    # Step 5: Build report
+    zip_bytes = report.build_report(pred_path, fig_path)
+    with open(report_path, "wb") as f:
+        f.write(zip_bytes.read())
+    logger.info(f"Report saved to {report_path}")
 
 if __name__ == "__main__":
-    app()  # pragma: no cover, live app
+    app()
