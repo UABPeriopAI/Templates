@@ -11,7 +11,18 @@ docs_packages = ["mkdocs==1.3.1", "mkdocstrings==0.18.1"]
 
 style_packages = ["black==22.6.0", "flake8==5.0.2", "isort==5.10.1"]
 
-dev_packages = ["mlflow", "pip-tools", "pandas"]
+dev_packages = [
+    "mlflow",
+    "mkdocstrings[python]",
+    "black[jupyter]",
+    "autopep8",
+    "pip-tools",
+    "pandas",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-mock",
+]
+
 
 # Define our package
 setup(
