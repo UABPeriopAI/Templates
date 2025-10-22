@@ -2,6 +2,7 @@
 # Ignore environment variable files
 .env
 /.env
+.venv
 # Ignore secrets directories or files if any
 /secrets
 # Optional: ignore temporary or build files
