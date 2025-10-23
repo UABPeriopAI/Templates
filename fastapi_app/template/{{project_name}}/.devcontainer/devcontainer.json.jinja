@@ -57,7 +57,7 @@
 	"env": {
     "MLFLOW_TRACKING_URI": "{{mlflow_tracking_uri}}",
     "MLFLOW_EXPERIMENT_NAME": "{{ project_name }}"
-  	}	
+  	},	
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// where mlflow starts up
@@ -67,8 +67,5 @@
 				
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode",
-	"features": {
-		"git": "latest"
-	}
+	"remoteUser": "vscode"
 }
