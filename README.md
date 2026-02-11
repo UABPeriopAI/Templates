@@ -46,12 +46,19 @@ uv tool install copier
 
 2. With copier, you can call this repository directly from the command line.  This copier is designed to install the codebase and it automatically creates and relocates the data structure. The command to create a new project is: copier copy path/to/project/template path/to/destination
 
-An example of how to create a new project from this template looks like:
+Examples of how to create a new project from these templates:
 ~~~
 $ git clone https://github.com/UABPeriopAI/Templates.git
-$ copier copy --trust Templates/fastapi_app repos
 ~~~
-Note that the command will create the project inside "repos" not with the name "repos".
+Then
+~~~
+$ copier copy --trust Templates/fastapi_app path/to/destination
+~~~
+OR
+~~~
+$ copier copy --trust Templates/mlops_app path/to/destination
+~~~
+Note that the command will create the project inside the destination directory, not with the name of the destination directory.
 
 If your project already has code in it, you'll need to merge whatever branch has existing code with the new one copier creates using 
 ~~~
@@ -60,14 +67,26 @@ $ git merge <old_branch> --allow-unrelated-histories
 ~~~
 
 Executing this command will initiate prompts for you to enter project specific information.   Our template has the following inputs for a new project (with default values in parenthesis)
-#### mlops_template
-- [ ] Project Name* (default_proj) - Name of the new project.  This paramter is used in a number of places and should be a title that the user can use to readily identify the project.
-- [ ] Author Name* () - Name of the person creating the project.  This will be used in the setup.py file and in git commit messages.
-- [ ] Description () - Brief description of what the software is intended to do
-- [ ] Author Email* () - Be sure to use the email connected to your version control account
-- [ ] Repository URL* () - The empty git Repository URL for the new project from step 1
-- [ ] Data Directory* () - The folder where you plan to put the data (eventually we will move it there automatically, but for now this just updates the devcontainer.json so the Docker container knows where to find the data)
+#### fastapi_app
+- [ ] Project Name* (FastAPIapp) - Name of the new project. This parameter is used in a number of places and should be a title that the user can use to readily identify the project.
+- [ ] Author Name* () - Name of the person creating the project. This will be used in the setup.py file and in git commit messages.
+- [ ] Description () - Brief description of what the software is intended to do.
+- [ ] Author Email* () - Be sure to use the email connected to your version control account.
+- [ ] Repository URL* () - The empty git Repository URL for the new project from step 1.
+- [ ] Data Directory* (data) - The folder where you plan to put the data (eventually we will move it there automatically, but for now this just updates the devcontainer.json so the Docker container knows where to find the data).
 - [ ] Data directory* name (DATASCI)
+- [ ] LLM endpoint () - Optional LLM endpoint string used by the template.
+- [ ] MLflow Tracking URI (https://) - URI for MLflow tracking.
+
+#### mlops_app
+- [ ] Project Name* (ML_Project) - Name of the new project. This parameter is used in a number of places and should be a title that the user can use to readily identify the project.
+- [ ] Author Name* () - Name of the person creating the project. This will be used in the setup.py file and in git commit messages.
+- [ ] Description (This ML/AI is designed to ) - Brief description of what the software is intended to do.
+- [ ] Author Email* () - Be sure to use the email connected to your version control account.
+- [ ] Repository URL* () - The empty git Repository URL for the new project from step 1.
+- [ ] Data Directory* (data) - The folder where you plan to put the data (eventually we will move it there automatically, but for now this just updates the devcontainer.json so the Docker container knows where to find the data).
+- [ ] Data directory* name (DATASCI)
+- [ ] MLflow Tracking URI (https://) - URI for MLflow tracking.
 
 A * next to the parameter indicates a field that is required for the template to deploy as intended. Many default values are left blank, because we make no presumptions about the specific information for a project. We encourage users to provide input for all fields, although *Description* is not requried for the template to deploy correctly. 
 
