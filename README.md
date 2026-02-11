@@ -48,7 +48,8 @@ uv tool install copier
 
 An example of how to create a new project from this template looks like:
 ~~~
-copier copy --trust https://github.com/UABPeriopAI/Templates repos/project_name
+$ git clone https://github.com/UABPeriopAI/Templates.git
+$ copier copy --trust Templates/fastapi_app ezMPOG
 ~~~
 Executing this command will initiate prompts for you to enter project specific information.   Our template has the following inputs for a new project (with default values in parenthesis)
 #### mlops_template
