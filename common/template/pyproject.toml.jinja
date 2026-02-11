@@ -3,6 +3,9 @@ name = "{{project_name}}"
 version = "0.1.0"
 description = "PoC"
 requires-python = ">=3.11"
+dependencies = [
+  "aiweb_common"
+]
 
 # Black formatting
 [tool.black]
@@ -38,6 +41,9 @@ line_length = 100
 multi_line_output = 3
 include_trailing_comma = true
 virtual_env = "venv"
+
+[tool.uv.sources]
+aiweb_common = { path = "llm_utils" }
 
 #Development Dependencies
 [project.optional-dependencies]
