@@ -60,6 +60,29 @@ $ copier copy --trust Templates/mlops_app path/to/destination
 ~~~
 Note that the command will create the project inside the destination directory, not with the name of the destination directory.
 
+### Template Update Propagation
+This repository now renders explicit Copier answer files so generated projects can be updated later:
+
+- `fastapi_app` projects: `.copier-answers.fastapi.yml`
+- `mlops_app` projects: `.copier-answers.mlops.yml`
+- shared `common` layer: `.copier-answers.common.yml`
+
+To pull template changes into an existing generated project, run recopy from the project root:
+
+~~~
+# FastAPI projects
+copier recopy --trust --defaults -a .copier-answers.fastapi.yml
+copier recopy --trust --defaults -a .copier-answers.common.yml
+
+# MLOps projects
+copier recopy --trust --defaults -a .copier-answers.mlops.yml
+copier recopy --trust --defaults -a .copier-answers.common.yml
+~~~
+
+Run both recopy commands for each project type: the first updates the app-specific template and the second updates shared content from `common/`.
+
+`copier update` currently cannot be used with this layout because these templates live in subdirectories of a shared git repository. Copier update requires git-tracked template references at the template source path.
+
 If your project already has code in it, you'll need to merge whatever branch has existing code with the new one copier creates using 
 ~~~
 $ git checkout <new branch>
