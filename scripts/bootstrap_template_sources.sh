@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-TEMPLATE_DIRS=("common" "fastapi_app" "mlops_app")
+TEMPLATE_DIRS=("common" "fastapi_app" "gradio_app" "mlops_app")
 COMMIT_MSG="${COMMIT_MSG:-Sync template source from monorepo}"
 BASE_TAG="${BASE_TAG:-0.1.0}"
 

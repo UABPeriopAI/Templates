@@ -1,0 +1,26 @@
+mlflow >= 3.4
+mkdocs
+mkdocs-material
+rich
+black
+flake8
+typer
+gradio
+langchain
+langchain-prompty
+langchain-openai
+openai
+tiktoken
+pyodbc
+pip-tools
+jupyter
+pandas
+matplotlib
+scikit-learn
+openpyxl
+seaborn
+azure-ai-formrecognizer
+xlsxwriter
+rapidfuzz
+./llm_utils
+pytest

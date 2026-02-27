@@ -1,0 +1,47 @@
+"""
+The main app file sets up a Gradio UI with tabs for two example tasks.
+Each tab calls a method from the shared Gradio handler.
+"""
+import gradio as gr
+
+from {{project_name}}.config.config import {{project_name}}Config
+from {{project_name}}.sample_handler import GradioBaseHandler
+
+handler = GradioBaseHandler()
+
+
+def preview_csv(file_path: str):
+    return handler.preview_csv(file_path)
+
+
+def generate_report():
+    report_path = handler.generate_dummy_report_file()
+    return report_path, "Report generated!"
+
+
+with gr.Blocks(title="{{project_name}}") as demo:
+    gr.Markdown({{project_name}}Config.HEADER_MARKDOWN)
+    with gr.Tab("Example Task A"):
+        csv_input = gr.File(label="Upload CSV", file_types=[".csv"], type="filepath")
+        preview_button = gr.Button("Preview CSV")
+        csv_preview = gr.Dataframe(label="CSV Preview")
+        csv_status = gr.Textbox(label="Status", interactive=False)
+        preview_button.click(
+            fn=preview_csv,
+            inputs=csv_input,
+            outputs=[csv_preview, csv_status],
+        )
+
+    with gr.Tab("Example Task B"):
+        report_button = gr.Button("Generate Report")
+        report_download = gr.File(label="Download Dummy Report")
+        report_status = gr.Textbox(label="Status", interactive=False)
+        report_button.click(
+            fn=generate_report,
+            inputs=None,
+            outputs=[report_download, report_status],
+        )
+
+
+if __name__ == "__main__":
+    demo.launch(server_name="0.0.0.0", server_port=7860)
