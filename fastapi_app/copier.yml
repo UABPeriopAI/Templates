@@ -19,6 +19,10 @@ data_directory_name:
   default: "DATASCI"
 llm_endpoint:
   default: ""
+common_template_src:
+  type: str
+  help: Source path or git URL for the common template.
+  default: "{{ common_template_src | default(_copier_conf.src_path ~ '/../common') }}"
 mlflow_tracking_uri:
   type: str
   default: "https://"
@@ -30,7 +34,7 @@ _tasks:
     shell: true
     #likey want to point this to the repository instead
     command: >
-      copier copy "{{ _copier_conf.src_path }}/../common" {{ project_name }}
+      copier copy "{{ common_template_src }}" {{ project_name }}
       --overwrite
       --defaults
       -a .copier-answers.common.yml
