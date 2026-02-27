@@ -1,5 +1,7 @@
 #!/bin/bash
 
 cd /workspaces/{{project_name}}/src
-uv pip install --upgrade pip setuptools wheel\
-	    && uv pip install -e ".[dev]"
+uv pip install --upgrade pip setuptools wheel \
+    && uv pip install -U -r requirements.txt \
+    && uv pip install -U -r ./llm_utils/requirements.txt \
+    && uv pip install -e ".[dev]"

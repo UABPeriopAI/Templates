@@ -110,7 +110,7 @@ $ git merge <old_branch> --allow-unrelated-histories
 Executing this command will initiate prompts for you to enter project specific information.   Our template has the following inputs for a new project (with default values in parenthesis)
 #### fastapi_app
 - [ ] Project Name* (FastAPIapp) - Name of the new project. This parameter is used in a number of places and should be a title that the user can use to readily identify the project.
-- [ ] Author Name* () - Name of the person creating the project. This will be used in the setup.py file and in git commit messages.
+- [ ] Author Name* () - Name of the person creating the project. This will be used in project metadata and in git commit messages.
 - [ ] Description () - Brief description of what the software is intended to do.
 - [ ] Author Email* () - Be sure to use the email connected to your version control account.
 - [ ] Repository URL* () - The empty git Repository URL for the new project from step 1.
@@ -122,7 +122,7 @@ Executing this command will initiate prompts for you to enter project specific i
 
 #### gradio_app
 - [ ] Project Name* (GradioApp) - Name of the new project. This parameter is used in a number of places and should be a title that the user can use to readily identify the project.
-- [ ] Author Name* () - Name of the person creating the project. This will be used in the setup.py file and in git commit messages.
+- [ ] Author Name* () - Name of the person creating the project. This will be used in project metadata and in git commit messages.
 - [ ] Description () - Brief description of what the software is intended to do.
 - [ ] Author Email* () - Be sure to use the email connected to your version control account.
 - [ ] Repository URL* () - The empty git Repository URL for the new project from step 1.
@@ -134,7 +134,7 @@ Executing this command will initiate prompts for you to enter project specific i
 
 #### mlops_app
 - [ ] Project Name* (ML_Project) - Name of the new project. This parameter is used in a number of places and should be a title that the user can use to readily identify the project.
-- [ ] Author Name* () - Name of the person creating the project. This will be used in the setup.py file and in git commit messages.
+- [ ] Author Name* () - Name of the person creating the project. This will be used in project metadata and in git commit messages.
 - [ ] Description (This ML/AI is designed to ) - Brief description of what the software is intended to do.
 - [ ] Author Email* () - Be sure to use the email connected to your version control account.
 - [ ] Repository URL* () - The empty git Repository URL for the new project from step 1.
