@@ -1,6 +1,13 @@
+import os
+
 CSV_EXPECTED_TYPE = "text/csv"
 
+# ROOT_PATH is set by the Traefik reverse proxy (e.g. /app, /irb).
+# It tells FastAPI the external URL prefix for OpenAPI docs without
+# affecting route matching.  Do NOT hardcode this prefix into route
+# decorators — Traefik StripPrefix removes it before forwarding.
 FORM_API_META = {
+    "root_path": os.environ.get("ROOT_PATH", ""),
     "title": "{{project_name}}",
     "description": "{{description}}",
     "summary": "Brought to you by the Anesthesiology Research, Informatics, and Data Science teams in collaboration with Radiology Imaging Informatics, Clinicians, and Researchers.",

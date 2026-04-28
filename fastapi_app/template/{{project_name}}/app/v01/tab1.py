@@ -40,7 +40,10 @@ def get_task_response(
     return response
 
 
-@router.post("/app/v01/tab1", **TAB1_META)
+# Route paths must NOT include the service prefix (e.g. /app).
+# Traefik StripPrefix handles the prefix — hardcoding it here
+# causes doubled prefixes and 404s behind the reverse proxy.
+@router.post("/v01/tab1", **TAB1_META)
 async def process_file(
     background_tasks: BackgroundTasks, request: FileInRequest
 ) -> DataFrameResponse:
