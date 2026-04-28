@@ -9,6 +9,9 @@ from app.v01.tab2 import router as v01_tab2_router
 
 app = FastAPI(**FORM_API_META)
 app.include_router(utils_router)
+# Route paths are clean (/v01/tab1, not /app/v01/tab1).
+# The service prefix is set via ROOT_PATH env var for OpenAPI docs
+# and handled by Traefik StripPrefix for request routing.
 app.include_router(v01_tab1_router)
 app.include_router(v01_tab2_router)
 

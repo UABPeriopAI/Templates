@@ -14,7 +14,8 @@ def test_report_download():
     # Create a test client using the FastAPI application
     client = TestClient(app)
     # URL for the POST request
-    url = "/app/v01/tab2"
+    # Paths in tests must match the route decorator — no service prefix.
+    url = "/v01/tab2"
 
     # Headers
     headers = {"accept": "application/json", "Content-Type": "application/json"}
