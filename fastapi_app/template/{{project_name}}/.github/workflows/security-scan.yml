@@ -25,7 +25,6 @@ jobs:
       #   - run: uv audit --preview
       # TODO: remove continue-on-error once existing vulnerabilities are triaged
       - uses: pypa/gh-action-pip-audit@v1.1.0
-        continue-on-error: true
         with:
           inputs: "requirements.txt"
           no-deps: true
@@ -62,5 +61,5 @@ jobs:
         with:
           image-ref: scan-target:${{ github.sha }}
           format: table
-          exit-code: "0"
+          exit-code: "1"
           severity: CRITICAL,HIGH
