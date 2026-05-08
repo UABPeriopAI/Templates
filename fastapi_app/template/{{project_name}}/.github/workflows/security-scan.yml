@@ -1,0 +1,65 @@
+name: Security Scan
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-audit:
+    name: Dependency Audit (pip-audit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # When migrating to uv, replace this step with:
+      #   - uses: astral-sh/setup-uv@v5
+      #   - run: uv audit --preview
+      # TODO: remove continue-on-error once existing vulnerabilities are triaged
+      - uses: pypa/gh-action-pip-audit@v1.1.0
+        with:
+          inputs: "requirements.txt"
+          no-deps: true
+          summary: true
+
+  sast:
+    name: Static Analysis (Bandit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Bandit
+        run: pip install bandit
+
+      - name: Run Bandit
+        run: bandit -r app/ --severity-level medium --confidence-level medium
+
+  container-scan:
+    name: Container Scan (Trivy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image for scanning
+        run: docker build -t scan-target:${{ github.sha }} .
+
+      # TODO: set exit-code to 1 once base image CVEs are triaged
+      - name: Run Trivy
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: scan-target:${{ github.sha }}
+          format: table
+          exit-code: "1"
+          severity: CRITICAL,HIGH
