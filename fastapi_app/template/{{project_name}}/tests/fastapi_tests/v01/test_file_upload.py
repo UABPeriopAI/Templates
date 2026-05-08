@@ -7,7 +7,8 @@ def test_file_upload(client, encoded_data):
     Tests the POST method for drafting a introduction to ensure it handles the input correctly and returns the expected response.
     """
     # URL for the POST request
-    url = "/app/v01/tab1"
+    # Paths in tests must match the route decorator — no service prefix.
+    url = "/v01/tab1"
 
     # The payload containing the base64-encoded DOCX file
     # Ensure areas_of_excellence is a list of enum values

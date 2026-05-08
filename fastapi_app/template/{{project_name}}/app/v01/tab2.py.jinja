@@ -24,7 +24,10 @@ def get_task_response(background_tasks: BackgroundTasks) -> MSWordResponse:
 
 
 
-@router.post("/app/v01/tab2", **TAB2_META)
+# Route paths must NOT include the service prefix (e.g. /app).
+# Traefik StripPrefix handles the prefix — hardcoding it here
+# causes doubled prefixes and 404s behind the reverse proxy.
+@router.post("/v01/tab2", **TAB2_META)
 async def process_file(background_tasks: BackgroundTasks) -> MSWordResponse:
     #This example task returns a Docx document.
     response = get_task_response(background_tasks)
