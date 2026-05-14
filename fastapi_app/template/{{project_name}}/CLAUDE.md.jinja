@@ -1,0 +1,83 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+{{project_name}} is a FastAPI microservice built with Python 3.11. It exposes versioned REST endpoints under `/v01/` and returns responses as JSON. The project uses LLM workflows powered by `aiweb_common.WorkflowHandler` and follows the azurify per-request credential pattern.
+
+## Commands
+
+```bash
+# Setup
+make venv && source venv/bin/activate
+
+# Run API server
+uvicorn app.server:app --host 0.0.0.0 --port 8000 --reload
+
+# Run with Docker
+docker-compose up --build --force-recreate   # exposes port 8000
+
+# Lint & format
+make style                                    # runs black, flake8, isort, autopep8
+
+# Tests
+pytest                                        # all tests
+pytest tests/fastapi_tests/v01/               # endpoint tests
+pytest tests/fastapi_tests/ -k test_name      # single test by name
+
+# Clean
+make clean
+```
+
+## Architecture
+
+**Entry point:** `app/server.py` — FastAPI app that mounts versioned routers and a `/health` endpoint.
+
+### Layered Pattern: Router → Handler → Workflow
+
+```
+FastAPI Router (app/v01/*.py)                ← thin HTTP layer, validation
+       ↓
+Handler ({{project_name}}/sample_handler.py) ← input normalization
+       ↓
+Workflow ({{project_name}}/)                 ← business logic, LLM calls
+```
+
+Routers are kept thin; handlers prepare inputs; workflows do the heavy lifting.
+
+### Per-Request LLM Credentials (Critical Policy)
+
+Every LLM-calling endpoint requires client-supplied credentials — **no server-side defaults or fallbacks**:
+- **JSON body**: `openai_compatible_endpoint`, `openai_compatible_model`
+- **Header**: `Authorization: Bearer <api_key>`
+
+LLM clients are instantiated per-request, never as global singletons. See `azurify.md` for the full policy.
+
+### Key Base Class
+
+All workflows inherit from `aiweb_common.WorkflowHandler` (from the `llm_utils` package). Use `self._init_openai(...)` to set up the per-request LLM interface. Always search `llm_utils`/`aiweb_common` for existing functionality before writing new code.
+
+### Configuration
+
+- `{{project_name}}/config/config.py` — paths, settings, constants
+- `.kilocode/rules/` — coding standards referenced by all AI agents (see `AGENTS.md`)
+
+## Testing
+
+Tests live in `tests/fastapi_tests/v01/`. All LLM calls must be mocked — no real API calls in tests. Every test must include the Authorization header and `openai_compatible_*` fields in the request body. Test fixtures in `conftest.py` provide a FastAPI `TestClient`.
+
+## Code Conventions
+
+Rules are defined in `.kilocode/rules/` and apply to all AI agents working in this repo:
+
+- **Python ≥ 3.11** with full type annotations everywhere
+- **Formatting:** Black (line length 100), isort (profile=black), flake8, autopep8. Config in `pyproject.toml`
+- **Naming:** `snake_case` for modules/functions/variables, `PascalCase` for classes, `UPPER_SNAKE_CASE` for constants/enums, `_leading_underscore` for private, `*_async` suffix for async functions
+- **Docstrings:** Google style on public interfaces
+- **Reuse** `aiweb_common` classes/methods; propose additions to `llm_utils` rather than editing it directly
+- **Package management:** `uv` preferred; editable install with `pip install -e .`
+
+## Restricted Files
+
+Never read, write, or commit: `.env`, `.env.*`, `.venv/`, `supersecrets.txt`, `credentials.json`, `*.pem`, `*.key`, `secrets/`, or any file in `data/` containing PHI/PII.
