@@ -1,0 +1,33 @@
+{%- set pages = sidebar_pages.split(',') | map('trim') | list -%}
+"""Sidebar navigation widget."""
+
+from __future__ import annotations
+
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QListWidget, QListWidgetItem, QVBoxLayout, QWidget
+
+PAGES = {{pages}}
+
+
+class SidebarNav(QWidget):
+    """Sidebar with page list. Emits page_selected(index) on click."""
+
+    page_selected = Signal(int)
+
+    def __init__(self, parent: QWidget | None = None) -> None:
+        super().__init__(parent)
+        self.setFixedWidth(200)
+        self.setObjectName("sidebar")
+
+        self._list = QListWidget()
+        for label in PAGES:
+            self._list.addItem(QListWidgetItem(label))
+        self._list.setCurrentRow(0)
+        self._list.currentRowChanged.connect(self.page_selected.emit)
+
+        layout = QVBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.addWidget(self._list)
+
+    def select_page(self, index: int) -> None:
+        self._list.setCurrentRow(index)
