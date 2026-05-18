@@ -1,0 +1,32 @@
+"""Tests for the SQLite data store."""
+
+
+def test_create_project(tmp_db):
+    """DataStore can create and retrieve a project."""
+    pid = tmp_db.create_project("Test Project", "/tmp/test", "A test project")
+    project = tmp_db.get_project(pid)
+    assert project is not None
+    assert project["name"] == "Test Project"
+    assert project["description"] == "A test project"
+
+
+def test_list_projects(tmp_db):
+    """DataStore can list projects."""
+    tmp_db.create_project("P1", "/tmp/p1")
+    tmp_db.create_project("P2", "/tmp/p2")
+    projects = tmp_db.list_projects()
+    assert len(projects) == 2
+
+
+def test_update_project(tmp_db):
+    """DataStore can update project fields."""
+    pid = tmp_db.create_project("Old Name", "/tmp/test")
+    tmp_db.update_project(pid, name="New Name")
+    project = tmp_db.get_project(pid)
+    assert project["name"] == "New Name"
+
+
+def test_get_nonexistent_project(tmp_db):
+    """DataStore returns None for missing projects."""
+    project = tmp_db.get_project("nonexistent-id")
+    assert project is None

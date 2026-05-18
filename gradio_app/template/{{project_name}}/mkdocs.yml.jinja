@@ -1,0 +1,30 @@
+# mkdocs.yml
+site_name: {{project_name}}
+site_url: https://sites.uab.edu/periop-datascience/
+repo_url: https://github.com/uabperiopai
+nav:
+  - Home: index.md
+  - '{{project_name}}':
+    - Gradio Handler: '{{project_name}}/sample_handler.md'
+    - User Interface: '{{project_name}}_gradio_app.md'
+    - Example: '{{project_name}}/utils/utils_example.md'
+  - '{{project_name}}/config':
+    - Config: '{{project_name}}/config/config.md'
+
+  - llm_utils: '!include ./llm_utils/mkdocs.yml'
+
+theme:
+  name: readthedocs
+plugins:
+  - search
+  - monorepo:
+      submodules:
+        - path: llm_utils
+          repo_url: ''
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ['.', '{{project_name}}', '{{project_name}}/config', llm_utils]  # search packages in these folders
+watch:
+  - .  # reload docs for any file changes
+use_directory_urls: false

@@ -1,0 +1,33 @@
+/**
+ * @since 4.0.0
+ */
+import * as Context from "../../Context.ts";
+import type * as Effect from "../../Effect.ts";
+import type * as Queue from "../../Queue.ts";
+import type { WorkerError } from "./WorkerError.ts";
+/**
+ * @since 4.0.0
+ * @category models
+ */
+export interface WorkerRunner<O = unknown, I = unknown> {
+    readonly run: <A, E, R>(handler: (portId: number, message: I) => Effect.Effect<A, E, R> | void) => Effect.Effect<void, WorkerError, R>;
+    readonly send: (portId: number, message: O, transfers?: ReadonlyArray<unknown>) => Effect.Effect<void>;
+    readonly sendUnsafe: (portId: number, message: O, transfers?: ReadonlyArray<unknown>) => void;
+    readonly disconnects?: Queue.Dequeue<number> | undefined;
+}
+/**
+ * @since 4.0.0
+ * @category models
+ */
+export type PlatformMessage<I> = readonly [request: 0, I] | readonly [close: 1];
+declare const WorkerRunnerPlatform_base: Context.ServiceClass<WorkerRunnerPlatform, "effect/workers/WorkerRunner/WorkerRunnerPlatform", {
+    readonly start: <O = unknown, I = unknown>() => Effect.Effect<WorkerRunner<O, I>, WorkerError>;
+}>;
+/**
+ * @since 4.0.0
+ * @category models
+ */
+export declare class WorkerRunnerPlatform extends WorkerRunnerPlatform_base {
+}
+export {};
+//# sourceMappingURL=WorkerRunner.d.ts.map

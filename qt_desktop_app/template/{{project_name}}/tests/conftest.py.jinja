@@ -1,0 +1,14 @@
+"""Shared test fixtures for {{project_name}}."""
+
+import pytest
+
+
+@pytest.fixture
+def tmp_db(tmp_path):
+    """Create a temporary SQLite database for testing."""
+    from app.qt.db.data_store import DataStore
+
+    db_path = tmp_path / "test.db"
+    store = DataStore(db_path)
+    yield store
+    store.close()

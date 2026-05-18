@@ -1,8 +1,6 @@
 _min_copier_version: "9.0.0"
 _subdirectory: "template"
-
-_includes:
-  -!include ../common/copier.yml
+_answers_file: .copier-answers.mlops.yml
 
 project_name:
   help: "Your ML project name"
@@ -26,6 +24,11 @@ data_dir:
 
 data_directory_name:
   default: "DATASCI"
+
+common_template_src:
+  type: str
+  help: Source path or git URL for the common template.
+  default: "{{ common_template_src | default(_copier_conf.src_path ~ '/../common') }}"
   
 mlflow_tracking_uri:
   type: str
@@ -38,9 +41,10 @@ _tasks:
     shell: true
     #likey want to point this to the repository instead
     command: >
-      copier copy "{{ _copier_conf.src_path }}/../common" {{ project_name }}
+      copier copy "{{ common_template_src }}" {{ project_name }}
       --overwrite
       --defaults
+      -a .copier-answers.common.yml
       -d project_name="{{ project_name }}"
       -d author_name="{{ author_name }}"
       -d description="{{ description }}"
@@ -48,10 +52,11 @@ _tasks:
       -d repository_url="{{ repository_url }}"
       -d data_dir="{{ data_dir }}"
       -d data_directory_name="{{ data_directory_name }}"
+      -d mlflow_tracking_uri="{{ mlflow_tracking_uri }}"
       
   - label: run-hook
     command: bash "{{ project_name }}/hooks/post_gen_init.sh"
     shell: true
 
-skip_if_exists:
+_skip_if_exists:
   - README.md

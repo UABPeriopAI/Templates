@@ -1,0 +1,18 @@
+{%- set first_page = sidebar_pages.split(',')[0] | trim -%}
+"""Example page — replace with your actual page implementation."""
+
+from __future__ import annotations
+
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
+
+
+class ExamplePage(QWidget):
+    """Placeholder page for '{{first_page}}'."""
+
+    def __init__(self, parent: QWidget | None = None) -> None:
+        super().__init__(parent)
+        layout = QVBoxLayout(self)
+        label = QLabel("{{first_page}} page — edit app/qt/views/example_page.py")
+        label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        layout.addWidget(label)

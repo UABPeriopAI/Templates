@@ -1,0 +1,62 @@
+{%- set phases = initial_phase_names.split(',') | map('trim') | list -%}
+"""Application state machine with phase-driven UI transitions."""
+
+from __future__ import annotations
+
+from enum import IntEnum
+from typing import Dict, Set
+
+from PySide6.QtCore import QObject, Signal
+
+
+class AppPhase(IntEnum):
+{% for phase in phases -%}
+{% if phase == 'ERROR' %}    {{phase}} = 99
+{% else %}    {{phase}} = {{loop.index0}}
+{% endif -%}
+{% endfor %}
+
+_TRANSITIONS: Dict[AppPhase, Set[AppPhase]] = {
+{% for phase in phases -%}
+{% if phase == 'ERROR' %}    AppPhase.ERROR: {AppPhase.{{phases[0]}}},
+{% elif loop.last %}    AppPhase.{{phase}}: {AppPhase.{{phases[0]}}{% if 'ERROR' in phases %}, AppPhase.ERROR{% endif %}},
+{% else %}    AppPhase.{{phase}}: {AppPhase.{{phases[loop.index]}}{% if 'ERROR' in phases and phases[loop.index] != 'ERROR' %}, AppPhase.ERROR{% endif %}},
+{% endif -%}
+{% endfor %}}
+
+
+class AppStateMachine(QObject):
+    """Phase-driven state machine for {{app_display_name}}."""
+
+    phase_changed = Signal(int)
+
+    def __init__(self, parent: QObject | None = None) -> None:
+        super().__init__(parent)
+        self._phase = AppPhase.{{phases[0]}}
+
+    @property
+    def phase(self) -> AppPhase:
+        return self._phase
+
+    @property
+    def is_running(self) -> bool:
+        return self._phase not in (
+            AppPhase.{{phases[0]}},
+{% if phases[-1] != 'ERROR' %}            AppPhase.{{phases[-1]}},
+{% endif -%}
+{% if 'ERROR' in phases %}            AppPhase.ERROR,
+{% endif %}        )
+
+    def transition_to(self, target: AppPhase) -> None:
+        allowed = _TRANSITIONS.get(self._phase, set())
+        if target not in allowed:
+            raise ValueError(
+                f"Invalid transition: {self._phase.name} -> {target.name}"
+            )
+        self._phase = target
+        self.phase_changed.emit(int(self._phase))
+
+    def restore_to(self, target: AppPhase) -> None:
+        """For DB restoration — bypasses transition validation."""
+        self._phase = target
+        self.phase_changed.emit(int(self._phase))

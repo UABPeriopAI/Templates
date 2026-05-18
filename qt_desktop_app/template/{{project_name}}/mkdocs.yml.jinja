@@ -1,0 +1,20 @@
+site_name: {{project_name}}
+site_url: https://sites.uab.edu/periop-datascience/
+repo_url: https://github.com/uabperiopai
+nav:
+  - Home: index.md
+  - '{{project_name}}':
+    - Main Window: '{{project_name}}/main_window.md'
+  - llm_utils: '!include ./llm_utils/mkdocs.yml'
+theme:
+  name: readthedocs
+plugins:
+  - search
+  - monorepo
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ['.', '{{project_name}}', 'app/qt']
+watch:
+  - .
+use_directory_urls: false

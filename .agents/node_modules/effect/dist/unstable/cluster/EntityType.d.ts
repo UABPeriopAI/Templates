@@ -1,0 +1,20 @@
+/**
+ * @since 4.0.0
+ */
+import * as Schema from "../../Schema.ts";
+/**
+ * @since 4.0.0
+ * @category constructors
+ */
+export declare const EntityType: Schema.brand<Schema.String, "~effect/cluster/EntityType">;
+/**
+ * @since 4.0.0
+ * @category models
+ */
+export type EntityType = typeof EntityType.Type;
+/**
+ * @since 4.0.0
+ * @category constructors
+ */
+export declare const make: (value: string) => EntityType;
+//# sourceMappingURL=EntityType.d.ts.map

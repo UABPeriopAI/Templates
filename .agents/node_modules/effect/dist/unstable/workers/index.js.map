@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","names":["Transferable","Worker","WorkerError","WorkerRunner"],"sources":["../../../src/unstable/workers/index.ts"],"sourcesContent":[null],"mappings":"AAAA;;;AAIA;AAEA;;;AAGA,OAAO,KAAKA,YAAY,MAAM,mBAAmB;AAEjD;;;AAGA,OAAO,KAAKC,MAAM,MAAM,aAAa;AAErC;;;AAGA,OAAO,KAAKC,WAAW,MAAM,kBAAkB;AAE/C;;;AAGA,OAAO,KAAKC,YAAY,MAAM,mBAAmB","ignoreList":[]}

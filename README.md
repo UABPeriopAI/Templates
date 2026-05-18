@@ -50,15 +50,56 @@ Examples of how to create a new project from these templates:
 ~~~
 $ git clone https://github.com/UABPeriopAI/Templates.git
 ~~~
-Then
+Then bootstrap git-tracked template sources (one-time per clone):
 ~~~
-$ copier copy --trust Templates/fastapi_app path/to/destination
+$ cd Templates
+$ ./scripts/bootstrap_template_sources.sh
+~~~
+This initializes independent git histories (with a bootstrap tag) in `common/`, `fastapi_app/`, `gradio_app/`, and `mlops_app/`.
+Then generate from one of the app templates:
+~~~
+$ copier copy --trust Templates/fastapi_app path/to/destination \
+    -d common_template_src="$(realpath Templates/common)"
 ~~~
 OR
 ~~~
-$ copier copy --trust Templates/mlops_app path/to/destination
+$ copier copy --trust Templates/gradio_app path/to/destination \
+    -d common_template_src="$(realpath Templates/common)"
+~~~
+OR
+~~~
+$ copier copy --trust Templates/mlops_app path/to/destination \
+    -d common_template_src="$(realpath Templates/common)"
 ~~~
 Note that the command will create the project inside the destination directory, not with the name of the destination directory.
+
+### Template Update Propagation
+This repository now renders explicit Copier answer files so generated projects can be updated later:
+
+- `fastapi_app` projects: `.copier-answers.fastapi.yml`
+- `gradio_app` projects: `.copier-answers.gradio.yml`
+- `mlops_app` projects: `.copier-answers.mlops.yml`
+- shared `common` layer: `.copier-answers.common.yml`
+
+To pull template changes into an existing generated project, run update from the project root:
+
+~~~
+# FastAPI projects
+copier update --trust --defaults --skip-tasks -a .copier-answers.fastapi.yml
+copier update --trust --defaults --skip-tasks -a .copier-answers.common.yml
+
+# Gradio projects
+copier update --trust --defaults --skip-tasks -a .copier-answers.gradio.yml
+copier update --trust --defaults --skip-tasks -a .copier-answers.common.yml
+
+# MLOps projects
+copier update --trust --defaults --skip-tasks -a .copier-answers.mlops.yml
+copier update --trust --defaults --skip-tasks -a .copier-answers.common.yml
+~~~
+
+Run both update commands for each project type: the first updates the app-specific template and the second updates shared content from `common/`.
+`--skip-tasks` avoids rerunning repository/bootstrap side effects in template hooks.
+`copier update` requires the target project repo to be clean before running.
 
 If your project already has code in it, you'll need to merge whatever branch has existing code with the new one copier creates using 
 ~~~
@@ -69,23 +110,37 @@ $ git merge <old_branch> --allow-unrelated-histories
 Executing this command will initiate prompts for you to enter project specific information.   Our template has the following inputs for a new project (with default values in parenthesis)
 #### fastapi_app
 - [ ] Project Name* (FastAPIapp) - Name of the new project. This parameter is used in a number of places and should be a title that the user can use to readily identify the project.
-- [ ] Author Name* () - Name of the person creating the project. This will be used in the setup.py file and in git commit messages.
+- [ ] Author Name* () - Name of the person creating the project. This will be used in project metadata and in git commit messages.
 - [ ] Description () - Brief description of what the software is intended to do.
 - [ ] Author Email* () - Be sure to use the email connected to your version control account.
 - [ ] Repository URL* () - The empty git Repository URL for the new project from step 1.
 - [ ] Data Directory* (data) - The folder where you plan to put the data (eventually we will move it there automatically, but for now this just updates the devcontainer.json so the Docker container knows where to find the data).
 - [ ] Data directory* name (DATASCI)
 - [ ] LLM endpoint () - Optional LLM endpoint string used by the template.
+- [ ] Common template source () - Path or git URL for the `common` template source.
+- [ ] MLflow Tracking URI (https://) - URI for MLflow tracking.
+
+#### gradio_app
+- [ ] Project Name* (GradioApp) - Name of the new project. This parameter is used in a number of places and should be a title that the user can use to readily identify the project.
+- [ ] Author Name* () - Name of the person creating the project. This will be used in project metadata and in git commit messages.
+- [ ] Description () - Brief description of what the software is intended to do.
+- [ ] Author Email* () - Be sure to use the email connected to your version control account.
+- [ ] Repository URL* () - The empty git Repository URL for the new project from step 1.
+- [ ] Data Directory* (data) - The folder where you plan to put the data (eventually we will move it there automatically, but for now this just updates the devcontainer.json so the Docker container knows where to find the data).
+- [ ] Data directory* name (DATASCI)
+- [ ] LLM endpoint () - Optional LLM endpoint string used by the template.
+- [ ] Common template source () - Path or git URL for the `common` template source.
 - [ ] MLflow Tracking URI (https://) - URI for MLflow tracking.
 
 #### mlops_app
 - [ ] Project Name* (ML_Project) - Name of the new project. This parameter is used in a number of places and should be a title that the user can use to readily identify the project.
-- [ ] Author Name* () - Name of the person creating the project. This will be used in the setup.py file and in git commit messages.
+- [ ] Author Name* () - Name of the person creating the project. This will be used in project metadata and in git commit messages.
 - [ ] Description (This ML/AI is designed to ) - Brief description of what the software is intended to do.
 - [ ] Author Email* () - Be sure to use the email connected to your version control account.
 - [ ] Repository URL* () - The empty git Repository URL for the new project from step 1.
 - [ ] Data Directory* (data) - The folder where you plan to put the data (eventually we will move it there automatically, but for now this just updates the devcontainer.json so the Docker container knows where to find the data).
 - [ ] Data directory* name (DATASCI)
+- [ ] Common template source () - Path or git URL for the `common` template source.
 - [ ] MLflow Tracking URI (https://) - URI for MLflow tracking.
 
 A * next to the parameter indicates a field that is required for the template to deploy as intended. Many default values are left blank, because we make no presumptions about the specific information for a project. We encourage users to provide input for all fields, although *Description* is not requried for the template to deploy correctly. 
