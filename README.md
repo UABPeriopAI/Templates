@@ -1,10 +1,10 @@
-# MLOps and  Web app: Template Framework for Traceable Machine Learning, Artificial Intelligence and Web application
-This repository contains a [copier templates](https://copier.readthedocs.io/en/stable/) for deploying a MLOps infrastructure and web applications. Brought to you by the [Perioperative Data Science Team at the University of Alabama, Birmingham](https://sites.uab.edu/periop-datascience/).
+# MLOps and Web App: Template Framework for Traceable Machine Learning, Artificial Intelligence and Web Applications
+This repository contains [copier templates](https://copier.readthedocs.io/en/stable/) for deploying MLOps infrastructure and web applications. Brought to you by the [Perioperative Data Science Team at the University of Alabama, Birmingham](https://sites.uab.edu/periop-datascience/).
 
 ## Setting up the Environment
-The application was built and tested in a Windwos Subsystem for Linux 2 (WSL2) environment.  The software should work in either a WSL2 or Linux environment. If you are using a Linux environment, skip the installation steps for WSL2.  While it is possible to get this tool to work without all these steps, we highly encourage users to install WSL2, Docker, and VSCode for the optimal experience using this software.
+The application was built and tested in a Windows Subsystem for Linux 2 (WSL2) environment.  The software should work in either a WSL2 or Linux environment. If you are using a Linux environment, skip the installation steps for WSL2.  While it is possible to get this tool to work without all these steps, we highly encourage users to install WSL2, Docker, and VSCode for the optimal experience using this software.
 
-### Install WSL2 on Windwos
+### Install WSL2 on Windows
   Follow the instructions for [installing WSL2](https://github.com/UABPeriopAI/Templates/wiki/Setting-up-WSL2).
 
 ### Install Git inside WSL2
@@ -56,7 +56,13 @@ $ copier copy --trust Templates/fastapi_app path/to/destination
 ~~~
 OR
 ~~~
+OR
+~~~
 $ copier copy --trust Templates/mlops_app path/to/destination
+~~~
+OR
+~~~
+$ copier copy --trust Templates/gradio_app path/to/destination
 ~~~
 Note that the command will create the project inside the destination directory, not with the name of the destination directory.
 
@@ -88,10 +94,22 @@ Executing this command will initiate prompts for you to enter project specific i
 - [ ] Data directory* name (DATASCI)
 - [ ] MLflow Tracking URI (https://) - URI for MLflow tracking.
 
-A * next to the parameter indicates a field that is required for the template to deploy as intended. Many default values are left blank, because we make no presumptions about the specific information for a project. We encourage users to provide input for all fields, although *Description* is not requried for the template to deploy correctly. 
+#### gradio_app
+- [ ] Project Name* (GradioApp) - Name of the new project. This parameter is used in a number of places and should be a title that the user can use to readily identify the project.
+- [ ] Author Name* () - Name of the person creating the project. This will be used in the setup.py file and in git commit messages.
+- [ ] Description () - Brief description of what the software is intended to do.
+- [ ] Author Email* () - Be sure to use the email connected to your version control account.
+- [ ] Repository URL* () - The empty git Repository URL for the new project from step 1.
+- [ ] Data Directory* (data) - The folder where you plan to put the data.
+- [ ] Data directory* name (DATASCI)
+- [ ] LLM endpoint () - Optional LLM endpoint string used by the template.
+- [ ] Common template source () - Source path or git URL for the common template (auto-detected by default).
+- [ ] MLflow Tracking URI (https://) - URI for MLflow tracking.
+
+A * next to the parameter indicates a field that is required for the template to deploy as intended. Many default values are left blank, because we make no presumptions about the specific information for a project. We encourage users to provide input for all fields, although *Description* is not required for the template to deploy correctly. 
 
 ##### After running the copier
-+ The contents of the template are pushed to a new repository branch "feature/initialize_template" which is ready to merge to main. Additionally, there will be a remenant master branch that can be deleted (copier creates a master branch, but out group prefers the name 'main'.)
++ The contents of the template are pushed to a new repository branch "feature/initialize_template" which is ready to merge to main. Additionally, there will be a remnant master branch that can be deleted (copier creates a master branch, but our group prefers the name 'main'.)
 
 + The data directory will be automatically created and moved to Data_Directory/Data_Directory_name/
 
