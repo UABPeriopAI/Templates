@@ -1,0 +1,13 @@
+# Changes here will be overwritten by Copier.
+{{ {
+  "_src_path": _copier_answers.get("_src_path"),
+  "_commit": _copier_answers.get("_commit"),
+  "project_name": project_name,
+  "author_name": author_name,
+  "description": description,
+  "author_email": author_email,
+  "repository_url": repository_url,
+  "data_dir": data_dir,
+  "data_directory_name": data_directory_name,
+  "mlflow_tracking_uri": mlflow_tracking_uri
+}|to_nice_yaml -}}

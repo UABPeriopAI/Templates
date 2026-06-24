@@ -1,0 +1,126 @@
+"""Generic configuration base model with QSettings persistence."""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Any, ClassVar
+
+from PySide6.QtCore import QObject, QSettings, Signal
+
+
+@dataclass
+class FieldDef:
+    """Definition of a single configuration field.
+
+    Attributes:
+        name: Internal name (used as key in dicts and QSettings).
+        default: Default value when no persisted value exists.
+        label: Human-readable label for the settings UI.
+        secret: If True, render as a password field.
+        field_type: Widget hint — "str", "int", "float", "bool", "text".
+        step: Step size for float spinboxes.
+        minimum: Min value for numeric spinboxes.
+        maximum: Max value for numeric spinboxes.
+        decimals: Decimal places for float spinboxes.
+    """
+
+    name: str
+    default: Any = ""
+    label: str = ""
+    secret: bool = False
+    field_type: str = "str"
+    step: float = 1.0
+    minimum: float = -999999.0
+    maximum: float = 999999.0
+    decimals: int = 6
+
+    def __post_init__(self) -> None:
+        if not self.label:
+            self.label = self.name.replace("_", " ").title()
+
+
+class ConfigBase(QObject):
+    """Generic configuration model backed by QSettings.
+
+    Subclasses declare fields via ``_fields`` and set ``_settings_group``.
+    Provides get/set, save/restore, reset, and to_dict()/from_dict().
+    """
+
+    config_changed = Signal()
+
+    _fields: ClassVar[list[FieldDef]] = []
+    _settings_group: ClassVar[str] = "config"
+
+    def __init__(self, parent: QObject | None = None) -> None:
+        super().__init__(parent)
+        self._settings = QSettings("{{org_name}}", "{{app_display_name}}")
+        self._values: dict[str, Any] = {}
+        self.reset_to_defaults(emit=False)
+        self.restore()
+
+    def __getattr__(self, name: str) -> Any:
+        if name.startswith("_"):
+            raise AttributeError(name)
+        values = self.__dict__.get("_values", {})
+        if name in values:
+            return values[name]
+        raise AttributeError(f"{type(self).__name__!r} has no attribute {name!r}")
+
+    def get(self, name: str) -> Any:
+        return self._values[name]
+
+    def set(self, name: str, value: Any, *, save: bool = True) -> None:
+        if name not in self._values:
+            raise KeyError(f"Unknown config field: {name!r}")
+        if self._values[name] != value:
+            self._values[name] = value
+            if save:
+                self.save()
+            self.config_changed.emit()
+
+    def save(self) -> None:
+        self._settings.beginGroup(self._settings_group)
+        for fld in self._fields:
+            self._settings.setValue(fld.name, self._values[fld.name])
+        self._settings.endGroup()
+
+    def restore(self) -> None:
+        self._settings.beginGroup(self._settings_group)
+        for fld in self._fields:
+            if self._settings.contains(fld.name):
+                raw = self._settings.value(fld.name, fld.default)
+                if fld.field_type == "int":
+                    try:
+                        raw = int(raw)
+                    except (TypeError, ValueError):
+                        raw = fld.default
+                elif fld.field_type == "float":
+                    try:
+                        raw = float(raw)
+                    except (TypeError, ValueError):
+                        raw = fld.default
+                elif fld.field_type == "bool":
+                    if isinstance(raw, str):
+                        raw = raw.lower() in ("true", "1", "yes")
+                    else:
+                        raw = bool(raw)
+                self._values[fld.name] = raw
+        self._settings.endGroup()
+
+    def reset_to_defaults(self, *, emit: bool = True) -> None:
+        for fld in self._fields:
+            self._values[fld.name] = fld.default
+        if emit:
+            self.save()
+            self.config_changed.emit()
+
+    def to_dict(self) -> dict[str, Any]:
+        return {fld.name: self._values[fld.name] for fld in self._fields}
+
+    def from_dict(self, data: dict[str, Any]) -> None:
+        known = {fld.name for fld in self._fields}
+        for key, value in data.items():
+            if key in known:
+                self._values[key] = value
+        self.save()
+        self.config_changed.emit()

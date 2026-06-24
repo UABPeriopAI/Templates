@@ -1,0 +1,79 @@
+_min_copier_version: "9.0.0"
+_subdirectory: template
+_answers_file: .copier-answers.qt_desktop.yml
+
+# ── Questions ────────────────────────────────────────────────
+project_name:
+  help: "Your project name (used for the Python package directory)"
+  default: QtDesktopApp
+author_name:
+  default: ""
+description:
+  default: "A PySide6 desktop application"
+author_email:
+  default: ""
+repository_url:
+  default: ""
+data_dir:
+  default: "data"
+data_directory_name:
+  default: "DATASCI"
+llm_endpoint:
+  default: ""
+common_template_src:
+  type: str
+  help: Source path or git URL for the common template.
+  default: "{{ common_template_src | default(_copier_conf.src_path ~ '/../common') }}"
+mlflow_tracking_uri:
+  type: str
+  default: "https://"
+  help: "MLflow Tracking URI"
+
+# ── Qt-specific questions ────────────────────────────────────
+app_display_name:
+  type: str
+  help: "Display name for the application window title"
+  default: "{{ project_name }}"
+org_name:
+  type: str
+  help: "Organization name for QSettings"
+  default: "UABPeriopAI"
+sidebar_pages:
+  type: str
+  help: "Comma-separated page names for sidebar navigation (e.g. Home,Settings)"
+  default: "Home,Settings"
+initial_phase_names:
+  type: str
+  help: "Comma-separated phase names for the state machine enum (e.g. IDLE,RUNNING,COMPLETE,ERROR)"
+  default: "IDLE,RUNNING,COMPLETE,ERROR"
+include_pyside6:
+  type: bool
+  default: true
+  help: "Include PySide6 in requirements.txt"
+
+# ── Tasks ─────────────────────────────────────────────────────
+_tasks:
+  - label: pull-in-common
+    shell: true
+    command: >
+      copier copy "{{ common_template_src }}" {{ project_name }}
+      --overwrite
+      --defaults
+      -a .copier-answers.common.yml
+      -d project_name="{{ project_name }}"
+      -d author_name="{{ author_name }}"
+      -d description="{{ description }}"
+      -d author_email="{{ author_email }}"
+      -d repository_url="{{ repository_url }}"
+      -d data_dir="{{ data_dir }}"
+      -d data_directory_name="{{ data_directory_name }}"
+      -d llm_endpoint="{{ llm_endpoint }}"
+      -d mlflow_tracking_uri="{{ mlflow_tracking_uri }}"
+
+  - label: run-hook
+    command: bash "{{ project_name }}/hooks/post_gen_init.sh"
+    shell: true
+
+# ── Misc ────────────────────────────────────────────────────
+_skip_if_exists:
+  - README.md

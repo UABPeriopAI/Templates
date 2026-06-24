@@ -1,0 +1,17 @@
+"""App-level configuration model backed by QSettings."""
+
+from __future__ import annotations
+
+from typing import ClassVar
+
+from app.qt.models.config_base import ConfigBase, FieldDef
+
+
+class ConfigModel(ConfigBase):
+    """Application preferences stored via QSettings."""
+
+    _settings_group: ClassVar[str] = "app"
+    _fields: ClassVar[list[FieldDef]] = [
+        FieldDef("data_folder", "", "Data Folder"),
+        FieldDef("mlflow_uri", "{{mlflow_tracking_uri}}", "MLflow URI"),
+    ]

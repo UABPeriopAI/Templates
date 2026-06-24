@@ -1,0 +1,45 @@
+# {{project_name}}
+
+{{description}}
+
+## Setup
+
+```bash
+# Create virtual environment and install dependencies
+make venv
+
+# Activate the virtual environment
+source .venv/bin/activate
+```
+
+## Run the Qt Desktop App
+
+```bash
+uv run python -m app.qt
+```
+
+## Run Tests
+
+```bash
+uv run pytest tests/ -v
+```
+
+## Format & Lint
+
+```bash
+black .
+python3 -m isort .
+flake8
+```
+
+## Documentation
+
+```bash
+mkdocs serve
+```
+
+---
+
+If you found this helpful in your work, please cite:
+
+Godwin, R. C.* , Melvin, R. L.*, "Toward Efficient Data Science: A Comprehensive MLOps Template for Collaborative Code Development and Automation", SoftwareX, 26, 101723, 2024

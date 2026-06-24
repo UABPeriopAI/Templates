@@ -1,0 +1,145 @@
+/* Light Theme */
+
+QMainWindow {
+    background-color: #fafafa;
+}
+
+/* Sidebar */
+QListWidget#sidebar {
+    background-color: #263238;
+    color: #eceff1;
+    border: none;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+QListWidget#sidebar::item {
+    padding: 12px 16px;
+    border-left: 3px solid transparent;
+}
+
+QListWidget#sidebar::item:selected {
+    background-color: #37474f;
+    border-left: 3px solid #42a5f5;
+    font-weight: bold;
+}
+
+QListWidget#sidebar::item:hover:!selected {
+    background-color: #2e3b42;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+QPushButton:hover {
+    background-color: #1565c0;
+}
+
+QPushButton:pressed {
+    background-color: #0d47a1;
+}
+
+QPushButton:disabled {
+    background-color: #bdbdbd;
+    color: #757575;
+}
+
+QPushButton#primaryButton {
+    background-color: #2e7d32;
+    font-size: 15px;
+    padding: 12px 24px;
+}
+
+QPushButton#primaryButton:hover {
+    background-color: #1b5e20;
+}
+
+/* Group Boxes */
+QGroupBox {
+    font-weight: bold;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-top: 12px;
+    padding-top: 16px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 12px;
+    padding: 0 4px;
+}
+
+/* Tables */
+QTableView {
+    gridline-color: #e0e0e0;
+    selection-background-color: #e3f2fd;
+    alternate-background-color: #f5f5f5;
+}
+
+QHeaderView::section {
+    background-color: #eeeeee;
+    padding: 4px 8px;
+    border: none;
+    border-bottom: 1px solid #bdbdbd;
+    font-weight: bold;
+}
+
+/* Log Panel */
+QPlainTextEdit {
+    font-family: "Consolas", "Monaco", monospace;
+    font-size: 12px;
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+}
+
+/* Progress Overlay */
+ProgressOverlay QLabel {
+    font-size: 16px;
+    color: #424242;
+}
+
+/* Inputs */
+QLineEdit {
+    padding: 6px 8px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+}
+
+QLineEdit:focus {
+    border-color: #1976d2;
+}
+
+/* Check/Radio */
+QCheckBox, QRadioButton {
+    spacing: 8px;
+    font-size: 13px;
+}
+
+/* Tabs */
+QTabWidget::pane {
+    border: 1px solid #e0e0e0;
+}
+
+QTabBar::tab {
+    padding: 8px 16px;
+    border: 1px solid #e0e0e0;
+    border-bottom: none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+QTabBar::tab:selected {
+    background-color: white;
+    font-weight: bold;
+}
+
+QTabBar::tab:!selected {
+    background-color: #eeeeee;
+}

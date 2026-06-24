@@ -1,0 +1,36 @@
+"""{{app_display_name}} — PySide6 desktop application."""
+
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+
+def main() -> None:
+    from PySide6.QtWidgets import QApplication
+    from PySide6.QtCore import Qt
+
+    QApplication.setAttribute(Qt.ApplicationAttribute.AA_ShareOpenGLContexts)
+    app = QApplication(sys.argv)
+    app.setApplicationName("{{app_display_name}}")
+    app.setOrganizationName("{{org_name}}")
+
+    _apply_stylesheet(app)
+
+    from app.qt.main_window import MainWindow
+
+    window = MainWindow()
+    window.show()
+
+    sys.exit(app.exec())
+
+
+def _apply_stylesheet(app: "QApplication") -> None:
+    """Load QSS stylesheet from resources/."""
+    style_path = Path(__file__).parent / "resources" / "styles.qss"
+    if style_path.exists():
+        app.setStyleSheet(style_path.read_text())
+
+
+if __name__ == "__main__":
+    main()
