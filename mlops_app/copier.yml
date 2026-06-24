@@ -39,7 +39,7 @@ mlflow_tracking_uri:
 _tasks:
   - label: pull-in-common
     shell: true
-    #likey want to point this to the repository instead
+    #likely want to point this to the repository instead
     command: >
       copier copy "{{ common_template_src }}" {{ project_name }}
       --overwrite

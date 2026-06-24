@@ -1,0 +1,75 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+{{project_name}} is a Gradio application built with Python 3.11. It provides an interactive web UI with tabbed task interfaces and uses LLM workflows powered by `aiweb_common.WorkflowHandler`.
+
+## Commands
+
+```bash
+# Setup
+make venv && source venv/bin/activate
+
+# Run Gradio app
+python gradio_app.py                          # launches on port 7860
+
+# Run with Docker
+docker-compose up --build --force-recreate
+
+# Lint & format
+make style                                    # runs black, flake8, isort, autopep8
+
+# Tests
+pytest                                        # all tests
+pytest tests/gradio_tests/                    # handler tests
+pytest tests/ -k test_name                    # single test by name
+
+# Clean
+make clean
+```
+
+## Architecture
+
+**Entry point:** `gradio_app.py` — Gradio Blocks app with tabbed interface, served on `0.0.0.0:7860`.
+
+### Handler Pattern
+
+```
+Gradio UI (gradio_app.py)                     ← UI components, event wiring
+       ↓
+Handler ({{project_name}}/sample_handler.py)  ← business logic, LLM calls
+       ↓
+Config  ({{project_name}}/config/config.py)   ← paths, settings, constants
+```
+
+UI functions are kept thin; handlers do the heavy lifting.
+
+### Key Base Class
+
+Handlers can inherit from `aiweb_common.WorkflowHandler` (from the `llm_utils` package) for LLM-powered workflows. Always search `llm_utils`/`aiweb_common` for existing functionality before writing new code.
+
+### Configuration
+
+- `{{project_name}}/config/config.py` — paths, settings, UI text, constants
+- `.kilocode/rules/` — coding standards referenced by all AI agents (see `AGENTS.md`)
+
+## Testing
+
+Tests live in `tests/gradio_tests/`. All LLM calls must be mocked — no real API calls in tests. Test fixtures in `conftest.py` provide test helpers.
+
+## Code Conventions
+
+Rules are defined in `.kilocode/rules/` and apply to all AI agents working in this repo:
+
+- **Python ≥ 3.11** with full type annotations everywhere
+- **Formatting:** Black (line length 100), isort (profile=black), flake8, autopep8. Config in `pyproject.toml`
+- **Naming:** `snake_case` for modules/functions/variables, `PascalCase` for classes, `UPPER_SNAKE_CASE` for constants/enums, `_leading_underscore` for private, `*_async` suffix for async functions
+- **Docstrings:** Google style on public interfaces
+- **Reuse** `aiweb_common` classes/methods; propose additions to `llm_utils` rather than editing it directly
+- **Package management:** `uv` preferred; editable install with `pip install -e .`
+
+## Restricted Files
+
+Never read, write, or commit: `.env`, `.env.*`, `.venv/`, `supersecrets.txt`, `credentials.json`, `*.pem`, `*.key`, `secrets/`, or any file in `data/` containing PHI/PII.
